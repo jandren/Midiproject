@@ -20,23 +20,29 @@
 //#include "avrMIDI.h"
 //#include "main.h"
 
-
-// hello
-
-
 void UART_out(uint8_t ch);
 void Init_UART0(uint16_t BAUDRATE);
 void Init_ports(void);
+<<<<<<< HEAD
 
 // For avrMIDI.c file
 uint8_t MIDI_Conversion(uint8_t pressed);
 void MIDI_send(uint8_t command, uint8_t tone);
 
+=======
+uint8_t Conversion(uint8_t pressed);
+void init_Timer0(void);
+void init_Timer1(void);
+>>>>>>> origin/master
 
 // global variables
 volatile uint16_t rx_ch = 0xFF;
 volatile uint8_t switches = 0x00; // Byte containing [rec, play1, play2, play3, ch_bit0, ch_bit1, pitch_bit0, pitch_bit1];
+<<<<<<< HEAD
 volatile uint8_t volume = 100;
+=======
+volatile uint8_t adc_read;
+>>>>>>> origin/master
 
 int main(void)
 {
@@ -209,19 +215,33 @@ uint8_t MIDI_Conversion(uint8_t pressed)
 void init_adc(void)					// function for initializing ADC
 {
 	ADCSRA |= (1 << ADEN) | (1 << ADPS1);	// enable ADC, prescaler 4
-	ADMUX |= (1 << REFS0);					// internal 5V, Channel 0
+	ADMUX |= (1 << REFS0) | (1 << ADLAR);	// internal 5V, 8 bits
 }
 
-uint16_t read_ADC()			// function for reading ADC
+ISR(ADC_vect)						// read ADC using interrupt
 {
-	uint8_t channel = (switches & 0x0C) >> 2; // Mask and shift channelbits from switches. 
-	uint16_t adc_value;
-	ADCSRA |= (1 << ADSC);			// start conversion
-	ADMUX = (ADMUX & 0xE0) | channel;		// copy reference bit, merge with channel
-	while((ADCSRA & (1<< ADIF)) == 0);		// wait until ADIF flag is set
-	adc_value = ADCL;				// save lower 8 bits
-	ADCSRA |= (1 << ADIF);			// reset ADIF flag
-	return(adc_value);				// return with ADC value
+	adc_read = ADCH;									// save 8 bits
+	ADMUX = (ADMUX & 0xE0) | ((switches & 0x0C) >> 2);	// Mask and shift channel bits from switches
+}
+
+void init_Timer0(void)
+{
+	TCCR0A = 0b00000000;			// normal mode
+	TCCR0B = 0b00000101;			// prescaler 1024
+	TCNT0 = 0;						// overflow, 255*1024/(8*10^6) = 32.6ms delay at max
+	TIMSK0 |= (1 << TOIE0);			// enable overflow interrupt enable 
+}
+
+ISR(TIMER0_OVF_vect)
+{
+	TCNT0 = 0;						// reset the count TCNT0
+}
+
+void init_Timer1(void)				// for recording
+{
+	TCCR1A = 0b00000000;
+	TCCR1B = 0b00000000;
+	OCR1A = 0;
 }
 
 /*
