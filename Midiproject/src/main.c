@@ -179,7 +179,7 @@ void init_adc(void)					// function for initializing ADC
 
 uint16_t read_ADC()			// function for reading ADC
 {
-	uint8_t channel = (switches & 0x0C) >> 2;
+	uint8_t channel = (switches & 0x0C) >> 2; // Mask and shift channelbits from switches. 
 	uint16_t adc_value;
 	ADCSRA |= (1 << ADSC);			// start conversion
 	ADMUX = (ADMUX & 0xE0) | channel;		// copy reference bit, merge with channel
