@@ -213,12 +213,6 @@
     <Folder Include="src\config\" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="src\avrMIDI.h">
-      <SubType>compile</SubType>
-    </Compile>
-    <Compile Include="src\main.h">
-      <SubType>compile</SubType>
-    </Compile>
     <None Include="src\asf.h">
       <SubType>compile</SubType>
     </None>
@@ -270,9 +264,6 @@
     <None Include="src\ASF\mega\utils\preprocessor\tpaste.h">
       <SubType>compile</SubType>
     </None>
-    <Compile Include="src\avrMIDI.c">
-      <SubType>compile</SubType>
-    </Compile>
     <Compile Include="src\main.c">
       <SubType>compile</SubType>
     </Compile>

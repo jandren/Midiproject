@@ -9,7 +9,7 @@
 
 #include "main.c"
 #include "avrMIDI.h"
-
+/*
 void send_MIDI(uint8_t command, uint8_t tone, uint8_t volume)
 // Send the Midi command, not much really but abstracts the code a little.
 {
@@ -19,4 +19,4 @@ void send_MIDI(uint8_t command, uint8_t tone, uint8_t volume)
 	UART_out(volume & m); // Velocity 7 bit
 	
 	// See Midi command table for exact bits to input.
-}
+}*/

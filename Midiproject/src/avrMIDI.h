@@ -13,7 +13,7 @@
 
 
 
-void send_MIDI(uint8_t command, uint8_t tone, uint8_t volume);
+//void send_MIDI(uint8_t command, uint8_t tone, uint8_t volume);
 
 
 
