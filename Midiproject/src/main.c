@@ -32,12 +32,22 @@ void MIDI_send(uint8_t command, uint8_t tone);
 
 void init_Timer0(void);
 void init_Timer1(void);
+<<<<<<< HEAD
 
+=======
+>>>>>>> origin/master
 
 // global variables
 volatile uint16_t rx_ch = 0xFF;
 volatile uint8_t switches = 0x00; // Byte containing [rec, play1, play2, play3, ch_bit0, ch_bit1, pitch_bit0, pitch_bit1];
+<<<<<<< HEAD
 extern volatile uint8_t volume;
+=======
+volatile uint8_t volume = 100;
+volatile uint8_t adc_read;
+volatile uint16_t software_time = 0;
+volatile uint16_t software_comp = 0;
+>>>>>>> origin/master
 
 int main(void)
 {
@@ -83,6 +93,7 @@ int main(void)
 		}
 		else if(previus & change) // Note off
 		{
+<<<<<<< HEAD
 			command = 0b10010000 | (switches & 0x0C) >> 2;
 			tone = MIDI_Conversion(previus & change);
 						
@@ -97,6 +108,11 @@ int main(void)
 			//UART_out(0b10000001); // Command
 			//UART_out(60+MIDI_Conversion(previus & change)); // Note 7bit
 			//UART_out(0b01001000); // Velocity 7 bit
+=======
+			UART_out(0b10000001); // Command
+			UART_out(60+MIDI_Conversion(previus & change)); // Note 7bit
+			UART_out(0b01001000); // Velocity 7 bit
+>>>>>>> origin/master
 		}
 		previus = current;
 		//_delay_ms(300);
@@ -136,10 +152,6 @@ void Init_UART0(uint16_t BAUDRATE){
 	UCSR0B = 0b10011000;
 	UCSR0C = 0b00000110;
 }
-
-
-
-
 
 void Init_ports(void){
 	// Hard coded setup
@@ -243,7 +255,22 @@ ISR(TIMER0_OVF_vect)
 
 void init_Timer1(void)				// for recording
 {
-	TCCR1A = 0b00000000;
-	TCCR1B = 0b00000000;
-	OCR1A = 0;
+	TCCR1A = 0b00000000;			// normal mode
+	TCCR1B = 0b00000101;			// prescaler 1024
+	OCR1A = 65535;					// output compare, 65525*1024/(8*10^6) = 8.4s at max
 }
+
+ISR(TIMER1_COMPA_vect)
+{
+	software_time++;
+	if(software_time == software_comp)
+	{
+		REC_ISR(software_time);
+	}
+}
+
+Set_ISR(uint16_t time)
+{
+	software_comp = time;
+}
+
