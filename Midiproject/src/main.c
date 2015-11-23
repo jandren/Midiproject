@@ -23,13 +23,12 @@
 void UART_out(uint8_t ch);
 void Init_UART0(uint16_t BAUDRATE);
 void Init_ports(void);
-<<<<<<< HEAD
+
 
 // For avrMIDI.c file
 uint8_t MIDI_Conversion(uint8_t pressed);
 void MIDI_send(uint8_t command, uint8_t tone);
 
-=======
 uint8_t Conversion(uint8_t pressed);
 void init_Timer0(void);
 void init_Timer1(void);
@@ -38,11 +37,8 @@ void init_Timer1(void);
 // global variables
 volatile uint16_t rx_ch = 0xFF;
 volatile uint8_t switches = 0x00; // Byte containing [rec, play1, play2, play3, ch_bit0, ch_bit1, pitch_bit0, pitch_bit1];
-<<<<<<< HEAD
 volatile uint8_t volume = 100;
-=======
 volatile uint8_t adc_read;
->>>>>>> origin/master
 
 int main(void)
 {
@@ -243,27 +239,3 @@ void init_Timer1(void)				// for recording
 	TCCR1B = 0b00000000;
 	OCR1A = 0;
 }
-
-/*
-void init_INT(void)
-{
-	EICRA |= (1 << ISC11) | (1 << ISC10) | (1 << ISC01) | (1 << ISC00);			// rising edge for both INT0 and INT1
-	EIMSK |= (1 << INT0) | (1 << INT1);			// INT0 and INT1
-}
-
-ISR (INT0_vect)
-{
-	if((channel < 3) && (channel >= 0))	// range of 0 and 3
-	{
-		channel++;				// incrementing
-	}
-}
-
-ISR (INT1_vect)
-{
-	if((channel <= 3) && (channel > 0))	// range of 0 and 3
-	{
-		channel--;				// decrementing
-	}
-}
-*/
