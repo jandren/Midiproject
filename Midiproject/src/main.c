@@ -54,6 +54,7 @@ int main(void)
 		
 		if(current & change) // Note on
 		{
+			// I want add stuff here
 			UART_out(0b10010001); // Command
 			UART_out(60+Conversion(current & change)); // Note 7bit
 			UART_out(80 ); //volume(switches & 0x03)); // Velocity 7 bit
