@@ -17,6 +17,7 @@
 #include <avr/io.h>
 #include <util/delay.h>
 #include <avr/interrupt.h>
+#include "REC.h"
 //#include "avrMIDI.h"
 //#include "main.h"
 
@@ -29,16 +30,14 @@ void Init_ports(void);
 uint8_t MIDI_Conversion(uint8_t pressed);
 void MIDI_send(uint8_t command, uint8_t tone);
 
-uint8_t Conversion(uint8_t pressed);
 void init_Timer0(void);
 void init_Timer1(void);
->>>>>>> origin/master
+
 
 // global variables
 volatile uint16_t rx_ch = 0xFF;
 volatile uint8_t switches = 0x00; // Byte containing [rec, play1, play2, play3, ch_bit0, ch_bit1, pitch_bit0, pitch_bit1];
-volatile uint8_t volume = 100;
-volatile uint8_t adc_read;
+extern volatile uint8_t volume;
 
 int main(void)
 {
@@ -71,10 +70,12 @@ int main(void)
 			tone = MIDI_Conversion(current & change);
 			
 			if(switches & 0x80){
-				//REC_add(command, tone);
+				REC_add(command, tone);
 			}
 			
 			MIDI_send(command, tone);
+			
+			
 			
 			//UART_out(0b10010001); // Command
 			//UART_out(60+Conversion(current & change)); // Note 7bit
@@ -82,13 +83,20 @@ int main(void)
 		}
 		else if(previus & change) // Note off
 		{
+			command = 0b10010000 | (switches & 0x0C) >> 2;
+			tone = MIDI_Conversion(previus & change);
+						
+			if(switches & 0x80){
+				REC_add(command, tone);
+			}
+						
+			MIDI_send(command, tone);
 			
 			
 			
-			
-			UART_out(0b10000001); // Command
-			UART_out(60+MIDI_Conversion(previus & change)); // Note 7bit
-			UART_out(0b01001000); // Velocity 7 bit
+			//UART_out(0b10000001); // Command
+			//UART_out(60+MIDI_Conversion(previus & change)); // Note 7bit
+			//UART_out(0b01001000); // Velocity 7 bit
 		}
 		previus = current;
 		//_delay_ms(300);
@@ -216,7 +224,7 @@ void init_adc(void)					// function for initializing ADC
 
 ISR(ADC_vect)						// read ADC using interrupt
 {
-	adc_read = ADCH;									// save 8 bits
+	volume = ADCH;									// save 8 bits
 	ADMUX = (ADMUX & 0xE0) | ((switches & 0x0C) >> 2);	// Mask and shift channel bits from switches
 }
 

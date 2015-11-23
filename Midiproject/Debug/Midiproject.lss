@@ -3,31 +3,31 @@ Midiproject.elf:     file format elf32-avr
 
 Sections:
 Idx Name          Size      VMA       LMA       File off  Algn
-  0 .data         00000004  00800200  0000029a  0000032e  2**0
+  0 .data         00000004  00800200  00000354  000003e8  2**0
                   CONTENTS, ALLOC, LOAD, DATA
-  1 .text         0000029a  00000000  00000000  00000094  2**1
+  1 .text         00000354  00000000  00000000  00000094  2**1
                   CONTENTS, ALLOC, LOAD, READONLY, CODE
-  2 .bss          00000001  00800204  00800204  00000332  2**0
+  2 .bss          00000502  00800204  00800204  000003ec  2**0
                   ALLOC
-  3 .comment      00000030  00000000  00000000  00000332  2**0
+  3 .comment      00000030  00000000  00000000  000003ec  2**0
                   CONTENTS, READONLY
-  4 .debug_aranges 00000060  00000000  00000000  00000362  2**0
+  4 .debug_aranges 000000b8  00000000  00000000  0000041c  2**0
                   CONTENTS, READONLY, DEBUGGING
-  5 .debug_info   0000032f  00000000  00000000  000003c2  2**0
+  5 .debug_info   0000056d  00000000  00000000  000004d4  2**0
                   CONTENTS, READONLY, DEBUGGING
-  6 .debug_abbrev 00000168  00000000  00000000  000006f1  2**0
+  6 .debug_abbrev 0000023e  00000000  00000000  00000a41  2**0
                   CONTENTS, READONLY, DEBUGGING
-  7 .debug_line   000004d9  00000000  00000000  00000859  2**0
+  7 .debug_line   000007e3  00000000  00000000  00000c7f  2**0
                   CONTENTS, READONLY, DEBUGGING
-  8 .debug_frame  000000c0  00000000  00000000  00000d34  2**2
+  8 .debug_frame  00000180  00000000  00000000  00001464  2**2
                   CONTENTS, READONLY, DEBUGGING
-  9 .debug_str    00008a85  00000000  00000000  00000df4  2**0
+  9 .debug_str    00008afe  00000000  00000000  000015e4  2**0
                   CONTENTS, READONLY, DEBUGGING
- 10 .debug_loc    0000039d  00000000  00000000  00009879  2**0
+ 10 .debug_loc    0000044f  00000000  00000000  0000a0e2  2**0
                   CONTENTS, READONLY, DEBUGGING
- 11 .debug_ranges 00000050  00000000  00000000  00009c16  2**0
+ 11 .debug_ranges 00000098  00000000  00000000  0000a531  2**0
                   CONTENTS, READONLY, DEBUGGING
- 12 .debug_macro  0000023e  00000000  00000000  00009c66  2**0
+ 12 .debug_macro  000035e9  00000000  00000000  0000a5c9  2**0
                   CONTENTS, READONLY, DEBUGGING
 
 Disassembly of section .text:
@@ -79,11 +79,11 @@ Disassembly of section .text:
   56:	00 00       	nop
   58:	64 c0       	rjmp	.+200    	; 0x122 <__bad_interrupt>
   5a:	00 00       	nop
-  5c:	62 c0       	rjmp	.+196    	; 0x122 <__bad_interrupt>
+  5c:	6e c1       	rjmp	.+732    	; 0x33a <__vector_23>
   5e:	00 00       	nop
   60:	60 c0       	rjmp	.+192    	; 0x122 <__bad_interrupt>
   62:	00 00       	nop
-  64:	5f c0       	rjmp	.+190    	; 0x124 <__vector_25>
+  64:	7c c0       	rjmp	.+248    	; 0x15e <__vector_25>
   66:	00 00       	nop
   68:	5c c0       	rjmp	.+184    	; 0x122 <__bad_interrupt>
   6a:	00 00       	nop
@@ -91,7 +91,7 @@ Disassembly of section .text:
   6e:	00 00       	nop
   70:	58 c0       	rjmp	.+176    	; 0x122 <__bad_interrupt>
   72:	00 00       	nop
-  74:	56 c0       	rjmp	.+172    	; 0x122 <__bad_interrupt>
+  74:	3d c1       	rjmp	.+634    	; 0x2f0 <__vector_29>
   76:	00 00       	nop
   78:	54 c0       	rjmp	.+168    	; 0x122 <__bad_interrupt>
   7a:	00 00       	nop
@@ -162,8 +162,8 @@ Disassembly of section .text:
   f4:	12 e0       	ldi	r17, 0x02	; 2
   f6:	a0 e0       	ldi	r26, 0x00	; 0
   f8:	b2 e0       	ldi	r27, 0x02	; 2
-  fa:	ea e9       	ldi	r30, 0x9A	; 154
-  fc:	f2 e0       	ldi	r31, 0x02	; 2
+  fa:	e4 e5       	ldi	r30, 0x54	; 84
+  fc:	f3 e0       	ldi	r31, 0x03	; 3
   fe:	00 e0       	ldi	r16, 0x00	; 0
  100:	0b bf       	out	0x3b, r16	; 59
  102:	02 c0       	rjmp	.+4      	; 0x108 <__do_copy_data+0x14>
@@ -174,7 +174,7 @@ Disassembly of section .text:
  10c:	d9 f7       	brne	.-10     	; 0x104 <__do_copy_data+0x10>
 
 0000010e <__do_clear_bss>:
- 10e:	22 e0       	ldi	r18, 0x02	; 2
+ 10e:	27 e0       	ldi	r18, 0x07	; 7
  110:	a4 e0       	ldi	r26, 0x04	; 4
  112:	b2 e0       	ldi	r27, 0x02	; 2
  114:	01 c0       	rjmp	.+2      	; 0x118 <.do_clear_bss_start>
@@ -183,360 +183,317 @@ Disassembly of section .text:
  116:	1d 92       	st	X+, r1
 
 00000118 <.do_clear_bss_start>:
- 118:	a5 30       	cpi	r26, 0x05	; 5
+ 118:	a6 30       	cpi	r26, 0x06	; 6
  11a:	b2 07       	cpc	r27, r18
  11c:	e1 f7       	brne	.-8      	; 0x116 <.do_clear_bss_loop>
- 11e:	91 d0       	rcall	.+290    	; 0x242 <main>
- 120:	ba c0       	rjmp	.+372    	; 0x296 <_exit>
+ 11e:	ae d0       	rcall	.+348    	; 0x27c <main>
+ 120:	17 c1       	rjmp	.+558    	; 0x350 <_exit>
 
 00000122 <__bad_interrupt>:
  122:	6e cf       	rjmp	.-292    	; 0x0 <__vectors>
 
-00000124 <__vector_25>:
-	UART_out(volume >> 1); // Velocity 7 bit from 8 bit volume
+00000124 <REC_add>:
 	
-	// See Midi command table for exact bits to input.
 }
 
-ISR(USART0_RX_vect){
- 124:	1f 92       	push	r1
- 126:	0f 92       	push	r0
- 128:	0f b6       	in	r0, 0x3f	; 63
- 12a:	0f 92       	push	r0
- 12c:	11 24       	eor	r1, r1
- 12e:	8f 93       	push	r24
- 130:	9f 93       	push	r25
-	rx_ch = UDR0;             //read UART register into value
- 132:	80 91 c6 00 	lds	r24, 0x00C6
- 136:	90 e0       	ldi	r25, 0x00	; 0
- 138:	90 93 02 02 	sts	0x0202, r25
- 13c:	80 93 01 02 	sts	0x0201, r24
-}
- 140:	9f 91       	pop	r25
- 142:	8f 91       	pop	r24
- 144:	0f 90       	pop	r0
- 146:	0f be       	out	0x3f, r0	; 63
- 148:	0f 90       	pop	r0
- 14a:	1f 90       	pop	r1
- 14c:	18 95       	reti
-
-0000014e <UART_out>:
-
-void UART_out(uint8_t ch){
-	while((UCSR0A & (1<<UDRE0)) == 0); // Wait until empty
- 14e:	e0 ec       	ldi	r30, 0xC0	; 192
- 150:	f0 e0       	ldi	r31, 0x00	; 0
- 152:	90 81       	ld	r25, Z
- 154:	95 ff       	sbrs	r25, 5
- 156:	fd cf       	rjmp	.-6      	; 0x152 <UART_out+0x4>
+void REC_add(uint8_t command, uint8_t tone){
 	
-	UDR0 = ch; // Put character to be sent in the output register
- 158:	80 93 c6 00 	sts	0x00C6, r24
+	com[rec_index]  = command;
+ 124:	90 91 04 02 	lds	r25, 0x0204
+ 128:	29 2f       	mov	r18, r25
+ 12a:	30 e0       	ldi	r19, 0x00	; 0
+ 12c:	f9 01       	movw	r30, r18
+ 12e:	ea 5f       	subi	r30, 0xFA	; 250
+ 130:	fd 4f       	sbci	r31, 0xFD	; 253
+ 132:	80 83       	st	Z, r24
+	tones[rec_index] = tone;
+ 134:	f9 01       	movw	r30, r18
+ 136:	ea 5f       	subi	r30, 0xFA	; 250
+ 138:	fc 4f       	sbci	r31, 0xFC	; 252
+ 13a:	60 83       	st	Z, r22
+	vol[rec_index] = volume;
+ 13c:	80 91 00 02 	lds	r24, 0x0200
+ 140:	f9 01       	movw	r30, r18
+ 142:	ea 5f       	subi	r30, 0xFA	; 250
+ 144:	f9 4f       	sbci	r31, 0xF9	; 249
+ 146:	80 83       	st	Z, r24
+	time[rec_index] = 0; //time_read();
+ 148:	f9 01       	movw	r30, r18
+ 14a:	ee 0f       	add	r30, r30
+ 14c:	ff 1f       	adc	r31, r31
+ 14e:	ea 5f       	subi	r30, 0xFA	; 250
+ 150:	fb 4f       	sbci	r31, 0xFB	; 251
+ 152:	11 82       	std	Z+1, r1	; 0x01
+ 154:	10 82       	st	Z, r1
+	
+	rec_index++;	
+ 156:	9f 5f       	subi	r25, 0xFF	; 255
+ 158:	90 93 04 02 	sts	0x0204, r25
  15c:	08 95       	ret
 
-0000015e <MIDI_send>:
-	// End of while(1)
-}
-
-void MIDI_send(uint8_t command, uint8_t tone)
-// Send the Midi command, not much really but abstracts the code a little.
+0000015e <__vector_25>:
+void init_Timer0(void)
 {
- 15e:	cf 93       	push	r28
- 160:	c6 2f       	mov	r28, r22
-	UART_out(command); // Command 7-bit
- 162:	f5 df       	rcall	.-22     	; 0x14e <UART_out>
-	UART_out(tone); // Note 7bit
- 164:	8c 2f       	mov	r24, r28
- 166:	f3 df       	rcall	.-26     	; 0x14e <UART_out>
-	UART_out(volume >> 1); // Velocity 7 bit from 8 bit volume
- 168:	80 91 00 02 	lds	r24, 0x0200
- 16c:	86 95       	lsr	r24
- 16e:	ef df       	rcall	.-34     	; 0x14e <UART_out>
-	
-	// See Midi command table for exact bits to input.
-}
- 170:	cf 91       	pop	r28
- 172:	08 95       	ret
+	TCCR0A = 0b00000000;			// normal mode
+	TCCR0B = 0b00000101;			// prescaler 1024
+	TCNT0 = 0;						// overflow, 255*1024/(8*10^6) = 32.6ms delay at max
+	TIMSK0 |= (1 << TOIE0);			// enable overflow interrupt enable 
+ 15e:	1f 92       	push	r1
+ 160:	0f 92       	push	r0
+ 162:	0f b6       	in	r0, 0x3f	; 63
+ 164:	0f 92       	push	r0
+ 166:	11 24       	eor	r1, r1
+ 168:	8f 93       	push	r24
+ 16a:	9f 93       	push	r25
+ 16c:	80 91 c6 00 	lds	r24, 0x00C6
+ 170:	90 e0       	ldi	r25, 0x00	; 0
+ 172:	90 93 02 02 	sts	0x0202, r25
+ 176:	80 93 01 02 	sts	0x0201, r24
+ 17a:	9f 91       	pop	r25
+ 17c:	8f 91       	pop	r24
+ 17e:	0f 90       	pop	r0
+ 180:	0f be       	out	0x3f, r0	; 63
+ 182:	0f 90       	pop	r0
+ 184:	1f 90       	pop	r1
+ 186:	18 95       	reti
 
-00000174 <Init_UART0>:
+00000188 <UART_out>:
+ 188:	e0 ec       	ldi	r30, 0xC0	; 192
+ 18a:	f0 e0       	ldi	r31, 0x00	; 0
+ 18c:	90 81       	ld	r25, Z
+ 18e:	95 ff       	sbrs	r25, 5
+ 190:	fd cf       	rjmp	.-6      	; 0x18c <UART_out+0x4>
+ 192:	80 93 c6 00 	sts	0x00C6, r24
+ 196:	08 95       	ret
 
-void Init_UART0(uint16_t BAUDRATE){
-	//ubrr = F_CPU/16uL/BAUDRATE;
-	
-	// Set baud rate to 9600 @ 8MHz
-	UBRR0L = 51;
- 174:	83 e3       	ldi	r24, 0x33	; 51
- 176:	80 93 c4 00 	sts	0x00C4, r24
-	UBRR0H = 0;
- 17a:	10 92 c5 00 	sts	0x00C5, r1
-	
-	// No parity bit, 8 bit char, one stop bit
-	UCSR0A = 0x00;
- 17e:	10 92 c0 00 	sts	0x00C0, r1
-	UCSR0B = 0b10011000;
- 182:	88 e9       	ldi	r24, 0x98	; 152
- 184:	80 93 c1 00 	sts	0x00C1, r24
-	UCSR0C = 0b00000110;
- 188:	86 e0       	ldi	r24, 0x06	; 6
- 18a:	80 93 c2 00 	sts	0x00C2, r24
- 18e:	08 95       	ret
+00000198 <MIDI_send>:
+ 198:	cf 93       	push	r28
+ 19a:	c6 2f       	mov	r28, r22
+ 19c:	f5 df       	rcall	.-22     	; 0x188 <UART_out>
+ 19e:	8c 2f       	mov	r24, r28
+ 1a0:	f3 df       	rcall	.-26     	; 0x188 <UART_out>
+ 1a2:	80 91 00 02 	lds	r24, 0x0200
+ 1a6:	86 95       	lsr	r24
+ 1a8:	ef df       	rcall	.-34     	; 0x188 <UART_out>
+ 1aa:	cf 91       	pop	r28
+ 1ac:	08 95       	ret
 
-00000190 <Init_ports>:
+000001ae <Init_UART0>:
+ 1ae:	83 e3       	ldi	r24, 0x33	; 51
+ 1b0:	80 93 c4 00 	sts	0x00C4, r24
+ 1b4:	10 92 c5 00 	sts	0x00C5, r1
+ 1b8:	10 92 c0 00 	sts	0x00C0, r1
+ 1bc:	88 e9       	ldi	r24, 0x98	; 152
+ 1be:	80 93 c1 00 	sts	0x00C1, r24
+ 1c2:	86 e0       	ldi	r24, 0x06	; 6
+ 1c4:	80 93 c2 00 	sts	0x00C2, r24
+ 1c8:	08 95       	ret
 
-void Init_ports(void){
-	// Hard coded setup
-	
-	// Set up port B LEDS
-	DDRB = 0xFF; // No inputs, all ports as outputs
- 190:	8f ef       	ldi	r24, 0xFF	; 255
- 192:	84 b9       	out	0x04, r24	; 4
-	PORTB = 0xFF; // All LEDS are off
- 194:	85 b9       	out	0x05, r24	; 5
-	
-	// Set up port D Buttons
-	DDRD = 0x00;
- 196:	1a b8       	out	0x0a, r1	; 10
-	PORTD = 0xFF; // Set pull up on the inputs
- 198:	8b b9       	out	0x0b, r24	; 11
- 19a:	08 95       	ret
+000001ca <Init_ports>:
+ 1ca:	8f ef       	ldi	r24, 0xFF	; 255
+ 1cc:	84 b9       	out	0x04, r24	; 4
+ 1ce:	85 b9       	out	0x05, r24	; 5
+ 1d0:	1a b8       	out	0x0a, r1	; 10
+ 1d2:	8b b9       	out	0x0b, r24	; 11
+ 1d4:	08 95       	ret
 
-0000019c <MIDI_Conversion>:
-
-uint8_t MIDI_Conversion(uint8_t pressed)
-{
-	uint8_t converted = 0;
-	uint8_t offset = 48;
-	uint8_t pitch = switches & 0x03;		// mask with two far right switches
- 19c:	90 91 04 02 	lds	r25, 0x0204
- 1a0:	93 70       	andi	r25, 0x03	; 3
-		 			// B4 = 59 or B5 = 71 or B6 = 83
-	if( pressed &  0x80) converted = offset + 12 + 12 * pitch;
-		 			// C5 = 60 or C6 = 72 or C7 = 84
-*/
-
-	switch(pressed)
- 1a2:	88 30       	cpi	r24, 0x08	; 8
- 1a4:	49 f1       	breq	.+82     	; 0x1f8 <MIDI_Conversion+0x5c>
- 1a6:	40 f4       	brcc	.+16     	; 0x1b8 <MIDI_Conversion+0x1c>
- 1a8:	82 30       	cpi	r24, 0x02	; 2
- 1aa:	c1 f0       	breq	.+48     	; 0x1dc <MIDI_Conversion+0x40>
- 1ac:	84 30       	cpi	r24, 0x04	; 4
- 1ae:	e9 f0       	breq	.+58     	; 0x1ea <MIDI_Conversion+0x4e>
- 1b0:	81 30       	cpi	r24, 0x01	; 1
- 1b2:	09 f0       	breq	.+2      	; 0x1b6 <MIDI_Conversion+0x1a>
- 1b4:	44 c0       	rjmp	.+136    	; 0x23e <MIDI_Conversion+0xa2>
- 1b6:	0b c0       	rjmp	.+22     	; 0x1ce <MIDI_Conversion+0x32>
- 1b8:	80 32       	cpi	r24, 0x20	; 32
- 1ba:	61 f1       	breq	.+88     	; 0x214 <MIDI_Conversion+0x78>
- 1bc:	18 f4       	brcc	.+6      	; 0x1c4 <MIDI_Conversion+0x28>
- 1be:	80 31       	cpi	r24, 0x10	; 16
- 1c0:	11 f1       	breq	.+68     	; 0x206 <MIDI_Conversion+0x6a>
- 1c2:	3d c0       	rjmp	.+122    	; 0x23e <MIDI_Conversion+0xa2>
- 1c4:	80 34       	cpi	r24, 0x40	; 64
- 1c6:	69 f1       	breq	.+90     	; 0x222 <MIDI_Conversion+0x86>
- 1c8:	80 38       	cpi	r24, 0x80	; 128
- 1ca:	91 f1       	breq	.+100    	; 0x230 <MIDI_Conversion+0x94>
- 1cc:	38 c0       	rjmp	.+112    	; 0x23e <MIDI_Conversion+0xa2>
-	{
-		case 0x01:
-		converted = 48 + 12 * pitch;
- 1ce:	89 2f       	mov	r24, r25
- 1d0:	88 0f       	add	r24, r24
- 1d2:	89 0f       	add	r24, r25
- 1d4:	88 0f       	add	r24, r24
- 1d6:	88 0f       	add	r24, r24
- 1d8:	80 5d       	subi	r24, 0xD0	; 208
-		break;				// C4 = 48 or C5 = 60 or C6 = 72
- 1da:	08 95       	ret
-		case 0x02:
-		converted = 50 + 12 * pitch;
- 1dc:	89 2f       	mov	r24, r25
- 1de:	88 0f       	add	r24, r24
- 1e0:	89 0f       	add	r24, r25
- 1e2:	88 0f       	add	r24, r24
- 1e4:	88 0f       	add	r24, r24
- 1e6:	8e 5c       	subi	r24, 0xCE	; 206
-		break;				// D4 = 50 or D5 = 62 or D6 = 74
- 1e8:	08 95       	ret
-		case 0x04:
-		converted = 52 + 12 * pitch;
- 1ea:	89 2f       	mov	r24, r25
- 1ec:	88 0f       	add	r24, r24
- 1ee:	89 0f       	add	r24, r25
- 1f0:	88 0f       	add	r24, r24
- 1f2:	88 0f       	add	r24, r24
- 1f4:	8c 5c       	subi	r24, 0xCC	; 204
-		break;				// E4 = 52 or E5 = 64 or E6 = 76
- 1f6:	08 95       	ret
-		case 0x08:
-		converted = 53 + 12 * pitch;
- 1f8:	89 2f       	mov	r24, r25
- 1fa:	88 0f       	add	r24, r24
- 1fc:	89 0f       	add	r24, r25
- 1fe:	88 0f       	add	r24, r24
- 200:	88 0f       	add	r24, r24
- 202:	8b 5c       	subi	r24, 0xCB	; 203
-		break;				// F4 = 53 or F5 = 65 or F6 = 77
- 204:	08 95       	ret
-		case 0x10:
-		converted = 55 + 12 * pitch;
- 206:	89 2f       	mov	r24, r25
- 208:	88 0f       	add	r24, r24
- 20a:	89 0f       	add	r24, r25
- 20c:	88 0f       	add	r24, r24
+000001d6 <MIDI_Conversion>:
+ 1d6:	90 91 05 02 	lds	r25, 0x0205
+ 1da:	93 70       	andi	r25, 0x03	; 3
+ 1dc:	88 30       	cpi	r24, 0x08	; 8
+ 1de:	49 f1       	breq	.+82     	; 0x232 <MIDI_Conversion+0x5c>
+ 1e0:	40 f4       	brcc	.+16     	; 0x1f2 <MIDI_Conversion+0x1c>
+ 1e2:	82 30       	cpi	r24, 0x02	; 2
+ 1e4:	c1 f0       	breq	.+48     	; 0x216 <MIDI_Conversion+0x40>
+ 1e6:	84 30       	cpi	r24, 0x04	; 4
+ 1e8:	e9 f0       	breq	.+58     	; 0x224 <MIDI_Conversion+0x4e>
+ 1ea:	81 30       	cpi	r24, 0x01	; 1
+ 1ec:	09 f0       	breq	.+2      	; 0x1f0 <MIDI_Conversion+0x1a>
+ 1ee:	44 c0       	rjmp	.+136    	; 0x278 <MIDI_Conversion+0xa2>
+ 1f0:	0b c0       	rjmp	.+22     	; 0x208 <MIDI_Conversion+0x32>
+ 1f2:	80 32       	cpi	r24, 0x20	; 32
+ 1f4:	61 f1       	breq	.+88     	; 0x24e <MIDI_Conversion+0x78>
+ 1f6:	18 f4       	brcc	.+6      	; 0x1fe <MIDI_Conversion+0x28>
+ 1f8:	80 31       	cpi	r24, 0x10	; 16
+ 1fa:	11 f1       	breq	.+68     	; 0x240 <MIDI_Conversion+0x6a>
+ 1fc:	3d c0       	rjmp	.+122    	; 0x278 <MIDI_Conversion+0xa2>
+ 1fe:	80 34       	cpi	r24, 0x40	; 64
+ 200:	69 f1       	breq	.+90     	; 0x25c <MIDI_Conversion+0x86>
+ 202:	80 38       	cpi	r24, 0x80	; 128
+ 204:	91 f1       	breq	.+100    	; 0x26a <MIDI_Conversion+0x94>
+ 206:	38 c0       	rjmp	.+112    	; 0x278 <MIDI_Conversion+0xa2>
+ 208:	89 2f       	mov	r24, r25
+ 20a:	88 0f       	add	r24, r24
+ 20c:	89 0f       	add	r24, r25
  20e:	88 0f       	add	r24, r24
- 210:	89 5c       	subi	r24, 0xC9	; 201
-		break;				// G4 = 55 or G5 = 67 or G6 = 79
- 212:	08 95       	ret
-		case 0x20:
-		converted = 57 + 12 * pitch;
- 214:	89 2f       	mov	r24, r25
- 216:	88 0f       	add	r24, r24
- 218:	89 0f       	add	r24, r25
- 21a:	88 0f       	add	r24, r24
+ 210:	88 0f       	add	r24, r24
+ 212:	80 5d       	subi	r24, 0xD0	; 208
+ 214:	08 95       	ret
+ 216:	89 2f       	mov	r24, r25
+ 218:	88 0f       	add	r24, r24
+ 21a:	89 0f       	add	r24, r25
  21c:	88 0f       	add	r24, r24
- 21e:	87 5c       	subi	r24, 0xC7	; 199
-		break;				// A4 = 57 or A5 = 69 or A6 = 81
- 220:	08 95       	ret
-		case 0x40:
-		converted = 59 + 12 * pitch;
- 222:	89 2f       	mov	r24, r25
- 224:	88 0f       	add	r24, r24
- 226:	89 0f       	add	r24, r25
- 228:	88 0f       	add	r24, r24
+ 21e:	88 0f       	add	r24, r24
+ 220:	8e 5c       	subi	r24, 0xCE	; 206
+ 222:	08 95       	ret
+ 224:	89 2f       	mov	r24, r25
+ 226:	88 0f       	add	r24, r24
+ 228:	89 0f       	add	r24, r25
  22a:	88 0f       	add	r24, r24
- 22c:	85 5c       	subi	r24, 0xC5	; 197
-		break;				// B4 = 59 or B5 = 71 or B6 = 83
- 22e:	08 95       	ret
-		case 0x80:
-		converted = 60 + 12 * pitch;
- 230:	89 2f       	mov	r24, r25
- 232:	88 0f       	add	r24, r24
- 234:	89 0f       	add	r24, r25
- 236:	88 0f       	add	r24, r24
+ 22c:	88 0f       	add	r24, r24
+ 22e:	8c 5c       	subi	r24, 0xCC	; 204
+ 230:	08 95       	ret
+ 232:	89 2f       	mov	r24, r25
+ 234:	88 0f       	add	r24, r24
+ 236:	89 0f       	add	r24, r25
  238:	88 0f       	add	r24, r24
- 23a:	84 5c       	subi	r24, 0xC4	; 196
-		break;				// C5 = 60 or C6 = 72 or C7 = 84
- 23c:	08 95       	ret
-	PORTD = 0xFF; // Set pull up on the inputs
+ 23a:	88 0f       	add	r24, r24
+ 23c:	8b 5c       	subi	r24, 0xCB	; 203
+ 23e:	08 95       	ret
+ 240:	89 2f       	mov	r24, r25
+ 242:	88 0f       	add	r24, r24
+ 244:	89 0f       	add	r24, r25
+ 246:	88 0f       	add	r24, r24
+ 248:	88 0f       	add	r24, r24
+ 24a:	89 5c       	subi	r24, 0xC9	; 201
+ 24c:	08 95       	ret
+ 24e:	89 2f       	mov	r24, r25
+ 250:	88 0f       	add	r24, r24
+ 252:	89 0f       	add	r24, r25
+ 254:	88 0f       	add	r24, r24
+ 256:	88 0f       	add	r24, r24
+ 258:	87 5c       	subi	r24, 0xC7	; 199
+ 25a:	08 95       	ret
+ 25c:	89 2f       	mov	r24, r25
+ 25e:	88 0f       	add	r24, r24
+ 260:	89 0f       	add	r24, r25
+ 262:	88 0f       	add	r24, r24
+ 264:	88 0f       	add	r24, r24
+ 266:	85 5c       	subi	r24, 0xC5	; 197
+ 268:	08 95       	ret
+ 26a:	89 2f       	mov	r24, r25
+ 26c:	88 0f       	add	r24, r24
+ 26e:	89 0f       	add	r24, r25
+ 270:	88 0f       	add	r24, r24
+ 272:	88 0f       	add	r24, r24
+ 274:	84 5c       	subi	r24, 0xC4	; 196
+ 276:	08 95       	ret
+ 278:	80 e0       	ldi	r24, 0x00	; 0
+ 27a:	08 95       	ret
+
+0000027c <main>:
+ 27c:	a6 df       	rcall	.-180    	; 0x1ca <Init_ports>
+ 27e:	80 e8       	ldi	r24, 0x80	; 128
+ 280:	95 e2       	ldi	r25, 0x25	; 37
+ 282:	95 df       	rcall	.-214    	; 0x1ae <Init_UART0>
+ 284:	78 94       	sei
+ 286:	20 e0       	ldi	r18, 0x00	; 0
+ 288:	01 c0       	rjmp	.+2      	; 0x28c <main+0x10>
+ 28a:	2c 2f       	mov	r18, r28
+ 28c:	99 b1       	in	r25, 0x09	; 9
+ 28e:	c9 2f       	mov	r28, r25
+ 290:	c0 95       	com	r28
+ 292:	95 b9       	out	0x05, r25	; 5
+ 294:	92 2f       	mov	r25, r18
+ 296:	9c 27       	eor	r25, r28
+ 298:	89 2f       	mov	r24, r25
+ 29a:	8c 23       	and	r24, r28
+ 29c:	99 f0       	breq	.+38     	; 0x2c4 <main+0x48>
+ 29e:	d0 91 05 02 	lds	r29, 0x0205
+ 2a2:	dc 70       	andi	r29, 0x0C	; 12
+ 2a4:	d6 95       	lsr	r29
+ 2a6:	d6 95       	lsr	r29
+ 2a8:	d0 69       	ori	r29, 0x90	; 144
+ 2aa:	95 df       	rcall	.-214    	; 0x1d6 <MIDI_Conversion>
+ 2ac:	18 2f       	mov	r17, r24
+ 2ae:	80 91 05 02 	lds	r24, 0x0205
+ 2b2:	88 23       	and	r24, r24
+ 2b4:	1c f4       	brge	.+6      	; 0x2bc <main+0x40>
+ 2b6:	61 2f       	mov	r22, r17
+ 2b8:	8d 2f       	mov	r24, r29
+ 2ba:	34 df       	rcall	.-408    	; 0x124 <REC_add>
+ 2bc:	61 2f       	mov	r22, r17
+ 2be:	8d 2f       	mov	r24, r29
+ 2c0:	6b df       	rcall	.-298    	; 0x198 <MIDI_send>
+ 2c2:	e3 cf       	rjmp	.-58     	; 0x28a <main+0xe>
+ 2c4:	89 2f       	mov	r24, r25
+ 2c6:	82 23       	and	r24, r18
+ 2c8:	01 f3       	breq	.-64     	; 0x28a <main+0xe>
+ 2ca:	d0 91 05 02 	lds	r29, 0x0205
+ 2ce:	dc 70       	andi	r29, 0x0C	; 12
+ 2d0:	d6 95       	lsr	r29
+ 2d2:	d6 95       	lsr	r29
+ 2d4:	d0 69       	ori	r29, 0x90	; 144
+ 2d6:	7f df       	rcall	.-258    	; 0x1d6 <MIDI_Conversion>
+ 2d8:	18 2f       	mov	r17, r24
+ 2da:	80 91 05 02 	lds	r24, 0x0205
+ 2de:	88 23       	and	r24, r24
+ 2e0:	1c f4       	brge	.+6      	; 0x2e8 <main+0x6c>
+ 2e2:	61 2f       	mov	r22, r17
+ 2e4:	8d 2f       	mov	r24, r29
+ 2e6:	1e df       	rcall	.-452    	; 0x124 <REC_add>
+ 2e8:	61 2f       	mov	r22, r17
+ 2ea:	8d 2f       	mov	r24, r29
+ 2ec:	55 df       	rcall	.-342    	; 0x198 <MIDI_send>
+ 2ee:	cd cf       	rjmp	.-102    	; 0x28a <main+0xe>
+
+000002f0 <__vector_29>:
+ 2f0:	1f 92       	push	r1
+ 2f2:	0f 92       	push	r0
+ 2f4:	0f b6       	in	r0, 0x3f	; 63
+ 2f6:	0f 92       	push	r0
+ 2f8:	11 24       	eor	r1, r1
+ 2fa:	0b b6       	in	r0, 0x3b	; 59
+ 2fc:	0f 92       	push	r0
+ 2fe:	8f 93       	push	r24
+ 300:	9f 93       	push	r25
+ 302:	ef 93       	push	r30
+ 304:	ff 93       	push	r31
+ 306:	80 91 79 00 	lds	r24, 0x0079
+ 30a:	80 93 00 02 	sts	0x0200, r24
+ 30e:	ec e7       	ldi	r30, 0x7C	; 124
+ 310:	f0 e0       	ldi	r31, 0x00	; 0
+ 312:	90 81       	ld	r25, Z
+ 314:	80 91 05 02 	lds	r24, 0x0205
+ 318:	8c 70       	andi	r24, 0x0C	; 12
+ 31a:	86 95       	lsr	r24
+ 31c:	86 95       	lsr	r24
+ 31e:	90 7e       	andi	r25, 0xE0	; 224
+ 320:	89 2b       	or	r24, r25
+ 322:	80 83       	st	Z, r24
+ 324:	ff 91       	pop	r31
+ 326:	ef 91       	pop	r30
+ 328:	9f 91       	pop	r25
+ 32a:	8f 91       	pop	r24
+ 32c:	0f 90       	pop	r0
+ 32e:	0b be       	out	0x3b, r0	; 59
+ 330:	0f 90       	pop	r0
+ 332:	0f be       	out	0x3f, r0	; 63
+ 334:	0f 90       	pop	r0
+ 336:	1f 90       	pop	r1
+ 338:	18 95       	reti
+
+0000033a <__vector_23>:
 }
 
-uint8_t MIDI_Conversion(uint8_t pressed)
+ISR(TIMER0_OVF_vect)
 {
-	uint8_t converted = 0;
- 23e:	80 e0       	ldi	r24, 0x00	; 0
-		default:
-		break;
-	}
-	
-	return converted;
+ 33a:	1f 92       	push	r1
+ 33c:	0f 92       	push	r0
+ 33e:	0f b6       	in	r0, 0x3f	; 63
+ 340:	0f 92       	push	r0
+ 342:	11 24       	eor	r1, r1
+	TCNT0 = 0;						// reset the count TCNT0
+ 344:	16 bc       	out	0x26, r1	; 38
 }
- 240:	08 95       	ret
+ 346:	0f 90       	pop	r0
+ 348:	0f be       	out	0x3f, r0	; 63
+ 34a:	0f 90       	pop	r0
+ 34c:	1f 90       	pop	r1
+ 34e:	18 95       	reti
 
-00000242 <main>:
-volatile uint8_t switches = 0x00; // Byte containing [rec, play1, play2, play3, ch_bit0, ch_bit1, pitch_bit0, pitch_bit1];
-volatile uint8_t volume = 100;
+00000350 <_exit>:
+ 350:	f8 94       	cli
 
-int main(void)
-{
-	Init_ports();
- 242:	a6 df       	rcall	.-180    	; 0x190 <Init_ports>
-	Init_UART0(9600);
- 244:	80 e8       	ldi	r24, 0x80	; 128
- 246:	95 e2       	ldi	r25, 0x25	; 37
- 248:	95 df       	rcall	.-214    	; 0x174 <Init_UART0>
-	sei();
- 24a:	78 94       	sei
-	
-	// Pressed buttons
-	uint8_t previus = 0x00;
- 24c:	20 e0       	ldi	r18, 0x00	; 0
- 24e:	01 c0       	rjmp	.+2      	; 0x252 <main+0x10>
-volatile uint16_t rx_ch = 0xFF;
-volatile uint8_t switches = 0x00; // Byte containing [rec, play1, play2, play3, ch_bit0, ch_bit1, pitch_bit0, pitch_bit1];
-volatile uint8_t volume = 100;
-
-int main(void)
-{
- 250:	2c 2f       	mov	r18, r28
-	
-	while
-	(1)
-	{
-		
-		current = ~PIND;
- 252:	99 b1       	in	r25, 0x09	; 9
- 254:	c9 2f       	mov	r28, r25
- 256:	c0 95       	com	r28
-		//switches = ~PINC; // Update switches
-		PORTB = ~current; // rx_ch;
- 258:	95 b9       	out	0x05, r25	; 5
-		
-		change = current^previus;
- 25a:	92 2f       	mov	r25, r18
- 25c:	9c 27       	eor	r25, r28
-		
-		if(current & change) // Note on
- 25e:	89 2f       	mov	r24, r25
- 260:	8c 23       	and	r24, r28
- 262:	69 f0       	breq	.+26     	; 0x27e <main+0x3c>
-		{
-			command = 0b10010000 | (switches & 0x0C) >> 2;
- 264:	d0 91 04 02 	lds	r29, 0x0204
-			tone = MIDI_Conversion(current & change);
- 268:	99 df       	rcall	.-206    	; 0x19c <MIDI_Conversion>
-			
-			if(switches & 0x80){
- 26a:	90 91 04 02 	lds	r25, 0x0204
-		
-		change = current^previus;
-		
-		if(current & change) // Note on
-		{
-			command = 0b10010000 | (switches & 0x0C) >> 2;
- 26e:	dc 70       	andi	r29, 0x0C	; 12
- 270:	d6 95       	lsr	r29
- 272:	d6 95       	lsr	r29
-			
-			if(switches & 0x80){
-				//REC_add(command, tone);
-			}
-			
-			MIDI_send(command, tone);
- 274:	68 2f       	mov	r22, r24
- 276:	8d 2f       	mov	r24, r29
- 278:	80 69       	ori	r24, 0x90	; 144
- 27a:	71 df       	rcall	.-286    	; 0x15e <MIDI_send>
- 27c:	e9 cf       	rjmp	.-46     	; 0x250 <main+0xe>
-			
-			//UART_out(0b10010001); // Command
-			//UART_out(60+Conversion(current & change)); // Note 7bit
-			//UART_out(80 ); //volume(switches & 0x03)); // Velocity 7 bit
-		}
-		else if(previus & change) // Note off
- 27e:	d9 2f       	mov	r29, r25
- 280:	d2 23       	and	r29, r18
- 282:	31 f3       	breq	.-52     	; 0x250 <main+0xe>
-		{
-			
-			
-			
-			
-			UART_out(0b10000001); // Command
- 284:	81 e8       	ldi	r24, 0x81	; 129
- 286:	63 df       	rcall	.-314    	; 0x14e <UART_out>
-			UART_out(60+MIDI_Conversion(previus & change)); // Note 7bit
- 288:	8d 2f       	mov	r24, r29
- 28a:	88 df       	rcall	.-240    	; 0x19c <MIDI_Conversion>
- 28c:	84 5c       	subi	r24, 0xC4	; 196
- 28e:	5f df       	rcall	.-322    	; 0x14e <UART_out>
-			UART_out(0b01001000); // Velocity 7 bit
- 290:	88 e4       	ldi	r24, 0x48	; 72
- 292:	5d df       	rcall	.-326    	; 0x14e <UART_out>
- 294:	dd cf       	rjmp	.-70     	; 0x250 <main+0xe>
-
-00000296 <_exit>:
- 296:	f8 94       	cli
-
-00000298 <__stop_program>:
- 298:	ff cf       	rjmp	.-2      	; 0x298 <__stop_program>
+00000352 <__stop_program>:
+ 352:	ff cf       	rjmp	.-2      	; 0x352 <__stop_program>
