@@ -13,7 +13,7 @@
 extern volatile uint8_t volume;
 
 // Functions
-void REC_isr(uint16_t time);
+void REC_ISR(uint16_t time);
 void REC_add(uint8_t command, uint8_t tone);
 
 void REC_start(void);

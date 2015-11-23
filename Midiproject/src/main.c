@@ -40,7 +40,6 @@ volatile uint8_t switches = 0x00; // Byte containing [rec, play1, play2, play3, 
 
 extern volatile uint8_t volume;
 
-volatile uint8_t volume = 100;
 volatile uint8_t adc_read;
 volatile uint16_t software_time = 0;
 volatile uint16_t software_comp = 0;
