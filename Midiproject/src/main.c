@@ -15,13 +15,6 @@
 
 #include "main.h"
 
-// function prototypes
-void init_adc(void);
-void init_Timer0(void);
-
-// global variables
-volatile uint8_t adc_read;
-
 int main(void)
 {
 	Init_ports();
@@ -83,29 +76,4 @@ int main(void)
 		//_delay_ms(300);
 	}
 	// End of while(1)
-}
-
-void init_adc(void)					// function for initializing ADC
-{
-	ADCSRA |= (1 << ADEN) | (1 << ADPS1);	// enable ADC, prescaler 4
-	ADMUX |= (1 << REFS0) | (1 << ADLAR);	// internal 5V, 8 bits
-}
-
-ISR(ADC_vect)						// read ADC using interrupt
-{
-	volume = ADCH;									// save 8 bits
-	ADMUX = (ADMUX & 0xE0) | ((switches & 0x0C) >> 2);	// Mask and shift channel bits from switches
-}
-
-void init_Timer0(void)
-{
-	TCCR0A = 0b00000000;			// normal mode
-	TCCR0B = 0b00000101;			// prescaler 1024
-	TCNT0 = 0;						// overflow, 255*1024/(8*10^6) = 32.6ms delay at max
-	TIMSK0 |= (1 << TOIE0);			// enable overflow interrupt enable 
-}
-
-ISR(TIMER0_OVF_vect)
-{
-	TCNT0 = 0;						// reset the count TCNT0
 }
