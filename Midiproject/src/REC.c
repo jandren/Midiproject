@@ -13,6 +13,7 @@
 
 volatile uint8_t volume = 100;
 
+
 uint8_t com[256];
 uint8_t tones[256];
 uint8_t vol[256];
@@ -21,7 +22,7 @@ uint8_t rec_index = 0;
 uint8_t REC = 0;
 uint8_t PLAY = 0;
 
-bool REC_process(uint8_t switches, uint8_t command, uint8_t tone){
+void REC_process(uint8_t switches, uint8_t command, uint8_t tone){
 	
 	if(REC == 1){ // If recording already
 		if(switches & 0x80){

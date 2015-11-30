@@ -12,8 +12,9 @@
 // Global variables
 extern volatile uint8_t volume;
 
+
 // Functions
-bool REC_process(uint8_t switches, uint8_t command, uint8_t tone);
+void REC_process(uint8_t switches, uint8_t command, uint8_t tone);
 void REC_ISR(uint16_t time);
 void REC_add(uint8_t command, uint8_t tone);
 
