@@ -9,6 +9,8 @@
 #ifndef MAIN_H_
 #define MAIN_H_
 
+#include "avrMIDI.h"
+#include "REC.h"
 
 
 #endif /* MAIN_H_ */
