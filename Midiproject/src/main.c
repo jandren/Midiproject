@@ -50,18 +50,19 @@ int main(void)
 		
 		current = ~PIND;
 		//switches = ~PINC; // Update switches
-		PORTB = ~current; // rx_ch;
+		//PORTB = ~current; // rx_ch;
 		
 		change = current^previus;
 		
 		if(current & change) // Note on
 		{
 			command = 0b10010000 | (switches & 0x0C) >> 2;
+			//PORTB = ~command;
 			tone = MIDI_Conversion(current & change);
 			
-			REC_process(switches, command, tone);
+			//REC_process(switches, command, tone);
 			
-			MIDI_send(command, tone, volume);
+			MIDI_send(0b10010001, tone, volume);
 			
 			
 			
@@ -72,10 +73,11 @@ int main(void)
 		else if(previus & change) // Note off
 		{
 
-			command = 0b1000000 | (switches & 0x0C) >> 2;
+			command = 0b10000000; // | ((switches & 0x0C) >> 2);
+			PORTB = ~command;
 			tone = MIDI_Conversion(previus & change);
 						
-			REC_process(switches, command, tone);
+			//REC_process(switches, command, tone);
 			MIDI_send(command, tone, volume);
 			
 			
