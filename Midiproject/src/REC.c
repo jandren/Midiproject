@@ -12,6 +12,8 @@
 #include <avr/io.h>
 
 volatile uint8_t volume = 100;
+extern volatile uint16_t software_time;
+extern volatile uint16_t software_comp;
 
 
 uint8_t com[256];
@@ -51,10 +53,10 @@ void REC_ISR(uint16_t time){
 		// Restart the playback in that case
 		if(rec_time[rec_index] == 0){
 			rec_index = 0;
-			//time_reset();
+			software_time = 0;//TIME_reset();
 		}
 
-		//time_set_isr(rec_time[rec_index]);
+		software_comp = rec_time[rec_index]; //TIME_Set_ISR(rec_time[rec_index]);
 	}
 	
 	// There will be no new interrupt if PLAY == 0

@@ -28,11 +28,14 @@ void Init_ports(void);
 
 // For avrMIDI.c file
 uint8_t MIDI_Conversion(uint8_t pressed);
-void MIDI_send(uint8_t command, uint8_t tone);
+void MIDI_send(uint8_t command, uint8_t tone, uint8_t vol);
 
 void init_Timer0(void);
 void init_Timer1(void);
 
+
+void TIME_Set_ISR(uint16_t time);
+void TIME_reset(void);
 
 // global variables
 volatile uint16_t rx_ch = 0xFF;
@@ -77,27 +80,27 @@ int main(void)
 			
 			REC_process(switches, command, tone);
 			
-			MIDI_send(command, tone);
+			MIDI_send(command, tone, volume);
 			
 			
 			
 			//UART_out(0b10010001); // Command
-			//UART_out(60+Conversion(current & change)); // Note 7bit
+			//UART_out(MIDI_Conversion(current & change)); // Note 7bit
 			//UART_out(80 ); //volume(switches & 0x03)); // Velocity 7 bit
 		}
 		else if(previus & change) // Note off
 		{
 
-			command = 0b10010000 | (switches & 0x0C) >> 2;
+			command = 0b1000000 | (switches & 0x0C) >> 2;
 			tone = MIDI_Conversion(previus & change);
 						
 			REC_process(switches, command, tone);
-			MIDI_send(command, tone);
+			MIDI_send(command, tone, volume);
 			
 			
 			
 			//UART_out(0b10000001); // Command
-			//UART_out(60+MIDI_Conversion(previus & change)); // Note 7bit
+			//UART_out(MIDI_Conversion(previus & change)); // Note 7bit
 			//UART_out(0b01001000); // Velocity 7 bit
 
 
@@ -108,12 +111,12 @@ int main(void)
 	// End of while(1)
 }
 
-void MIDI_send(uint8_t command, uint8_t tone)
+void MIDI_send(uint8_t command, uint8_t tone, uint8_t vol)
 // Send the Midi command, not much really but abstracts the code a little.
 {
 	UART_out(command); // Command 7-bit
 	UART_out(tone); // Note 7bit
-	UART_out(volume >> 1); // Velocity 7 bit from 8 bit volume
+	UART_out(vol >> 1); // Velocity 7 bit from 8 bit volume
 	
 	// See Midi command table for exact bits to input.
 }
@@ -157,7 +160,7 @@ uint8_t MIDI_Conversion(uint8_t pressed)
 {
 	uint8_t converted = 0;
 	uint8_t offset = 48;
-	uint8_t pitch = switches & 0x03;		// mask with two far right switches
+	uint8_t pitch = 1; //switches & 0x03;		// mask with two far right switches
 
 /*
 	if( pressed &  0x01){
@@ -244,8 +247,8 @@ ISR(TIMER0_OVF_vect)
 void init_Timer1(void)				// for recording
 {
 	TCCR1A = 0b00000000;			// normal mode
-	TCCR1B = 0b00000101;			// prescaler 1024
-	OCR1A = 65535;					// output compare, 65525*1024/(8*10^6) = 8.4s at max
+	TCCR1B = 0b00000011;			// prescaler 64
+	OCR1A = 125;					// output compare, 65525*1024/(8*10^6) = 8.4s at max
 }
 
 ISR(TIMER1_COMPA_vect)
@@ -257,8 +260,11 @@ ISR(TIMER1_COMPA_vect)
 	}
 }
 
-Set_ISR(uint16_t time)
+void TIME_Set_ISR(uint16_t time)
 {
 	software_comp = time;
 }
 
+void TIME_reset(void){ 
+	software_time = 0;
+}
