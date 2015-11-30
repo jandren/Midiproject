@@ -50,9 +50,16 @@ Discarded input sections
  .group         0x00000000        0x8 src/REC.o
  .group         0x00000000        0x8 src/REC.o
  .group         0x00000000        0x8 src/REC.o
+ .group         0x00000000        0x8 src/REC.o
  .text          0x00000000        0x0 src/REC.o
  .data          0x00000000        0x0 src/REC.o
  .bss           0x00000000        0x0 src/REC.o
+ .text.init_Timer1
+                0x00000000       0x18 src/REC.o
+ .text.TIME_Set_ISR
+                0x00000000        0xa src/REC.o
+ .text.TIME_reset
+                0x00000000        0xa src/REC.o
  .text.REC_play
                 0x00000000       0x1e src/REC.o
  .debug_macro   0x00000000      0xa5a src/REC.o
@@ -154,12 +161,6 @@ Discarded input sections
                 0x00000000       0x16 src/main.o
  .text.init_Timer0
                 0x00000000       0x14 src/main.o
- .text.init_Timer1
-                0x00000000       0x18 src/main.o
- .text.TIME_Set_ISR
-                0x00000000        0xa src/main.o
- .text.TIME_reset
-                0x00000000        0xa src/main.o
  .debug_macro   0x00000000      0xa5a src/main.o
  .debug_macro   0x00000000       0x10 src/main.o
  .debug_macro   0x00000000       0x10 src/main.o
@@ -476,28 +477,28 @@ END GROUP
                 0x000001a0                MIDI_Conversion
  .text.REC_ISR  0x00000246       0x4c src/REC.o
                 0x00000246                REC_ISR
- .text.REC_add  0x00000292       0x3a src/REC.o
-                0x00000292                REC_add
- .text.REC_start
-                0x000002cc        0xc src/REC.o
-                0x000002cc                REC_start
- .text.REC_stop
-                0x000002d8       0x32 src/REC.o
-                0x000002d8                REC_stop
- .text.REC_process
-                0x0000030a       0x32 src/REC.o
-                0x0000030a                REC_process
- .text.main     0x0000033c       0x74 src/main.o
-                0x0000033c                main
- .text.__vector_29
-                0x000003b0       0x4a src/main.o
-                0x000003b0                __vector_29
- .text.__vector_23
-                0x000003fa       0x16 src/main.o
-                0x000003fa                __vector_23
  .text.__vector_17
-                0x00000410       0x7e src/main.o
-                0x00000410                __vector_17
+                0x00000292       0x7e src/REC.o
+                0x00000292                __vector_17
+ .text.REC_add  0x00000310       0x3a src/REC.o
+                0x00000310                REC_add
+ .text.REC_start
+                0x0000034a        0xc src/REC.o
+                0x0000034a                REC_start
+ .text.REC_stop
+                0x00000356       0x32 src/REC.o
+                0x00000356                REC_stop
+ .text.REC_process
+                0x00000388       0x32 src/REC.o
+                0x00000388                REC_process
+ .text.main     0x000003ba       0x74 src/main.o
+                0x000003ba                main
+ .text.__vector_29
+                0x0000042e       0x4a src/main.o
+                0x0000042e                __vector_29
+ .text.__vector_23
+                0x00000478       0x16 src/main.o
+                0x00000478                __vector_23
                 0x0000048e                . = ALIGN (0x2)
  *(.fini9)
  .fini9         0x0000048e        0x0 c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/avr6\libgcc.a(_exit.o)
@@ -555,10 +556,10 @@ END GROUP
                 0x00800207        0x1 src/REC.o
                 0x00800207                rec_index
  .bss.software_comp
-                0x00800208        0x2 src/main.o
+                0x00800208        0x2 src/REC.o
                 0x00800208                software_comp
  .bss.software_time
-                0x0080020a        0x2 src/main.o
+                0x0080020a        0x2 src/REC.o
                 0x0080020a                software_time
  *(COMMON)
  COMMON         0x0080020c      0x500 src/REC.o
@@ -641,51 +642,51 @@ END GROUP
  .debug_aranges
                 0x00000000       0x48 src/avrMIDI.o
  .debug_aranges
-                0x00000048       0x48 src/REC.o
+                0x00000048       0x68 src/REC.o
  .debug_aranges
-                0x00000090       0x60 src/main.o
+                0x000000b0       0x40 src/main.o
 
 .debug_pubnames
  *(.debug_pubnames)
 
-.debug_info     0x00000000      0x7c8
+.debug_info     0x00000000      0x795
  *(.debug_info .gnu.linkonce.wi.*)
  .debug_info    0x00000000      0x200 src/avrMIDI.o
- .debug_info    0x00000200      0x298 src/REC.o
- .debug_info    0x00000498      0x330 src/main.o
+ .debug_info    0x00000200      0x31f src/REC.o
+ .debug_info    0x0000051f      0x276 src/main.o
 
-.debug_abbrev   0x00000000      0x3e7
+.debug_abbrev   0x00000000      0x393
  *(.debug_abbrev)
  .debug_abbrev  0x00000000      0x143 src/avrMIDI.o
- .debug_abbrev  0x00000143      0x121 src/REC.o
- .debug_abbrev  0x00000264      0x183 src/main.o
+ .debug_abbrev  0x00000143      0x110 src/REC.o
+ .debug_abbrev  0x00000253      0x140 src/main.o
 
-.debug_line     0x00000000      0xb55
+.debug_line     0x00000000      0xb61
  *(.debug_line .debug_line.* .debug_line_end)
  .debug_line    0x00000000      0x3f8 src/avrMIDI.o
- .debug_line    0x000003f8      0x324 src/REC.o
- .debug_line    0x0000071c      0x439 src/main.o
+ .debug_line    0x000003f8      0x3aa src/REC.o
+ .debug_line    0x000007a2      0x3bf src/main.o
 
 .debug_frame    0x00000000      0x22c
  *(.debug_frame)
  .debug_frame   0x00000000       0x94 src/avrMIDI.o
- .debug_frame   0x00000094       0x80 src/REC.o
- .debug_frame   0x00000114      0x118 src/main.o
+ .debug_frame   0x00000094      0x108 src/REC.o
+ .debug_frame   0x0000019c       0x90 src/main.o
 
-.debug_str      0x00000000     0x8bbd
+.debug_str      0x00000000     0x8b88
  *(.debug_str)
  .debug_str     0x00000000     0x8a5f src/avrMIDI.o
                                0x8b3a (size before relaxing)
- .debug_str     0x00008a5f       0xc5 src/REC.o
-                               0x83d5 (size before relaxing)
- .debug_str     0x00008b24       0x99 src/main.o
-                               0x8bbc (size before relaxing)
+ .debug_str     0x00008a5f       0xc0 src/REC.o
+                               0x8779 (size before relaxing)
+ .debug_str     0x00008b1f       0x69 src/main.o
+                               0x8b63 (size before relaxing)
 
 .debug_loc      0x00000000      0x6ab
  *(.debug_loc)
  .debug_loc     0x00000000      0x2d7 src/avrMIDI.o
- .debug_loc     0x000002d7      0x1a5 src/REC.o
- .debug_loc     0x0000047c      0x22f src/main.o
+ .debug_loc     0x000002d7      0x270 src/REC.o
+ .debug_loc     0x00000547      0x164 src/main.o
 
 .debug_macinfo
  *(.debug_macinfo)
@@ -708,10 +709,10 @@ END GROUP
 .debug_ranges   0x00000000       0xc0
  *(.debug_ranges)
  .debug_ranges  0x00000000       0x38 src/avrMIDI.o
- .debug_ranges  0x00000038       0x38 src/REC.o
- .debug_ranges  0x00000070       0x50 src/main.o
+ .debug_ranges  0x00000038       0x58 src/REC.o
+ .debug_ranges  0x00000090       0x30 src/main.o
 
-.debug_macro    0x00000000     0x37d9
+.debug_macro    0x00000000     0x384b
  *(.debug_macro)
  .debug_macro   0x00000000       0xc5 src/avrMIDI.o
  .debug_macro   0x000000c5      0xa5a src/avrMIDI.o
@@ -729,9 +730,10 @@ END GROUP
  .debug_macro   0x000034cb       0x18 src/avrMIDI.o
  .debug_macro   0x000034e3       0x6c src/avrMIDI.o
  .debug_macro   0x0000354f       0x63 src/avrMIDI.o
- .debug_macro   0x000035b2       0xa0 src/REC.o
- .debug_macro   0x00003652       0x10 src/REC.o
- .debug_macro   0x00003662       0x9e src/REC.o
- .debug_macro   0x00003700       0xd9 src/main.o
+ .debug_macro   0x000035b2       0xa9 src/REC.o
+ .debug_macro   0x0000365b       0x10 src/REC.o
+ .debug_macro   0x0000366b       0x9e src/REC.o
+ .debug_macro   0x00003709       0x69 src/REC.o
+ .debug_macro   0x00003772       0xd9 src/main.o
 OUTPUT(Midiproject.elf elf32-avr)
 LOAD linker stubs
