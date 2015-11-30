@@ -9,11 +9,10 @@
  */ 
 
 #include "REC.h"
-#include <avr/io.h>
 
 volatile uint8_t volume = 100;
-extern volatile uint16_t software_time;
-extern volatile uint16_t software_comp;
+volatile uint16_t software_time = 0;
+volatile uint16_t software_comp = 0;
 
 
 uint8_t com[256];
@@ -23,6 +22,33 @@ uint16_t rec_time[256];
 uint8_t rec_index = 0;
 uint8_t REC = 0;
 uint8_t PLAY = 0;
+
+void init_Timer1(void)				// for recording
+{
+	TCCR1A = 0b00000000;			// normal mode
+	TCCR1B = 0b00000011;			// prescaler 64
+	OCR1A = 125;					// output compare, 65525*1024/(8*10^6) = 8.4s at max
+}
+
+ISR(TIMER1_COMPA_vect)
+{
+	software_time++;
+	if(software_time == software_comp)
+	{
+		REC_ISR(software_time);
+	}
+}
+
+void TIME_Set_ISR(uint16_t time)
+{
+	software_comp = time;
+}
+
+void TIME_reset(void)
+{
+	software_time = 0;
+}
+
 
 void REC_process(uint8_t switches, uint8_t command, uint8_t tone){
 	

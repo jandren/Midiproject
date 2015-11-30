@@ -18,16 +18,9 @@
 // function prototypes
 void init_adc(void);
 void init_Timer0(void);
-void init_Timer1(void);
-
-void TIME_Set_ISR(uint16_t time);
-void TIME_reset(void);
 
 // global variables
 volatile uint8_t adc_read;
-volatile uint16_t software_time = 0;
-volatile uint16_t software_comp = 0;
-
 
 int main(void)
 {
@@ -117,30 +110,4 @@ void init_Timer0(void)
 ISR(TIMER0_OVF_vect)
 {
 	TCNT0 = 0;						// reset the count TCNT0
-}
-
-void init_Timer1(void)				// for recording
-{
-	TCCR1A = 0b00000000;			// normal mode
-	TCCR1B = 0b00000011;			// prescaler 64
-	OCR1A = 125;					// output compare, 65525*1024/(8*10^6) = 8.4s at max
-}
-
-ISR(TIMER1_COMPA_vect)
-{
-	software_time++;
-	if(software_time == software_comp)
-	{
-		REC_ISR(software_time);
-	}
-}
-
-void TIME_Set_ISR(uint16_t time)
-{
-	software_comp = time;
-}
-
-void TIME_reset(void)
-{ 
-	software_time = 0;
 }
