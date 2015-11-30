@@ -1,6 +1,9 @@
 /*
  * REC.c
  *
+ * Saves data in arrays and its time, every note will consist of two commands, press and release. 
+ *
+ *
  * Created: 2015-11-23 14:57:16
  *  Author: Jakob Andren & SJ
  */ 
@@ -18,6 +21,25 @@ uint8_t rec_index = 0;
 uint8_t REC = 0;
 uint8_t PLAY = 0;
 
+bool REC_process(uint8_t switches, uint8_t command, uint8_t tone){
+	
+	if(REC == 1){ // If recording already
+		if(switches & 0x80){
+			REC_add(command, tone);
+		}
+		else REC_stop();
+	}
+	
+	else{
+		if(switches & 0x80){ // Start recording and save first command
+			 REC_start();
+			 REC_add(command, tone);
+		}
+	}
+
+	
+	
+}
 
 void REC_ISR(uint16_t time){
 	if(PLAY){
@@ -57,15 +79,15 @@ void REC_stop(void){
 	com[rec_index]  = 0;
 	tones[rec_index] = 0;
 	vol[rec_index] = 0;
-	rec_time[rec_index] = 0; //time_read();
+	rec_time[rec_index] = 0;
 	REC = 0;
 }
 
 void REC_play(uint8_t switches)
-// For starting the play. All ways from the start
+// For starting the play. Always from the start
 {
 	if(PLAY){
-		if(switches & 0x40){
+		if(switches & 0x40){  // If play channel one is on
 			PLAY = 1;
 			rec_index = 0;
 			//time_reset();
@@ -75,5 +97,4 @@ void REC_play(uint8_t switches)
 			PLAY = 0;
 		}
 	}
-	
 }

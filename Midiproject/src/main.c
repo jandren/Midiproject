@@ -75,9 +75,7 @@ int main(void)
 			command = 0b10010000 | (switches & 0x0C) >> 2;
 			tone = MIDI_Conversion(current & change);
 			
-			if(switches & 0x80){
-				REC_add(command, tone);
-			}
+			REC_process(uint8_t switches, uint8_t command, uint8_t tone);
 			
 			MIDI_send(command, tone);
 			
@@ -93,10 +91,7 @@ int main(void)
 			command = 0b10010000 | (switches & 0x0C) >> 2;
 			tone = MIDI_Conversion(previus & change);
 						
-			if(switches & 0x80){
-				REC_add(command, tone);
-			}
-						
+			REC_process(uint8_t switches, uint8_t command, uint8_t tone);
 			MIDI_send(command, tone);
 			
 			
@@ -104,11 +99,6 @@ int main(void)
 			//UART_out(0b10000001); // Command
 			//UART_out(60+MIDI_Conversion(previus & change)); // Note 7bit
 			//UART_out(0b01001000); // Velocity 7 bit
-
-			UART_out(0b10000001); // Command
-			UART_out(60+MIDI_Conversion(previus & change)); // Note 7bit
-			UART_out(0b01001000); // Velocity 7 bit
-
 		}
 		previus = current;
 		//_delay_ms(300);
