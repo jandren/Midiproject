@@ -3,17 +3,38 @@ Midiproject.elf:     file format elf32-avr
 
 Sections:
 Idx Name          Size      VMA       LMA       File off  Algn
-  0 .data         00000004  00800200  00000492  00000526  2**0
+  0 .data         00000004  00800200  000003bc  00000450  2**0
                   CONTENTS, ALLOC, LOAD, DATA
-  1 .text         00000492  00000000  00000000  00000094  2**1
+  1 .text         000003bc  00000000  00000000  00000094  2**1
                   CONTENTS, ALLOC, LOAD, READONLY, CODE
-  2 .bss          00000508  00800204  00800204  0000052a  2**0
+  2 .bss          00000507  00800204  00800204  00000454  2**0
                   ALLOC
-  3 .comment      00000030  00000000  00000000  0000052a  2**0
+  3 .comment      00000030  00000000  00000000  00000454  2**0
                   CONTENTS, READONLY
-  4 .debug_aranges 000000f0  00000000  00000000  0000055a  2**0
+  4 .debug_aranges 000000f0  00000000  00000000  00000484  2**0
                   CONTENTS, READONLY, DEBUGGING
+<<<<<<< HEAD
   5 .debug_info   000007a7  00000000  00000000  0000064a  2**0
+=======
+<<<<<<< HEAD
+  5 .debug_info   0000076a  00000000  00000000  00000574  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  6 .debug_abbrev 000003e7  00000000  00000000  00000cde  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  7 .debug_line   00000b49  00000000  00000000  000010c5  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  8 .debug_frame  0000022c  00000000  00000000  00001c10  2**2
+                  CONTENTS, READONLY, DEBUGGING
+  9 .debug_str    00008bbd  00000000  00000000  00001e3c  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 10 .debug_loc    000006b8  00000000  00000000  0000a9f9  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 11 .debug_ranges 000000c0  00000000  00000000  0000b0b1  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 12 .debug_macro  000037d9  00000000  00000000  0000b171  2**0
+=======
+  5 .debug_info   00000795  00000000  00000000  0000064a  2**0
+>>>>>>> origin/master
                   CONTENTS, READONLY, DEBUGGING
   6 .debug_abbrev 00000352  00000000  00000000  00000df1  2**0
                   CONTENTS, READONLY, DEBUGGING
@@ -27,7 +48,12 @@ Idx Name          Size      VMA       LMA       File off  Algn
                   CONTENTS, READONLY, DEBUGGING
  11 .debug_ranges 000000c0  00000000  00000000  0000b103  2**0
                   CONTENTS, READONLY, DEBUGGING
+<<<<<<< HEAD
  12 .debug_macro  0000384b  00000000  00000000  0000b1c3  2**0
+=======
+ 12 .debug_macro  0000384b  00000000  00000000  0000b1f3  2**0
+>>>>>>> origin/master
+>>>>>>> origin/master
                   CONTENTS, READONLY, DEBUGGING
 
 Disassembly of section .text:
@@ -67,7 +93,15 @@ Disassembly of section .text:
   3e:	00 00       	nop
   40:	70 c0       	rjmp	.+224    	; 0x122 <__bad_interrupt>
   42:	00 00       	nop
+<<<<<<< HEAD
   44:	56 c1       	rjmp	.+684    	; 0x2f2 <__vector_17>
+=======
+<<<<<<< HEAD
+  44:	7a c1       	rjmp	.+756    	; 0x33a <__vector_17>
+=======
+  44:	26 c1       	rjmp	.+588    	; 0x292 <__vector_17>
+>>>>>>> origin/master
+>>>>>>> origin/master
   46:	00 00       	nop
   48:	6c c0       	rjmp	.+216    	; 0x122 <__bad_interrupt>
   4a:	00 00       	nop
@@ -79,7 +113,15 @@ Disassembly of section .text:
   56:	00 00       	nop
   58:	64 c0       	rjmp	.+200    	; 0x122 <__bad_interrupt>
   5a:	00 00       	nop
+<<<<<<< HEAD
   5c:	19 c1       	rjmp	.+562    	; 0x290 <__vector_23>
+=======
+<<<<<<< HEAD
+  5c:	63 c1       	rjmp	.+710    	; 0x324 <__vector_23>
+=======
+  5c:	0d c2       	rjmp	.+1050   	; 0x478 <__vector_23>
+>>>>>>> origin/master
+>>>>>>> origin/master
   5e:	00 00       	nop
   60:	60 c0       	rjmp	.+192    	; 0x122 <__bad_interrupt>
   62:	00 00       	nop
@@ -91,7 +133,15 @@ Disassembly of section .text:
   6e:	00 00       	nop
   70:	58 c0       	rjmp	.+176    	; 0x122 <__bad_interrupt>
   72:	00 00       	nop
+<<<<<<< HEAD
   74:	e8 c0       	rjmp	.+464    	; 0x246 <__vector_29>
+=======
+<<<<<<< HEAD
+  74:	32 c1       	rjmp	.+612    	; 0x2da <__vector_29>
+=======
+  74:	dc c1       	rjmp	.+952    	; 0x42e <__vector_29>
+>>>>>>> origin/master
+>>>>>>> origin/master
   76:	00 00       	nop
   78:	54 c0       	rjmp	.+168    	; 0x122 <__bad_interrupt>
   7a:	00 00       	nop
@@ -162,8 +212,8 @@ Disassembly of section .text:
   f4:	12 e0       	ldi	r17, 0x02	; 2
   f6:	a0 e0       	ldi	r26, 0x00	; 0
   f8:	b2 e0       	ldi	r27, 0x02	; 2
-  fa:	e2 e9       	ldi	r30, 0x92	; 146
-  fc:	f4 e0       	ldi	r31, 0x04	; 4
+  fa:	ec eb       	ldi	r30, 0xBC	; 188
+  fc:	f3 e0       	ldi	r31, 0x03	; 3
   fe:	00 e0       	ldi	r16, 0x00	; 0
  100:	0b bf       	out	0x3b, r16	; 59
  102:	02 c0       	rjmp	.+4      	; 0x108 <__do_copy_data+0x14>
@@ -183,22 +233,34 @@ Disassembly of section .text:
  116:	1d 92       	st	X+, r1
 
 00000118 <.do_clear_bss_start>:
- 118:	ac 30       	cpi	r26, 0x0C	; 12
+ 118:	ab 30       	cpi	r26, 0x0B	; 11
  11a:	b2 07       	cpc	r27, r18
  11c:	e1 f7       	brne	.-8      	; 0x116 <.do_clear_bss_loop>
+<<<<<<< HEAD
  11e:	7d d1       	rcall	.+762    	; 0x41a <main>
+=======
+<<<<<<< HEAD
+ 11e:	b9 d0       	rcall	.+370    	; 0x292 <main>
+ 120:	4b c1       	rjmp	.+662    	; 0x3b8 <_exit>
+=======
+ 11e:	4d d1       	rcall	.+666    	; 0x3ba <main>
+>>>>>>> origin/master
  120:	b6 c1       	rjmp	.+876    	; 0x48e <_exit>
+>>>>>>> origin/master
 
 00000122 <__bad_interrupt>:
  122:	6e cf       	rjmp	.-292    	; 0x0 <__vectors>
 
 00000124 <Init_ports>:
+<<<<<<< HEAD
 void init_Timer0(void)
 {
 	TCCR0A = 0b00000000;			// normal mode
 	TCCR0B = 0b00000101;			// prescaler 1024
 	TCNT0 = 0;						// overflow, 255*1024/(8*10^6) = 32.6ms delay at max
 	TIMSK0 |= (1 << TOIE0);			// enable overflow interrupt enable
+=======
+>>>>>>> origin/master
  124:	8f ef       	ldi	r24, 0xFF	; 255
  126:	84 b9       	out	0x04, r24	; 4
  128:	85 b9       	out	0x05, r24	; 5
@@ -411,13 +473,26 @@ void REC_ISR(uint16_t time){
  2ac:	09 f1       	breq	.+66     	; 0x2f0 <REC_ISR+0x4a>
 		//MIDI_send(com[rec_index], tones[rec_index], vol[rec_index]);
 		rec_index++;
+<<<<<<< HEAD
  2ae:	e0 91 07 02 	lds	r30, 0x0207
  2b2:	ef 5f       	subi	r30, 0xFF	; 255
  2b4:	e0 93 07 02 	sts	0x0207, r30
+=======
+<<<<<<< HEAD
+ 24e:	e0 91 06 02 	lds	r30, 0x0206
+ 252:	ef 5f       	subi	r30, 0xFF	; 255
+ 254:	e0 93 06 02 	sts	0x0206, r30
+=======
+ 24e:	e0 91 07 02 	lds	r30, 0x0207
+ 252:	ef 5f       	subi	r30, 0xFF	; 255
+ 254:	e0 93 07 02 	sts	0x0207, r30
+>>>>>>> origin/master
+>>>>>>> origin/master
 		
 		// Last record will be of time zero
 		// Restart the playback in that case
 		if(rec_time[rec_index] == 0){
+<<<<<<< HEAD
  2b8:	f0 e0       	ldi	r31, 0x00	; 0
  2ba:	ee 0f       	add	r30, r30
  2bc:	ff 1f       	adc	r31, r31
@@ -429,12 +504,36 @@ void REC_ISR(uint16_t time){
  2c8:	31 f4       	brne	.+12     	; 0x2d6 <REC_ISR+0x30>
 			rec_index = 0;
  2ca:	10 92 07 02 	sts	0x0207, r1
+=======
+ 258:	f0 e0       	ldi	r31, 0x00	; 0
+ 25a:	ee 0f       	add	r30, r30
+ 25c:	ff 1f       	adc	r31, r31
+ 25e:	e5 5f       	subi	r30, 0xF5	; 245
+ 260:	fb 4f       	sbci	r31, 0xFB	; 251
+ 262:	80 81       	ld	r24, Z
+ 264:	91 81       	ldd	r25, Z+1	; 0x01
+ 266:	89 2b       	or	r24, r25
+ 268:	31 f4       	brne	.+12     	; 0x276 <REC_ISR+0x30>
+			rec_index = 0;
+<<<<<<< HEAD
+ 26a:	10 92 06 02 	sts	0x0206, r1
+			software_time = 0;//TIME_reset();
+ 26e:	10 92 0a 02 	sts	0x020A, r1
+ 272:	10 92 09 02 	sts	0x0209, r1
+		}
+
+		software_comp = rec_time[rec_index]; //TIME_Set_ISR(rec_time[rec_index]);
+ 276:	e0 91 06 02 	lds	r30, 0x0206
+=======
+ 26a:	10 92 07 02 	sts	0x0207, r1
+>>>>>>> origin/master
 			software_time = 0;//TIME_reset();
  2ce:	10 92 0b 02 	sts	0x020B, r1
  2d2:	10 92 0a 02 	sts	0x020A, r1
 		}
 
 		software_comp = rec_time[rec_index]; //TIME_Set_ISR(rec_time[rec_index]);
+<<<<<<< HEAD
  2d6:	e0 91 07 02 	lds	r30, 0x0207
  2da:	f0 e0       	ldi	r31, 0x00	; 0
  2dc:	ee 0f       	add	r30, r30
@@ -448,12 +547,123 @@ void REC_ISR(uint16_t time){
  2f0:	08 95       	ret
 
 000002f2 <__vector_17>:
+=======
+ 276:	e0 91 07 02 	lds	r30, 0x0207
+>>>>>>> origin/master
+ 27a:	f0 e0       	ldi	r31, 0x00	; 0
+ 27c:	ee 0f       	add	r30, r30
+ 27e:	ff 1f       	adc	r31, r31
+ 280:	e5 5f       	subi	r30, 0xF5	; 245
+ 282:	fb 4f       	sbci	r31, 0xFB	; 251
+ 284:	80 81       	ld	r24, Z
+ 286:	91 81       	ldd	r25, Z+1	; 0x01
+ 288:	90 93 08 02 	sts	0x0208, r25
+ 28c:	80 93 07 02 	sts	0x0207, r24
+ 290:	08 95       	ret
+
+<<<<<<< HEAD
+00000292 <main>:
+
+void init_Timer1(void)				// for recording
+{
+	TCCR1A = 0b00000000;			// normal mode
 	TCCR1B = 0b00000011;			// prescaler 64
 	OCR1A = 125;					// output compare, 65525*1024/(8*10^6) = 8.4s at max
+ 292:	48 df       	rcall	.-368    	; 0x124 <Init_ports>
+ 294:	80 e8       	ldi	r24, 0x80	; 128
+ 296:	95 e2       	ldi	r25, 0x25	; 37
+ 298:	4b df       	rcall	.-362    	; 0x130 <Init_UART0>
+ 29a:	78 94       	sei
+ 29c:	90 e0       	ldi	r25, 0x00	; 0
+ 29e:	df e7       	ldi	r29, 0x7F	; 127
+ 2a0:	01 c0       	rjmp	.+2      	; 0x2a4 <main+0x12>
+ 2a2:	9c 2f       	mov	r25, r28
+ 2a4:	c9 b1       	in	r28, 0x09	; 9
+ 2a6:	c0 95       	com	r28
+ 2a8:	29 2f       	mov	r18, r25
+ 2aa:	2c 27       	eor	r18, r28
+ 2ac:	82 2f       	mov	r24, r18
+ 2ae:	8c 23       	and	r24, r28
+ 2b0:	49 f0       	breq	.+18     	; 0x2c4 <main+0x32>
+ 2b2:	90 91 04 02 	lds	r25, 0x0204
+ 2b6:	74 df       	rcall	.-280    	; 0x1a0 <MIDI_Conversion>
+ 2b8:	40 91 02 02 	lds	r20, 0x0202
+ 2bc:	68 2f       	mov	r22, r24
+ 2be:	81 e9       	ldi	r24, 0x91	; 145
+ 2c0:	62 df       	rcall	.-316    	; 0x186 <MIDI_send>
+ 2c2:	ef cf       	rjmp	.-34     	; 0x2a2 <main+0x10>
+ 2c4:	82 2f       	mov	r24, r18
+ 2c6:	89 23       	and	r24, r25
+ 2c8:	61 f3       	breq	.-40     	; 0x2a2 <main+0x10>
+ 2ca:	d5 b9       	out	0x05, r29	; 5
+ 2cc:	69 df       	rcall	.-302    	; 0x1a0 <MIDI_Conversion>
+ 2ce:	40 91 02 02 	lds	r20, 0x0202
+ 2d2:	68 2f       	mov	r22, r24
+ 2d4:	80 e8       	ldi	r24, 0x80	; 128
+ 2d6:	57 df       	rcall	.-338    	; 0x186 <MIDI_send>
+ 2d8:	e4 cf       	rjmp	.-56     	; 0x2a2 <main+0x10>
+
+000002da <__vector_29>:
+ 2da:	1f 92       	push	r1
+ 2dc:	0f 92       	push	r0
+ 2de:	0f b6       	in	r0, 0x3f	; 63
+ 2e0:	0f 92       	push	r0
+ 2e2:	11 24       	eor	r1, r1
+ 2e4:	0b b6       	in	r0, 0x3b	; 59
+ 2e6:	0f 92       	push	r0
+ 2e8:	8f 93       	push	r24
+ 2ea:	9f 93       	push	r25
+ 2ec:	ef 93       	push	r30
+ 2ee:	ff 93       	push	r31
+ 2f0:	80 91 79 00 	lds	r24, 0x0079
+ 2f4:	80 93 02 02 	sts	0x0202, r24
+ 2f8:	ec e7       	ldi	r30, 0x7C	; 124
+ 2fa:	f0 e0       	ldi	r31, 0x00	; 0
+ 2fc:	90 81       	ld	r25, Z
+ 2fe:	80 91 04 02 	lds	r24, 0x0204
+ 302:	8c 70       	andi	r24, 0x0C	; 12
+ 304:	86 95       	lsr	r24
+ 306:	86 95       	lsr	r24
+ 308:	90 7e       	andi	r25, 0xE0	; 224
+ 30a:	89 2b       	or	r24, r25
+ 30c:	80 83       	st	Z, r24
+ 30e:	ff 91       	pop	r31
+ 310:	ef 91       	pop	r30
+ 312:	9f 91       	pop	r25
+ 314:	8f 91       	pop	r24
+ 316:	0f 90       	pop	r0
+ 318:	0b be       	out	0x3b, r0	; 59
+ 31a:	0f 90       	pop	r0
+ 31c:	0f be       	out	0x3f, r0	; 63
+ 31e:	0f 90       	pop	r0
+ 320:	1f 90       	pop	r1
+ 322:	18 95       	reti
+
+00000324 <__vector_23>:
+ 324:	1f 92       	push	r1
+ 326:	0f 92       	push	r0
+ 328:	0f b6       	in	r0, 0x3f	; 63
+ 32a:	0f 92       	push	r0
+ 32c:	11 24       	eor	r1, r1
+ 32e:	16 bc       	out	0x26, r1	; 38
+ 330:	0f 90       	pop	r0
+ 332:	0f be       	out	0x3f, r0	; 63
+ 334:	0f 90       	pop	r0
+ 336:	1f 90       	pop	r1
+ 338:	18 95       	reti
+
+0000033a <__vector_17>:
+=======
+00000292 <__vector_17>:
+>>>>>>> origin/master
+	TCCR1B = 0b00000011;			// prescaler 64
+	OCR1A = 125;					// output compare, 65525*1024/(8*10^6) = 8.4s at max
+>>>>>>> origin/master
 }
 
 ISR(TIMER1_COMPA_vect)
 {
+<<<<<<< HEAD
  2f2:	1f 92       	push	r1
  2f4:	0f 92       	push	r0
  2f6:	0f b6       	in	r0, 0x3f	; 63
@@ -473,6 +683,94 @@ ISR(TIMER1_COMPA_vect)
  312:	bf 93       	push	r27
  314:	ef 93       	push	r30
  316:	ff 93       	push	r31
+=======
+<<<<<<< HEAD
+ 33a:	1f 92       	push	r1
+ 33c:	0f 92       	push	r0
+ 33e:	0f b6       	in	r0, 0x3f	; 63
+ 340:	0f 92       	push	r0
+ 342:	11 24       	eor	r1, r1
+ 344:	0b b6       	in	r0, 0x3b	; 59
+ 346:	0f 92       	push	r0
+ 348:	2f 93       	push	r18
+ 34a:	3f 93       	push	r19
+ 34c:	4f 93       	push	r20
+ 34e:	5f 93       	push	r21
+ 350:	6f 93       	push	r22
+ 352:	7f 93       	push	r23
+ 354:	8f 93       	push	r24
+ 356:	9f 93       	push	r25
+ 358:	af 93       	push	r26
+ 35a:	bf 93       	push	r27
+ 35c:	ef 93       	push	r30
+ 35e:	ff 93       	push	r31
+	software_time++;
+ 360:	80 91 09 02 	lds	r24, 0x0209
+ 364:	90 91 0a 02 	lds	r25, 0x020A
+ 368:	01 96       	adiw	r24, 0x01	; 1
+ 36a:	90 93 0a 02 	sts	0x020A, r25
+ 36e:	80 93 09 02 	sts	0x0209, r24
+	if(software_time == software_comp)
+ 372:	20 91 09 02 	lds	r18, 0x0209
+ 376:	30 91 0a 02 	lds	r19, 0x020A
+ 37a:	80 91 07 02 	lds	r24, 0x0207
+ 37e:	90 91 08 02 	lds	r25, 0x0208
+ 382:	28 17       	cp	r18, r24
+ 384:	39 07       	cpc	r19, r25
+ 386:	29 f4       	brne	.+10     	; 0x392 <__vector_17+0x58>
+	{
+		REC_ISR(software_time);
+ 388:	80 91 09 02 	lds	r24, 0x0209
+ 38c:	90 91 0a 02 	lds	r25, 0x020A
+ 390:	5a df       	rcall	.-332    	; 0x246 <REC_ISR>
+	}
+}
+ 392:	ff 91       	pop	r31
+ 394:	ef 91       	pop	r30
+ 396:	bf 91       	pop	r27
+ 398:	af 91       	pop	r26
+ 39a:	9f 91       	pop	r25
+ 39c:	8f 91       	pop	r24
+ 39e:	7f 91       	pop	r23
+ 3a0:	6f 91       	pop	r22
+ 3a2:	5f 91       	pop	r21
+ 3a4:	4f 91       	pop	r20
+ 3a6:	3f 91       	pop	r19
+ 3a8:	2f 91       	pop	r18
+ 3aa:	0f 90       	pop	r0
+ 3ac:	0b be       	out	0x3b, r0	; 59
+ 3ae:	0f 90       	pop	r0
+ 3b0:	0f be       	out	0x3f, r0	; 63
+ 3b2:	0f 90       	pop	r0
+ 3b4:	1f 90       	pop	r1
+ 3b6:	18 95       	reti
+
+000003b8 <_exit>:
+ 3b8:	f8 94       	cli
+
+000003ba <__stop_program>:
+ 3ba:	ff cf       	rjmp	.-2      	; 0x3ba <__stop_program>
+=======
+ 292:	1f 92       	push	r1
+ 294:	0f 92       	push	r0
+ 296:	0f b6       	in	r0, 0x3f	; 63
+ 298:	0f 92       	push	r0
+ 29a:	11 24       	eor	r1, r1
+ 29c:	0b b6       	in	r0, 0x3b	; 59
+ 29e:	0f 92       	push	r0
+ 2a0:	2f 93       	push	r18
+ 2a2:	3f 93       	push	r19
+ 2a4:	4f 93       	push	r20
+ 2a6:	5f 93       	push	r21
+ 2a8:	6f 93       	push	r22
+ 2aa:	7f 93       	push	r23
+ 2ac:	8f 93       	push	r24
+ 2ae:	9f 93       	push	r25
+ 2b0:	af 93       	push	r26
+ 2b2:	bf 93       	push	r27
+ 2b4:	ef 93       	push	r30
+ 2b6:	ff 93       	push	r31
+>>>>>>> origin/master
 	software_time++;
  318:	80 91 0a 02 	lds	r24, 0x020A
  31c:	90 91 0b 02 	lds	r25, 0x020B
@@ -756,3 +1054,4 @@ int main(void)
 
 00000490 <__stop_program>:
  490:	ff cf       	rjmp	.-2      	; 0x490 <__stop_program>
+>>>>>>> origin/master

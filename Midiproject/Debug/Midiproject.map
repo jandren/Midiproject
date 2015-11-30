@@ -59,14 +59,25 @@ Discarded input sections
  .text          0x00000000        0x0 src/REC.o
  .data          0x00000000        0x0 src/REC.o
  .bss           0x00000000        0x0 src/REC.o
+<<<<<<< HEAD
+ .text.REC_add  0x00000000       0x3a src/REC.o
+ .text.REC_start
+                0x00000000        0xc src/REC.o
+ .text.REC_stop
+                0x00000000       0x32 src/REC.o
+ .text.REC_process
+                0x00000000       0x3a src/REC.o
+=======
  .text.init_Timer1
                 0x00000000       0x18 src/REC.o
  .text.TIME_Set_ISR
                 0x00000000        0xa src/REC.o
  .text.TIME_reset
                 0x00000000        0xa src/REC.o
+>>>>>>> origin/master
  .text.REC_play
                 0x00000000       0x1e src/REC.o
+ .bss.REC       0x00000000        0x1 src/REC.o
  .debug_macro   0x00000000      0xa5a src/REC.o
  .debug_macro   0x00000000      0x1ad src/REC.o
  .debug_macro   0x00000000      0x293 src/REC.o
@@ -345,7 +356,7 @@ END GROUP
 .rela.plt
  *(.rela.plt)
 
-.text           0x00000000      0x492
+.text           0x00000000      0x3bc
  *(.vectors)
  .vectors       0x00000000       0xe4 c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/../../../../avr/lib/avr6/crtm2560.o
                 0x00000000                __vector_default
@@ -475,6 +486,7 @@ END GROUP
  .text.MIDI_Conversion
                 0x000001a0       0xa6 src/avrMIDI.o
                 0x000001a0                MIDI_Conversion
+<<<<<<< HEAD
  .text.__vector_29
                 0x00000246       0x4a src/avrMIDI.o
                 0x00000246                __vector_29
@@ -483,6 +495,24 @@ END GROUP
                 0x00000290                __vector_23
  .text.REC_ISR  0x000002a6       0x4c src/REC.o
                 0x000002a6                REC_ISR
+=======
+ .text.REC_ISR  0x00000246       0x4c src/REC.o
+                0x00000246                REC_ISR
+<<<<<<< HEAD
+ .text.main     0x00000292       0x48 src/main.o
+                0x00000292                main
+ .text.__vector_29
+                0x000002da       0x4a src/main.o
+                0x000002da                __vector_29
+ .text.__vector_23
+                0x00000324       0x16 src/main.o
+                0x00000324                __vector_23
+ .text.__vector_17
+                0x0000033a       0x7e src/main.o
+                0x0000033a                __vector_17
+                0x000003b8                . = ALIGN (0x2)
+=======
+>>>>>>> origin/master
  .text.__vector_17
                 0x000002f2       0x7e src/REC.o
                 0x000002f2                __vector_17
@@ -500,10 +530,11 @@ END GROUP
  .text.main     0x0000041a       0x74 src/main.o
                 0x0000041a                main
                 0x0000048e                . = ALIGN (0x2)
+>>>>>>> origin/master
  *(.fini9)
- .fini9         0x0000048e        0x0 c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/avr6\libgcc.a(_exit.o)
-                0x0000048e                _exit
-                0x0000048e                exit
+ .fini9         0x000003b8        0x0 c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/avr6\libgcc.a(_exit.o)
+                0x000003b8                _exit
+                0x000003b8                exit
  *(.fini9)
  *(.fini8)
  *(.fini8)
@@ -522,11 +553,11 @@ END GROUP
  *(.fini1)
  *(.fini1)
  *(.fini0)
- .fini0         0x0000048e        0x4 c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/avr6\libgcc.a(_exit.o)
+ .fini0         0x000003b8        0x4 c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/avr6\libgcc.a(_exit.o)
  *(.fini0)
-                0x00000492                _etext = .
+                0x000003bc                _etext = .
 
-.data           0x00800200        0x4 load address 0x00000492
+.data           0x00800200        0x4 load address 0x000003bc
                 0x00800200                PROVIDE (__data_start, .)
  *(.data)
  *(.data*)
@@ -542,7 +573,7 @@ END GROUP
                 0x00800204                _edata = .
                 0x00800204                PROVIDE (__data_end, .)
 
-.bss            0x00800204      0x508
+.bss            0x00800204      0x507
                 0x00800204                PROVIDE (__bss_start, .)
  *(.bss)
  *(.bss*)
@@ -550,33 +581,39 @@ END GROUP
                 0x00800204                switches
  .bss.PLAY      0x00800205        0x1 src/REC.o
                 0x00800205                PLAY
- .bss.REC       0x00800206        0x1 src/REC.o
-                0x00800206                REC
  .bss.rec_index
-                0x00800207        0x1 src/REC.o
-                0x00800207                rec_index
+                0x00800206        0x1 src/REC.o
+                0x00800206                rec_index
  .bss.software_comp
+<<<<<<< HEAD
+                0x00800207        0x2 src/main.o
+                0x00800207                software_comp
+ .bss.software_time
+                0x00800209        0x2 src/main.o
+                0x00800209                software_time
+=======
                 0x00800208        0x2 src/REC.o
                 0x00800208                software_comp
  .bss.software_time
                 0x0080020a        0x2 src/REC.o
                 0x0080020a                software_time
+>>>>>>> origin/master
  *(COMMON)
- COMMON         0x0080020c      0x500 src/REC.o
-                0x0080020c                com
-                0x0080030c                tones
-                0x0080040c                rec_time
-                0x0080060c                vol
-                0x0080070c                PROVIDE (__bss_end, .)
-                0x00000492                __data_load_start = LOADADDR (.data)
-                0x00000496                __data_load_end = (__data_load_start + SIZEOF (.data))
+ COMMON         0x0080020b      0x500 src/REC.o
+                0x0080020b                com
+                0x0080030b                tones
+                0x0080040b                rec_time
+                0x0080060b                vol
+                0x0080070b                PROVIDE (__bss_end, .)
+                0x000003bc                __data_load_start = LOADADDR (.data)
+                0x000003c0                __data_load_end = (__data_load_start + SIZEOF (.data))
 
-.noinit         0x0080070c        0x0
-                0x0080070c                PROVIDE (__noinit_start, .)
+.noinit         0x0080070b        0x0
+                0x0080070b                PROVIDE (__noinit_start, .)
  *(.noinit*)
-                0x0080070c                PROVIDE (__noinit_end, .)
-                0x0080070c                _end = .
-                0x0080070c                PROVIDE (__heap_start, .)
+                0x0080070b                PROVIDE (__noinit_end, .)
+                0x0080070b                _end = .
+                0x0080070b                PROVIDE (__heap_start, .)
 
 .eeprom         0x00810000        0x0
  *(.eeprom*)
@@ -649,11 +686,27 @@ END GROUP
 .debug_pubnames
  *(.debug_pubnames)
 
+<<<<<<< HEAD
 .debug_info     0x00000000      0x7a7
  *(.debug_info .gnu.linkonce.wi.*)
  .debug_info    0x00000000      0x27c src/avrMIDI.o
  .debug_info    0x0000027c      0x31f src/REC.o
  .debug_info    0x0000059b      0x20c src/main.o
+=======
+<<<<<<< HEAD
+.debug_info     0x00000000      0x76a
+ *(.debug_info .gnu.linkonce.wi.*)
+ .debug_info    0x00000000      0x200 src/avrMIDI.o
+ .debug_info    0x00000200      0x298 src/REC.o
+ .debug_info    0x00000498      0x2d2 src/main.o
+=======
+.debug_info     0x00000000      0x795
+ *(.debug_info .gnu.linkonce.wi.*)
+ .debug_info    0x00000000      0x200 src/avrMIDI.o
+ .debug_info    0x00000200      0x31f src/REC.o
+ .debug_info    0x0000051f      0x276 src/main.o
+>>>>>>> origin/master
+>>>>>>> origin/master
 
 .debug_abbrev   0x00000000      0x352
  *(.debug_abbrev)
@@ -661,11 +714,25 @@ END GROUP
  .debug_abbrev  0x00000143      0x110 src/REC.o
  .debug_abbrev  0x00000253       0xff src/main.o
 
+<<<<<<< HEAD
+.debug_line     0x00000000      0xb49
+ *(.debug_line .debug_line.* .debug_line_end)
+ .debug_line    0x00000000      0x3f8 src/avrMIDI.o
+ .debug_line    0x000003f8      0x324 src/REC.o
+ .debug_line    0x0000071c      0x42d src/main.o
+=======
 .debug_line     0x00000000      0xb61
  *(.debug_line .debug_line.* .debug_line_end)
+<<<<<<< HEAD
  .debug_line    0x00000000      0x47e src/avrMIDI.o
  .debug_line    0x0000047e      0x3aa src/REC.o
  .debug_line    0x00000828      0x339 src/main.o
+=======
+ .debug_line    0x00000000      0x3f8 src/avrMIDI.o
+ .debug_line    0x000003f8      0x3aa src/REC.o
+ .debug_line    0x000007a2      0x3bf src/main.o
+>>>>>>> origin/master
+>>>>>>> origin/master
 
 .debug_frame    0x00000000      0x22c
  *(.debug_frame)
@@ -675,18 +742,45 @@ END GROUP
 
 .debug_str      0x00000000     0x8b88
  *(.debug_str)
+<<<<<<< HEAD
  .debug_str     0x00000000     0x8a95 src/avrMIDI.o
                                0x8b70 (size before relaxing)
  .debug_str     0x00008a95       0xc0 src/REC.o
                                0x8779 (size before relaxing)
  .debug_str     0x00008b55       0x33 src/main.o
                                0x8b2d (size before relaxing)
+=======
+ .debug_str     0x00000000     0x8a5f src/avrMIDI.o
+                               0x8b3a (size before relaxing)
+<<<<<<< HEAD
+ .debug_str     0x00008a5f       0xc5 src/REC.o
+                               0x83d5 (size before relaxing)
+ .debug_str     0x00008b24       0x99 src/main.o
+                               0x8ba5 (size before relaxing)
+=======
+ .debug_str     0x00008a5f       0xc0 src/REC.o
+                               0x8779 (size before relaxing)
+ .debug_str     0x00008b1f       0x69 src/main.o
+                               0x8b63 (size before relaxing)
+>>>>>>> origin/master
+>>>>>>> origin/master
 
-.debug_loc      0x00000000      0x6ab
+.debug_loc      0x00000000      0x6b8
  *(.debug_loc)
+<<<<<<< HEAD
  .debug_loc     0x00000000      0x369 src/avrMIDI.o
  .debug_loc     0x00000369      0x270 src/REC.o
  .debug_loc     0x000005d9       0xd2 src/main.o
+=======
+ .debug_loc     0x00000000      0x2d7 src/avrMIDI.o
+<<<<<<< HEAD
+ .debug_loc     0x000002d7      0x1a5 src/REC.o
+ .debug_loc     0x0000047c      0x23c src/main.o
+=======
+ .debug_loc     0x000002d7      0x270 src/REC.o
+ .debug_loc     0x00000547      0x164 src/main.o
+>>>>>>> origin/master
+>>>>>>> origin/master
 
 .debug_macinfo
  *(.debug_macinfo)
