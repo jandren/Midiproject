@@ -12,7 +12,6 @@
 // global variables
 volatile uint16_t rx_ch = 0xFF;
 volatile uint8_t switches = 0x00; // Byte containing [rec, play1, play2, play3, ch_bit0, ch_bit1, pitch_bit0, pitch_bit1];
-volatile uint8_t volume;
 
 void Init_ports(void)
 {
@@ -53,7 +52,7 @@ void UART_out(uint8_t ch)
 	UDR0 = ch; // Put character to be sent in the output register
 }
 
-void MIDI_send(uint8_t command, uint8_t tone)
+void MIDI_send(uint8_t command, uint8_t tone, uint8_t volume)
 // Send the Midi command, not much really but abstracts the code a little.
 {
 	UART_out(command); // Command 7-bit
