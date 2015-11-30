@@ -11,6 +11,8 @@
 
 // Global variables
 extern volatile uint8_t volume;
+extern volatile uint16_t software_time;
+extern volatile uint16_t software_comp;
 
 
 // Functions
