@@ -36,6 +36,7 @@ int main(void)
 	while
 	(1)
 	{
+		
 		current = ~PIND;
 		switches = ~PINC; // Update switches
 		REC_state(switches);

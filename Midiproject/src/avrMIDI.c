@@ -149,11 +149,12 @@ void init_Timer0(void)
 {
 	TCCR0A = 0b00000000;			// normal mode
 	TCCR0B = 0b00000101;			// prescaler 1024
-	TCNT0 = 255;					// overflow, 255*1024/(8*10^6) = 32.6ms delay at max
+	TCNT0 = 0;					// overflow, 255*1024/(8*10^6) = 32.6ms delay at max
 	TIMSK0 |= (1 << TOIE0);			// enable overflow interrupt enable
 }
 
 ISR(TIMER0_OVF_vect)
 {
-	TCNT0 = 255;					// reset the count TCNT0
+	ADCSRA |= (1<<ADSC);
+	//TCNT0 = 0;					// reset the count TCNT0
 }
