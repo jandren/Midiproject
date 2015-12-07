@@ -27,6 +27,11 @@ void Init_ports(void)
 	// Set up port D Buttons
 	DDRD = 0x00;
 	PORTD = 0xFF; // Set pull up on the inputs
+	
+	// Set up port C Switches
+	DDRC = 0x00;
+	PORTC = 0xFF; // Set pull up on the inputs
+	
 }
 
 void Init_UART0(uint16_t BAUDRATE)

@@ -10,9 +10,9 @@
 
 #include "REC.h"
 
-volatile uint8_t volume = 100;
+volatile uint8_t volume = 200;
 volatile uint16_t software_time = 0;
-volatile uint16_t software_comp = 0;
+volatile uint16_t software_comp = 100;
 
 
 uint8_t com[256];
@@ -25,14 +25,19 @@ uint8_t PLAY = 0;
 
 void init_Timer1(void)				// for recording
 {
-	TCCR1A = 0b00000000;			// normal mode
-	TCCR1B = 0b00000011;			// prescaler 64
-	OCR1A = 125;					// output compare, 65525*1024/(8*10^6) = 8.4s at max
+	TCCR1A = 0x00;		  // Normal timer operation
+	TIMSK1 = (1<<OCIE0A); // Interrupt on compare register A
+	TCNT1 =  0;			  // Set counter
+	OCR1A = 125;		  // 100Hz interrupts to start with 
+	
+	// Start timer
+	TCCR1B	= (1<<CS10); // No Pre-scaler for maximum resolution even at high freq
 }
 
 ISR(TIMER1_COMPA_vect)
 {
 	software_time++;
+	PORTB = ~rec_index; //((PLAY<<6) | (REC<<7) | rec_index);
 	if(software_time == software_comp)
 	{
 		REC_ISR(software_time);
@@ -49,40 +54,31 @@ void TIME_reset(void)
 	software_time = 0;
 }
 
-
-void REC_process(uint8_t switches, uint8_t command, uint8_t tone){
-	
-	if(REC == 1){ // If recording already
-		if(switches & 0x80){
-			REC_add(command, tone);
-		}
-		else REC_stop();
-	}
-	
-	else{
-		if(switches & 0x80){ // Start recording and save first command
-			 REC_start();
-			 REC_add(command, tone);
-		}
-	}
-
-	
-	
+uint16_t TIME_read(void)
+{
+	return software_time;
 }
 
 void REC_ISR(uint16_t time){
 	if(PLAY){
-		//MIDI_send(com[rec_index], tones[rec_index], vol[rec_index]);
-		rec_index++;
+		MIDI_send(com[rec_index], tones[rec_index], vol[rec_index]);
+		//PORTB = ~rec_index;
 		
 		// Last record will be of time zero
 		// Restart the playback in that case
-		if(rec_time[rec_index] == 0){
-			rec_index = 0;
-			software_time = 0;//TIME_reset();
+		if(com[rec_index] == 0){
+			MIDI_send(com[0], tones[0], vol[0]);
+			
+			rec_index = 1;
+			TIME_reset();
+			
 		}
-
-		software_comp = rec_time[rec_index]; //TIME_Set_ISR(rec_time[rec_index]);
+		else{
+			rec_index++;
+		}
+		
+		TIME_Set_ISR(rec_time[rec_index]);	
+	
 	}
 	
 	// There will be no new interrupt if PLAY == 0
@@ -90,40 +86,76 @@ void REC_ISR(uint16_t time){
 
 void REC_add(uint8_t command, uint8_t tone){
 	
-	com[rec_index]  = command;
-	tones[rec_index] = tone;
-	vol[rec_index] = volume;
-	rec_time[rec_index] = 0; //time_read();
-	
-	rec_index++;	
+	if(REC){ // Recording 
+		com[rec_index]  = command;
+		tones[rec_index] = tone;
+		vol[rec_index] = volume;
+		
+		// Recording starts on first tone, so set time = 0 and reset timer
+		if(rec_index == 0){
+			rec_time[rec_index] = 0;
+			TIME_reset();
+			
+			
+			
+		}
+		
+		else { rec_time[rec_index] = TIME_read();}
+			
+		rec_index++;
+	}
 }
 
 void REC_start(void){
 	REC = 1;
 	rec_index = 0;
-	//time_reset();
+	TIME_reset();
 }
 
 void REC_stop(void){
+	// always record both on AND off commands = even number
+	if(rec_index & 0x01){ // if not even
+		com[rec_index]  = (com[rec_index-1] & 0b11101111); 
+		tones[rec_index] = tones[rec_index-1];
+		vol[rec_index] = volume;
+		rec_index++;
+	}
+	
 	com[rec_index]  = 0;
 	tones[rec_index] = 0;
 	vol[rec_index] = 0;
-	rec_time[rec_index] = 0;
+	rec_time[rec_index] = TIME_read();
 	REC = 0;
 }
 
-void REC_play(uint8_t switches)
+void REC_state(uint8_t switches)
 // For starting the play. Always from the start
 {
-	if(PLAY){
-		if(switches & 0x40){  // If play channel one is on
+	if(switches & 0x40){
+		if(!PLAY){  // If play channel one is on
 			PLAY = 1;
+			
+			// First note is on time = 0 which doesn't exist in our approach,
+			// Therefor call the ICR for the first tone and then reset timer.
 			rec_index = 0;
-			//time_reset();
-			//time_set_isr(0);
+			REC_ISR(0);
+			TIME_reset();
 		}
-		else{
+	}
+	else{ // If should be off
+		if(PLAY){ // Turn off if on
 			PLAY = 0;
+		}
+	}
+	
+	if(switches & 0x80){ // Recording?
+		if(REC == 0){	 // Change from before?
+			REC_start();
+		}
+	}
+	else{
+		if(REC == 1){ // If rec on, but swithces not in that position, stop
+			REC_stop();
 		}
 	}
 }
