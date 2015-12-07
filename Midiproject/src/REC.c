@@ -14,12 +14,13 @@
 volatile uint8_t volume = 200;
 volatile uint16_t software_time = 0;
 volatile uint16_t software_comp = 100;
+volatile uint8_t REC_que = 0;
 
 // Global values used as data storage
 uint8_t com[256];
 uint8_t tones[256];
 uint8_t vol[256];
-uint16_t rec_time[256];
+uint32_t rec_time[256];
 uint8_t rec_index = 0;
 uint8_t REC = 0;
 uint8_t PLAY = 0;
@@ -28,27 +29,32 @@ uint8_t PLAY = 0;
 void init_Timer1(void)
 {
 	TCCR1A = 0x00;		  // Normal timer operation
-	TIMSK1 = (1<<OCIE0A); // Interrupt on compare register A
+	TIMSK1 = (1<<OCIE0A) | (1<<TOIE1); // Interrupt on compare register A
 	TCNT1 =  0;			  // Set counter
-	OCR1A = 125;		  // 0.1ms interrupts
+	OCR1A = 100;		  // 0.1ms interrupts
 	
 	// Start timer
-	TCCR1B	= (1<<CS10); // Start, pre scaler 1
+	TCCR1B	= (1<<CS11); // Start, pre scaler 1, its 32 bit so long enough and 
 }
 
 ISR(TIMER1_COMPA_vect)
 {
-	software_time++;
-	PORTB = ~(rec_index >> 1); //((PLAY<<6) | (REC<<7) | rec_index);
 	if(software_time == software_comp)
 	{
-		REC_ISR(software_time);
+		REC_que++;
 	}
+	
 }
 
-void TIME_Set_ISR(uint16_t time)
+ISR(TIMER1_OVF_vect){
+	software_time++;
+	PORTB = ~(rec_index >> 1); //((PLAY<<6) | (REC<<7) | rec_index);
+}
+
+void TIME_Set_ISR(uint32_t time)
 {
-	software_comp = time;
+	software_comp = (time >> 16);
+	OCR1A = time;
 }
 
 void TIME_reset(void)
@@ -56,13 +62,13 @@ void TIME_reset(void)
 	software_time = 0;
 }
 
-uint16_t TIME_read(void)
+uint32_t TIME_read(void)
 {
-	return software_time;
+	return ((uint32_t)software_time << 16) | TCNT1;
 }
 
 void REC_ISR(uint16_t time){
-	if(PLAY){
+	if(PLAY && REC_que){
 		MIDI_send(com[rec_index], tones[rec_index], vol[rec_index]);
 		//PORTB = ~rec_index;
 		
@@ -80,7 +86,8 @@ void REC_ISR(uint16_t time){
 		}
 		
 		TIME_Set_ISR(rec_time[rec_index]);	
-	
+		
+		REC_que--; // If a command is qued, que >= 1, subtract until all are sent
 	}
 	
 	// There will be no new interrupt if PLAY == 0

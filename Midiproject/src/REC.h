@@ -23,9 +23,9 @@ extern volatile uint16_t software_comp;
 
 // Functions
 void init_Timer1(void);
-void TIME_Set_ISR(uint16_t time);
+void TIME_Set_ISR(uint32_t time);
 void TIME_reset(void);
-uint16_t TIME_read(void);
+uint32_t TIME_read(void);
 
 void REC_ISR(uint16_t time);
 void REC_add(uint8_t command, uint8_t tone);

@@ -40,6 +40,7 @@ int main(void)
 		current = ~PIND;
 		switches = ~PINC; // Update switches
 		REC_state(switches);
+		REC_ISR(0);
 		//PORTB = ~switches; // rx_ch;
 		
 		change = current^previus;
