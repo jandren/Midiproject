@@ -44,7 +44,7 @@ int main(void)
 		
 		current = ~PIND;
 		switches = ~PINC; // Update switches
-		REC_play(switches);
+		REC_state(switches);
 		//PORTB = ~switches; // rx_ch;
 		
 		change = current^previus;
@@ -54,7 +54,7 @@ int main(void)
 			command = 0b10010000 | (switches & 0x0C) >> 2;
 			tone = MIDI_Conversion(current & change);
 			
-			REC_process(switches, command, tone);
+			REC_add(command, tone);
 			
 			MIDI_send(command, tone, volume);
 			
@@ -70,7 +70,7 @@ int main(void)
 			command = 0b10000000 | ((switches & 0x0C) >> 2);
 			tone = MIDI_Conversion(previus & change);
 						
-			REC_process(switches, command, tone);
+			REC_add(command, tone);
 			MIDI_send(command, tone, volume);
 			
 			

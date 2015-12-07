@@ -25,14 +25,14 @@ extern volatile uint16_t software_comp;
 void init_Timer1(void);
 void TIME_Set_ISR(uint16_t time);
 void TIME_reset(void);
+uint16_t TIME_read(void);
 
-void REC_process(uint8_t switches, uint8_t command, uint8_t tone);
 void REC_ISR(uint16_t time);
 void REC_add(uint8_t command, uint8_t tone);
 
 void REC_start(void);
 void REC_stop(void);
-void REC_play(uint8_t switches);
+void REC_state(uint8_t switches);
 
 
 #endif /* REC_H_ */
