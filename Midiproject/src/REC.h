@@ -10,6 +10,8 @@
 #ifndef REC_H_
 #define REC_H_
 
+#include "avrMIDI.h"
+
 // Global variables
 extern volatile uint16_t software_time;
 extern volatile uint16_t software_comp;

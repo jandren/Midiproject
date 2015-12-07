@@ -26,6 +26,7 @@ int main(void)
 {
 	Init_ports();
 	Init_UART0(9600);
+	init_Timer1();
 	sei();
 	
 	// Pressed buttons
@@ -43,7 +44,8 @@ int main(void)
 		
 		current = ~PIND;
 		switches = ~PINC; // Update switches
-		PORTB = ~switches; // rx_ch;
+		REC_play(switches);
+		//PORTB = ~switches; // rx_ch;
 		
 		change = current^previus;
 		
