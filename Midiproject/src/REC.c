@@ -2,19 +2,20 @@
  * REC.c
  *
  * Saves data in arrays and its time, every note will consist of two commands, press and release. 
- *
+ * 
  *
  * Created: 2015-11-23 14:57:16
- *  Author: Jakob Andren & SJ
+ * Author: Jakob Andren & SJ
  */ 
 
 #include "REC.h"
 
+// Global variables affected by interupts
 volatile uint8_t volume = 200;
 volatile uint16_t software_time = 0;
 volatile uint16_t software_comp = 100;
 
-
+// Global values used as data storage
 uint8_t com[256];
 uint8_t tones[256];
 uint8_t vol[256];
@@ -23,21 +24,22 @@ uint8_t rec_index = 0;
 uint8_t REC = 0;
 uint8_t PLAY = 0;
 
-void init_Timer1(void)				// for recording
+// Setup timer used for the recording
+void init_Timer1(void)
 {
 	TCCR1A = 0x00;		  // Normal timer operation
 	TIMSK1 = (1<<OCIE0A); // Interrupt on compare register A
 	TCNT1 =  0;			  // Set counter
-	OCR1A = 125;		  // 100Hz interrupts to start with 
+	OCR1A = 125;		  // 0.1ms interrupts
 	
 	// Start timer
-	TCCR1B	= (1<<CS10); // No Pre-scaler for maximum resolution even at high freq
+	TCCR1B	= (1<<CS10); // Start, pre scaler 1
 }
 
 ISR(TIMER1_COMPA_vect)
 {
 	software_time++;
-	PORTB = ~rec_index; //((PLAY<<6) | (REC<<7) | rec_index);
+	PORTB = ~(rec_index >> 1); //((PLAY<<6) | (REC<<7) | rec_index);
 	if(software_time == software_comp)
 	{
 		REC_ISR(software_time);
@@ -85,6 +87,11 @@ void REC_ISR(uint16_t time){
 }
 
 void REC_add(uint8_t command, uint8_t tone){
+	
+	// Stop recording if overflows = reset and starts from clean
+	if(rec_index == 254){
+		REC_stop();
+	}
 	
 	if(REC){ // Recording 
 		com[rec_index]  = command;
