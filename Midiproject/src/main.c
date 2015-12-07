@@ -36,7 +36,6 @@ int main(void)
 	
 	// MIDI related variables
 	uint8_t command = 0;
-	uint8_t key = 0;
 	uint8_t tone = 0;
 	
 	while
@@ -53,10 +52,10 @@ int main(void)
 		if(current & change) // Note on
 		{
 			command = 0b10010000 | (switches & 0x0C) >> 2;
-			key = current & change;
-			REC_add(command, key);
+			tone = MIDI_Conversion(current & change);
 			
-			tone = MIDI_Conversion(key);
+			REC_add(command, tone);
+			
 			MIDI_send(command, tone, volume);
 			
 			
@@ -69,11 +68,10 @@ int main(void)
 		{
 
 			command = 0b10000000 | ((switches & 0x0C) >> 2);
-			key = previus & change;
 			
-			REC_add(command, key);
-			
-			tone = MIDI_Conversion(key);
+			tone = MIDI_Conversion(previus & change);
+						
+			REC_add(command, tone);
 			MIDI_send(command, tone, volume);
 			
 			
@@ -82,8 +80,10 @@ int main(void)
 			//UART_out(MIDI_Conversion(previus & change)); // Note 7bit
 			//UART_out(0b01001000); // Velocity 7 bit
 
+
 		}
 		previus = current;
+		//_delay_ms(300);
 	}
 	// End of while(1)
 }

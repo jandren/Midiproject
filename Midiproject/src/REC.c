@@ -16,7 +16,7 @@ volatile uint16_t software_comp = 100;
 
 
 uint8_t com[256] = {0b10010000, 0b10010000, 0b10010000, 0b10010000, 0b10010000};
-uint8_t keys[256] = {70, 71, 72, 73, 75};
+uint8_t tones[256] = {70, 71, 72, 73, 75};
 uint8_t vol[256] = {100, 100, 100, 100, 100};
 uint16_t rec_time[256] = {100, 200, 300, 400, 500};
 uint8_t rec_index = 0;
@@ -37,7 +37,7 @@ void init_Timer1(void)				// for recording
 ISR(TIMER1_COMPA_vect)
 {
 	software_time++;
-	//PORTB = ~((PLAY<<6) | (REC<<7) | rec_index);
+	PORTB = ~((PLAY<<6) | (REC<<7) | rec_index);
 	if(software_time == software_comp)
 	{
 		REC_ISR(software_time);
@@ -61,13 +61,13 @@ uint16_t TIME_read(void)
 
 void REC_ISR(uint16_t time){
 	if(PLAY){
-		MIDI_send(com[rec_index], MIDI_Conversion(keys[rec_index]), vol[rec_index]);
-		PORTB = ~keys[rec_index];
+		MIDI_send(com[rec_index], tones[rec_index], vol[rec_index]);
+		//PORTB = ~rec_index;
 		
 		// Last record will be of time zero
 		// Restart the playback in that case
 		if(com[rec_index] == 0){
-			MIDI_send(com[0], MIDI_Conversion(keys[0]), vol[0]);
+			MIDI_send(com[0], tones[0], vol[0]);
 			
 			rec_index = 1;
 			TIME_reset();
@@ -88,7 +88,7 @@ void REC_add(uint8_t command, uint8_t tone){
 	
 	if(REC){ // Recording 
 		com[rec_index]  = command;
-		keys[rec_index] = tone;
+		tones[rec_index] = tone;
 		vol[rec_index] = volume;
 		
 		// Recording starts on first tone, so set time = 0 and reset timer
@@ -116,13 +116,13 @@ void REC_stop(void){
 	// always record both on AND off commands = even number
 	if(rec_index & 0x01){ // if not even
 		com[rec_index]  = (com[rec_index-1] & 0b11101111); 
-		keys[rec_index] = keys[rec_index-1];
+		tones[rec_index] = tones[rec_index-1];
 		vol[rec_index] = volume;
 		rec_index++;
 	}
 	
 	com[rec_index]  = 0;
-	keys[rec_index] = 0;
+	tones[rec_index] = 0;
 	vol[rec_index] = 0;
 	rec_time[rec_index] = TIME_read();
 	REC = 0;
