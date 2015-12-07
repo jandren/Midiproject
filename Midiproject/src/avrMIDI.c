@@ -135,7 +135,7 @@ uint8_t MIDI_Conversion(uint8_t pressed)
 
 void init_adc(void)					// function for initializing ADC
 {
-	ADCSRA |= (1 << ADEN) | (1 << ADPS1);	// enable ADC, prescaler 4
+	ADCSRA |= (1 << ADEN) | (1 << ADPS1) | (1 << ADIE);	// enable ADC, prescaler 4
 	ADMUX |= (1 << REFS0) | (1 << ADLAR);	// internal 5V, 8 bits
 }
 
@@ -149,11 +149,11 @@ void init_Timer0(void)
 {
 	TCCR0A = 0b00000000;			// normal mode
 	TCCR0B = 0b00000101;			// prescaler 1024
-	TCNT0 = 0;						// overflow, 255*1024/(8*10^6) = 32.6ms delay at max
+	TCNT0 = 255;					// overflow, 255*1024/(8*10^6) = 32.6ms delay at max
 	TIMSK0 |= (1 << TOIE0);			// enable overflow interrupt enable
 }
 
 ISR(TIMER0_OVF_vect)
 {
-	TCNT0 = 0;						// reset the count TCNT0
+	TCNT0 = 255;					// reset the count TCNT0
 }
