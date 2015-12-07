@@ -25,9 +25,9 @@ int main(void)
 	sei();
 	
 	// Pressed buttons
-	uint8_t previus = 0x00;
-	uint8_t current = 0x00;
-	uint8_t change  = 0x00;
+	uint16_t previus = 0x00;
+	uint16_t current = 0x00;
+	uint16_t change  = 0x00;
 	
 	// MIDI related variables
 	uint8_t command = 0;
@@ -37,7 +37,7 @@ int main(void)
 	(1)
 	{
 		
-		current = ~PIND;
+		current = (~PIND) | (~PINA << 8);
 		switches = ~PINC; // Update switches
 		REC_state(switches);
 		//PORTB = ~switches; // rx_ch;

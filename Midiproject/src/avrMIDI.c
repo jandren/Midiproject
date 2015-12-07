@@ -70,9 +70,9 @@ void MIDI_send(uint8_t command, uint8_t tone, uint8_t volume)
 	// See Midi command table for exact bits to input.
 }
 
-uint8_t MIDI_Conversion(uint8_t pressed)
+uint8_t MIDI_Conversion(uint16_t pressed)
 {
-	uint8_t converted = 0;
+	uint16_t converted = 0;
 	uint8_t offset = 48;
 	uint8_t pitch = switches & 0x03;		// mask with two far right switches
 
@@ -102,29 +102,53 @@ uint8_t MIDI_Conversion(uint8_t pressed)
 
 	switch(pressed)
 	{
-		case 0x01:
+		case 0x0001:
 		converted = 48 + 12 * pitch;
 		break;				// C4 = 48 or C5 = 60 or C6 = 72
-		case 0x02:
+		case 0x0002:
 		converted = 50 + 12 * pitch;
 		break;				// D4 = 50 or D5 = 62 or D6 = 74
-		case 0x04:
+		case 0x0004:
 		converted = 52 + 12 * pitch;
 		break;				// E4 = 52 or E5 = 64 or E6 = 76
-		case 0x08:
+		case 0x0008:
 		converted = 53 + 12 * pitch;
 		break;				// F4 = 53 or F5 = 65 or F6 = 77
-		case 0x10:
+		case 0x0010:
 		converted = 55 + 12 * pitch;
 		break;				// G4 = 55 or G5 = 67 or G6 = 79
-		case 0x20:
+		case 0x0020:
 		converted = 57 + 12 * pitch;
 		break;				// A4 = 57 or A5 = 69 or A6 = 81
-		case 0x40:
+		case 0x0040:
 		converted = 59 + 12 * pitch;
 		break;				// B4 = 59 or B5 = 71 or B6 = 83
-		case 0x80:
+		case 0x0080:
 		converted = 60 + 12 * pitch;
+		break;				// C5 = 60 or C6 = 72 or C7 = 84
+		case 0x0100:
+		converted = 62 + 12 * pitch;
+		break;				// C4 = 48 or C5 = 60 or C6 = 72
+		case 0x0200:
+		converted = 64 + 12 * pitch;
+		break;				// D4 = 50 or D5 = 62 or D6 = 74
+		case 0x0400:
+		converted = 65 + 12 * pitch;
+		break;				// E4 = 52 or E5 = 64 or E6 = 76
+		case 0x0800:
+		converted = 67 + 12 * pitch;
+		break;				// F4 = 53 or F5 = 65 or F6 = 77
+		case 0x1000:
+		converted = 69 + 12 * pitch;
+		break;				// G4 = 55 or G5 = 67 or G6 = 79
+		case 0x2000:
+		converted = 71 + 12 * pitch;
+		break;				// A4 = 57 or A5 = 69 or A6 = 81
+		case 0x4000:
+		converted = 72 + 12 * pitch;
+		break;				// B4 = 59 or B5 = 71 or B6 = 83
+		case 0x8000:
+		converted = 74 + 12 * pitch;
 		break;				// C5 = 60 or C6 = 72 or C7 = 84
 		default:
 		break;
