@@ -135,7 +135,7 @@ uint8_t MIDI_Conversion(uint8_t pressed)
 
 void init_adc(void)					// function for initializing ADC
 {
-	ADCSRA |= (1 << ADEN) | (1 << ADPS1) | (1 << ADIE);	// enable ADC, prescaler 4
+	ADCSRA |= (1 << ADEN) | (1 << ADPS1) | (1 << ADIE) | (1<<ADSC);	// enable ADC, prescaler 4
 	ADMUX |= (1 << REFS0) | (1 << ADLAR);	// internal 5V, 8 bits
 }
 

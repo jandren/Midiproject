@@ -20,6 +20,8 @@ int main(void)
 	Init_ports();
 	Init_UART0(9600);
 	init_Timer1();
+	init_Timer0();
+	init_adc();
 	sei();
 	
 	// Pressed buttons
@@ -34,7 +36,6 @@ int main(void)
 	while
 	(1)
 	{
-		
 		current = ~PIND;
 		switches = ~PINC; // Update switches
 		REC_state(switches);
