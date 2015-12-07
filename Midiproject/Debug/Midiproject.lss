@@ -3,6 +3,7 @@ Midiproject.elf:     file format elf32-avr
 
 Sections:
 Idx Name          Size      VMA       LMA       File off  Algn
+<<<<<<< HEAD
   0 .data         00000006  00800200  000007c8  0000085c  2**0
                   CONTENTS, ALLOC, LOAD, DATA
   1 .text         000007c8  00000000  00000000  00000094  2**1
@@ -28,6 +29,33 @@ Idx Name          Size      VMA       LMA       File off  Algn
  11 .debug_ranges 000000c0  00000000  00000000  0000ba73  2**0
                   CONTENTS, READONLY, DEBUGGING
  12 .debug_macro  00003870  00000000  00000000  0000bb33  2**0
+=======
+  0 .data         00000006  00800200  0000067a  0000070e  2**0
+                  CONTENTS, ALLOC, LOAD, DATA
+  1 .text         0000067a  00000000  00000000  00000094  2**1
+                  CONTENTS, ALLOC, LOAD, READONLY, CODE
+  2 .bss          00000707  00800206  00800206  00000714  2**0
+                  ALLOC
+  3 .comment      00000030  00000000  00000000  00000714  2**0
+                  CONTENTS, READONLY
+  4 .debug_aranges 000000f8  00000000  00000000  00000744  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  5 .debug_info   000008d7  00000000  00000000  0000083c  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  6 .debug_abbrev 000003c1  00000000  00000000  00001113  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  7 .debug_line   00000cea  00000000  00000000  000014d4  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  8 .debug_frame  00000278  00000000  00000000  000021c0  2**2
+                  CONTENTS, READONLY, DEBUGGING
+  9 .debug_str    00008b99  00000000  00000000  00002438  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 10 .debug_loc    0000071b  00000000  00000000  0000afd1  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 11 .debug_ranges 000000c8  00000000  00000000  0000b6ec  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 12 .debug_macro  00003870  00000000  00000000  0000b7b4  2**0
+>>>>>>> origin/master
                   CONTENTS, READONLY, DEBUGGING
 
 Disassembly of section .text:
@@ -67,13 +95,17 @@ Disassembly of section .text:
   3e:	00 00       	nop
   40:	70 c0       	rjmp	.+224    	; 0x122 <__bad_interrupt>
   42:	00 00       	nop
+<<<<<<< HEAD
   44:	7f c2       	rjmp	.+1278   	; 0x544 <__vector_17>
+=======
+  44:	68 c1       	rjmp	.+720    	; 0x316 <__vector_17>
+>>>>>>> origin/master
   46:	00 00       	nop
   48:	6c c0       	rjmp	.+216    	; 0x122 <__bad_interrupt>
   4a:	00 00       	nop
   4c:	6a c0       	rjmp	.+212    	; 0x122 <__bad_interrupt>
   4e:	00 00       	nop
-  50:	68 c0       	rjmp	.+208    	; 0x122 <__bad_interrupt>
+  50:	84 c1       	rjmp	.+776    	; 0x35a <__vector_20>
   52:	00 00       	nop
   54:	66 c0       	rjmp	.+204    	; 0x122 <__bad_interrupt>
   56:	00 00       	nop
@@ -162,8 +194,13 @@ Disassembly of section .text:
   f4:	12 e0       	ldi	r17, 0x02	; 2
   f6:	a0 e0       	ldi	r26, 0x00	; 0
   f8:	b2 e0       	ldi	r27, 0x02	; 2
+<<<<<<< HEAD
   fa:	e8 ec       	ldi	r30, 0xC8	; 200
   fc:	f7 e0       	ldi	r31, 0x07	; 7
+=======
+  fa:	ea e7       	ldi	r30, 0x7A	; 122
+  fc:	f6 e0       	ldi	r31, 0x06	; 6
+>>>>>>> origin/master
   fe:	00 e0       	ldi	r16, 0x00	; 0
  100:	0b bf       	out	0x3b, r16	; 59
  102:	02 c0       	rjmp	.+4      	; 0x108 <__do_copy_data+0x14>
@@ -174,7 +211,7 @@ Disassembly of section .text:
  10c:	d9 f7       	brne	.-10     	; 0x104 <__do_copy_data+0x10>
 
 0000010e <__do_clear_bss>:
- 10e:	27 e0       	ldi	r18, 0x07	; 7
+ 10e:	29 e0       	ldi	r18, 0x09	; 9
  110:	a6 e0       	ldi	r26, 0x06	; 6
  112:	b2 e0       	ldi	r27, 0x02	; 2
  114:	01 c0       	rjmp	.+2      	; 0x118 <.do_clear_bss_start>
@@ -183,11 +220,16 @@ Disassembly of section .text:
  116:	1d 92       	st	X+, r1
 
 00000118 <.do_clear_bss_start>:
- 118:	ac 30       	cpi	r26, 0x0C	; 12
+ 118:	ad 30       	cpi	r26, 0x0D	; 13
  11a:	b2 07       	cpc	r27, r18
  11c:	e1 f7       	brne	.-8      	; 0x116 <.do_clear_bss_loop>
+<<<<<<< HEAD
  11e:	03 d3       	rcall	.+1542   	; 0x726 <main>
  120:	51 c3       	rjmp	.+1698   	; 0x7c4 <_exit>
+=======
+ 11e:	6a d2       	rcall	.+1236   	; 0x5f4 <main>
+ 120:	aa c2       	rjmp	.+1364   	; 0x676 <_exit>
+>>>>>>> origin/master
 
 00000122 <__bad_interrupt>:
  122:	6e cf       	rjmp	.-292    	; 0x0 <__vectors>
@@ -791,11 +833,17 @@ ISR(TIMER0_OVF_vect)
  498:	1f 90       	pop	r1
  49a:	18 95       	reti
 
+<<<<<<< HEAD
 0000049c <init_Timer1>:
+=======
+000002f0 <init_Timer1>:
+	OCR1A = time;
+>>>>>>> origin/master
 }
 
-uint16_t TIME_read(void)
+void TIME_reset(void)
 {
+<<<<<<< HEAD
 	return software_time;
 }
  49c:	10 92 80 00 	sts	0x0080, r1
@@ -836,11 +884,159 @@ void REC_ISR(uint16_t time){
  4e8:	60 81       	ld	r22, Z
  4ea:	88 81       	ld	r24, Y
  4ec:	4e de       	rcall	.-868    	; 0x18a <MIDI_send>
+=======
+	software_time = 0;
+ 2f0:	10 92 80 00 	sts	0x0080, r1
+ 2f4:	83 e0       	ldi	r24, 0x03	; 3
+ 2f6:	80 93 6f 00 	sts	0x006F, r24
+ 2fa:	10 92 85 00 	sts	0x0085, r1
+ 2fe:	10 92 84 00 	sts	0x0084, r1
+ 302:	84 e6       	ldi	r24, 0x64	; 100
+ 304:	90 e0       	ldi	r25, 0x00	; 0
+ 306:	90 93 89 00 	sts	0x0089, r25
+ 30a:	80 93 88 00 	sts	0x0088, r24
+ 30e:	82 e0       	ldi	r24, 0x02	; 2
+ 310:	80 93 81 00 	sts	0x0081, r24
+ 314:	08 95       	ret
+
+00000316 <__vector_17>:
+ 316:	1f 92       	push	r1
+ 318:	0f 92       	push	r0
+ 31a:	0f b6       	in	r0, 0x3f	; 63
+ 31c:	0f 92       	push	r0
+ 31e:	11 24       	eor	r1, r1
+ 320:	2f 93       	push	r18
+ 322:	3f 93       	push	r19
+ 324:	8f 93       	push	r24
+ 326:	9f 93       	push	r25
+ 328:	20 91 0b 02 	lds	r18, 0x020B
+ 32c:	30 91 0c 02 	lds	r19, 0x020C
+ 330:	80 91 02 02 	lds	r24, 0x0202
+ 334:	90 91 03 02 	lds	r25, 0x0203
+ 338:	28 17       	cp	r18, r24
+ 33a:	39 07       	cpc	r19, r25
+ 33c:	29 f4       	brne	.+10     	; 0x348 <__vector_17+0x32>
+ 33e:	80 91 0a 02 	lds	r24, 0x020A
+ 342:	8f 5f       	subi	r24, 0xFF	; 255
+ 344:	80 93 0a 02 	sts	0x020A, r24
+ 348:	9f 91       	pop	r25
+ 34a:	8f 91       	pop	r24
+ 34c:	3f 91       	pop	r19
+ 34e:	2f 91       	pop	r18
+ 350:	0f 90       	pop	r0
+ 352:	0f be       	out	0x3f, r0	; 63
+ 354:	0f 90       	pop	r0
+ 356:	1f 90       	pop	r1
+ 358:	18 95       	reti
+
+0000035a <__vector_20>:
+ 35a:	1f 92       	push	r1
+ 35c:	0f 92       	push	r0
+ 35e:	0f b6       	in	r0, 0x3f	; 63
+ 360:	0f 92       	push	r0
+ 362:	11 24       	eor	r1, r1
+ 364:	8f 93       	push	r24
+ 366:	9f 93       	push	r25
+ 368:	80 91 0b 02 	lds	r24, 0x020B
+ 36c:	90 91 0c 02 	lds	r25, 0x020C
+ 370:	01 96       	adiw	r24, 0x01	; 1
+ 372:	90 93 0c 02 	sts	0x020C, r25
+ 376:	80 93 0b 02 	sts	0x020B, r24
+ 37a:	80 91 09 02 	lds	r24, 0x0209
+ 37e:	86 95       	lsr	r24
+ 380:	80 95       	com	r24
+ 382:	85 b9       	out	0x05, r24	; 5
+ 384:	9f 91       	pop	r25
+ 386:	8f 91       	pop	r24
+ 388:	0f 90       	pop	r0
+ 38a:	0f be       	out	0x3f, r0	; 63
+ 38c:	0f 90       	pop	r0
+ 38e:	1f 90       	pop	r1
+ 390:	18 95       	reti
+
+00000392 <TIME_Set_ISR>:
+ 392:	0f 93       	push	r16
+ 394:	1f 93       	push	r17
+ 396:	8c 01       	movw	r16, r24
+ 398:	22 27       	eor	r18, r18
+ 39a:	33 27       	eor	r19, r19
+ 39c:	10 93 03 02 	sts	0x0203, r17
+ 3a0:	00 93 02 02 	sts	0x0202, r16
+ 3a4:	70 93 89 00 	sts	0x0089, r23
+ 3a8:	60 93 88 00 	sts	0x0088, r22
+ 3ac:	1f 91       	pop	r17
+ 3ae:	0f 91       	pop	r16
+ 3b0:	08 95       	ret
+
+000003b2 <TIME_read>:
+}
+
+uint32_t TIME_read(void)
+{
+ 3b2:	0f 93       	push	r16
+ 3b4:	1f 93       	push	r17
+	return ((uint32_t)software_time << 16) | TCNT1;
+ 3b6:	40 91 0b 02 	lds	r20, 0x020B
+ 3ba:	50 91 0c 02 	lds	r21, 0x020C
+ 3be:	80 91 84 00 	lds	r24, 0x0084
+ 3c2:	90 91 85 00 	lds	r25, 0x0085
+ 3c6:	60 e0       	ldi	r22, 0x00	; 0
+ 3c8:	70 e0       	ldi	r23, 0x00	; 0
+ 3ca:	ba 01       	movw	r22, r20
+ 3cc:	55 27       	eor	r21, r21
+ 3ce:	44 27       	eor	r20, r20
+ 3d0:	a0 e0       	ldi	r26, 0x00	; 0
+ 3d2:	b0 e0       	ldi	r27, 0x00	; 0
+ 3d4:	8a 01       	movw	r16, r20
+ 3d6:	9b 01       	movw	r18, r22
+ 3d8:	08 2b       	or	r16, r24
+ 3da:	19 2b       	or	r17, r25
+ 3dc:	2a 2b       	or	r18, r26
+ 3de:	3b 2b       	or	r19, r27
+ 3e0:	c9 01       	movw	r24, r18
+ 3e2:	b8 01       	movw	r22, r16
+}
+ 3e4:	1f 91       	pop	r17
+ 3e6:	0f 91       	pop	r16
+ 3e8:	08 95       	ret
+
+000003ea <REC_ISR>:
+
+void REC_ISR(uint16_t time){
+ 3ea:	cf 93       	push	r28
+ 3ec:	df 93       	push	r29
+	if(PLAY && REC_que){
+ 3ee:	80 91 07 02 	lds	r24, 0x0207
+ 3f2:	88 23       	and	r24, r24
+ 3f4:	09 f4       	brne	.+2      	; 0x3f8 <REC_ISR+0xe>
+ 3f6:	43 c0       	rjmp	.+134    	; 0x47e <REC_ISR+0x94>
+ 3f8:	80 91 0a 02 	lds	r24, 0x020A
+ 3fc:	88 23       	and	r24, r24
+ 3fe:	09 f4       	brne	.+2      	; 0x402 <REC_ISR+0x18>
+ 400:	3e c0       	rjmp	.+124    	; 0x47e <REC_ISR+0x94>
+		MIDI_send(com[rec_index], tones[rec_index], vol[rec_index]);
+ 402:	80 91 09 02 	lds	r24, 0x0209
+ 406:	90 e0       	ldi	r25, 0x00	; 0
+ 408:	dc 01       	movw	r26, r24
+ 40a:	a3 5f       	subi	r26, 0xF3	; 243
+ 40c:	b7 4f       	sbci	r27, 0xF7	; 247
+ 40e:	fc 01       	movw	r30, r24
+ 410:	e3 5f       	subi	r30, 0xF3	; 243
+ 412:	fc 4f       	sbci	r31, 0xFC	; 252
+ 414:	ec 01       	movw	r28, r24
+ 416:	c3 5f       	subi	r28, 0xF3	; 243
+ 418:	dd 4f       	sbci	r29, 0xFD	; 253
+ 41a:	4c 91       	ld	r20, X
+ 41c:	60 81       	ld	r22, Z
+ 41e:	88 81       	ld	r24, Y
+ 420:	b4 de       	rcall	.-664    	; 0x18a <MIDI_send>
+>>>>>>> origin/master
 		//PORTB = ~rec_index;
 		
 		// Last record will be of time zero
 		// Restart the playback in that case
 		if(com[rec_index] == 0){
+<<<<<<< HEAD
  4ee:	80 91 09 02 	lds	r24, 0x0209
  4f2:	e8 2f       	mov	r30, r24
  4f4:	f0 e0       	ldi	r31, 0x00	; 0
@@ -859,20 +1055,47 @@ void REC_ISR(uint16_t time){
  50e:	81 e0       	ldi	r24, 0x01	; 1
  510:	80 93 09 02 	sts	0x0209, r24
 	software_comp = time;
+=======
+ 422:	80 91 09 02 	lds	r24, 0x0209
+ 426:	e8 2f       	mov	r30, r24
+ 428:	f0 e0       	ldi	r31, 0x00	; 0
+ 42a:	e3 5f       	subi	r30, 0xF3	; 243
+ 42c:	fd 4f       	sbci	r31, 0xFD	; 253
+ 42e:	90 81       	ld	r25, Z
+ 430:	91 11       	cpse	r25, r1
+ 432:	0f c0       	rjmp	.+30     	; 0x452 <REC_ISR+0x68>
+			MIDI_send(com[0], tones[0], vol[0]);
+ 434:	40 91 0d 08 	lds	r20, 0x080D
+ 438:	60 91 0d 03 	lds	r22, 0x030D
+ 43c:	80 91 0d 02 	lds	r24, 0x020D
+ 440:	a4 de       	rcall	.-696    	; 0x18a <MIDI_send>
+			
+			rec_index = 1;
+ 442:	81 e0       	ldi	r24, 0x01	; 1
+ 444:	80 93 09 02 	sts	0x0209, r24
+	OCR1A = time;
+>>>>>>> origin/master
 }
 
 void TIME_reset(void)
 {
 	software_time = 0;
+<<<<<<< HEAD
  514:	10 92 0b 02 	sts	0x020B, r1
  518:	10 92 0a 02 	sts	0x020A, r1
  51c:	03 c0       	rjmp	.+6      	; 0x524 <REC_ISR+0x62>
+=======
+ 448:	10 92 0c 02 	sts	0x020C, r1
+ 44c:	10 92 0b 02 	sts	0x020B, r1
+ 450:	03 c0       	rjmp	.+6      	; 0x458 <REC_ISR+0x6e>
+>>>>>>> origin/master
 			rec_index = 1;
 			TIME_reset();
 			
 		}
 		else{
 			rec_index++;
+<<<<<<< HEAD
  51e:	8f 5f       	subi	r24, 0xFF	; 255
  520:	80 93 09 02 	sts	0x0209, r24
 		}
@@ -896,10 +1119,36 @@ void TIME_Set_ISR(uint16_t time)
  53a:	80 93 02 02 	sts	0x0202, r24
 		TIME_Set_ISR(rec_time[rec_index]);	
 	
+=======
+ 452:	8f 5f       	subi	r24, 0xFF	; 255
+ 454:	80 93 09 02 	sts	0x0209, r24
+		}
+		
+		TIME_Set_ISR(rec_time[rec_index]);	
+ 458:	e0 91 09 02 	lds	r30, 0x0209
+ 45c:	f0 e0       	ldi	r31, 0x00	; 0
+ 45e:	ee 0f       	add	r30, r30
+ 460:	ff 1f       	adc	r31, r31
+ 462:	ee 0f       	add	r30, r30
+ 464:	ff 1f       	adc	r31, r31
+ 466:	e3 5f       	subi	r30, 0xF3	; 243
+ 468:	fb 4f       	sbci	r31, 0xFB	; 251
+ 46a:	60 81       	ld	r22, Z
+ 46c:	71 81       	ldd	r23, Z+1	; 0x01
+ 46e:	82 81       	ldd	r24, Z+2	; 0x02
+ 470:	93 81       	ldd	r25, Z+3	; 0x03
+ 472:	8f df       	rcall	.-226    	; 0x392 <TIME_Set_ISR>
+		
+		REC_que--; // If a command is qued, que >= 1, subtract until all are sent
+ 474:	80 91 0a 02 	lds	r24, 0x020A
+ 478:	81 50       	subi	r24, 0x01	; 1
+ 47a:	80 93 0a 02 	sts	0x020A, r24
+>>>>>>> origin/master
 	}
 	
 	// There will be no new interrupt if PLAY == 0
 }
+<<<<<<< HEAD
  53e:	df 91       	pop	r29
  540:	cf 91       	pop	r28
  542:	08 95       	ret
@@ -977,33 +1226,61 @@ ISR(TIMER1_COMPA_vect)
  5ca:	18 95       	reti
 
 000005cc <REC_start>:
+=======
+ 47e:	df 91       	pop	r29
+ 480:	cf 91       	pop	r28
+ 482:	08 95       	ret
+
+00000484 <REC_start>:
+>>>>>>> origin/master
 		rec_index++;
 	}
 }
 
 void REC_start(void){
 	REC = 1;
+<<<<<<< HEAD
  5cc:	81 e0       	ldi	r24, 0x01	; 1
  5ce:	80 93 08 02 	sts	0x0208, r24
 	rec_index = 0;
  5d2:	10 92 09 02 	sts	0x0209, r1
 	software_comp = time;
+=======
+ 484:	81 e0       	ldi	r24, 0x01	; 1
+ 486:	80 93 08 02 	sts	0x0208, r24
+	rec_index = 0;
+ 48a:	10 92 09 02 	sts	0x0209, r1
+	OCR1A = time;
+>>>>>>> origin/master
 }
 
 void TIME_reset(void)
 {
 	software_time = 0;
+<<<<<<< HEAD
  5d6:	10 92 0b 02 	sts	0x020B, r1
  5da:	10 92 0a 02 	sts	0x020A, r1
  5de:	08 95       	ret
 
 000005e0 <REC_stop>:
+=======
+ 48e:	10 92 0c 02 	sts	0x020C, r1
+ 492:	10 92 0b 02 	sts	0x020B, r1
+ 496:	08 95       	ret
+
+00000498 <REC_stop>:
+	REC = 1;
+	rec_index = 0;
+>>>>>>> origin/master
 	TIME_reset();
 }
 
 void REC_stop(void){
+ 498:	cf 93       	push	r28
+ 49a:	df 93       	push	r29
 	// always record both on AND off commands = even number
 	if(rec_index & 0x01){ // if not even
+<<<<<<< HEAD
  5e0:	80 91 09 02 	lds	r24, 0x0209
  5e4:	80 ff       	sbrs	r24, 0
  5e6:	11 c0       	rjmp	.+34     	; 0x60a <REC_stop+0x2a>
@@ -1020,10 +1297,29 @@ void REC_stop(void){
  5fa:	60 81       	ld	r22, Z
  5fc:	8f 7e       	andi	r24, 0xEF	; 239
  5fe:	22 d0       	rcall	.+68     	; 0x644 <REC_add>
+=======
+ 49c:	80 91 09 02 	lds	r24, 0x0209
+ 4a0:	80 ff       	sbrs	r24, 0
+ 4a2:	11 c0       	rjmp	.+34     	; 0x4c6 <REC_stop+0x2e>
+		REC_add((com[rec_index-1] & 0b11101111), tones[rec_index-1]);
+ 4a4:	90 e0       	ldi	r25, 0x00	; 0
+ 4a6:	01 97       	sbiw	r24, 0x01	; 1
+ 4a8:	fc 01       	movw	r30, r24
+ 4aa:	e3 5f       	subi	r30, 0xF3	; 243
+ 4ac:	fc 4f       	sbci	r31, 0xFC	; 252
+ 4ae:	dc 01       	movw	r26, r24
+ 4b0:	a3 5f       	subi	r26, 0xF3	; 243
+ 4b2:	bd 4f       	sbci	r27, 0xFD	; 253
+ 4b4:	8c 91       	ld	r24, X
+ 4b6:	60 81       	ld	r22, Z
+ 4b8:	8f 7e       	andi	r24, 0xEF	; 239
+ 4ba:	24 d0       	rcall	.+72     	; 0x504 <REC_add>
+>>>>>>> origin/master
 		//com[rec_index]  = (com[rec_index-1] & 0b11101111); 
 		//tones[rec_index] = tones[rec_index-1];
 		//vol[rec_index] = volume;
 		rec_index++;
+<<<<<<< HEAD
  600:	80 91 09 02 	lds	r24, 0x0209
  604:	8f 5f       	subi	r24, 0xFF	; 255
  606:	80 93 09 02 	sts	0x0209, r24
@@ -1054,12 +1350,32 @@ uint16_t TIME_read(void)
 	return software_time;
  628:	20 91 0a 02 	lds	r18, 0x020A
  62c:	30 91 0b 02 	lds	r19, 0x020B
+=======
+ 4bc:	80 91 09 02 	lds	r24, 0x0209
+ 4c0:	8f 5f       	subi	r24, 0xFF	; 255
+ 4c2:	80 93 09 02 	sts	0x0209, r24
+>>>>>>> origin/master
 	}
 	
 	com[rec_index]  = 0;
+ 4c6:	c0 91 09 02 	lds	r28, 0x0209
+ 4ca:	d0 e0       	ldi	r29, 0x00	; 0
+ 4cc:	fe 01       	movw	r30, r28
+ 4ce:	e3 5f       	subi	r30, 0xF3	; 243
+ 4d0:	fd 4f       	sbci	r31, 0xFD	; 253
+ 4d2:	10 82       	st	Z, r1
 	tones[rec_index] = 0;
+ 4d4:	fe 01       	movw	r30, r28
+ 4d6:	e3 5f       	subi	r30, 0xF3	; 243
+ 4d8:	fc 4f       	sbci	r31, 0xFC	; 252
+ 4da:	10 82       	st	Z, r1
 	vol[rec_index] = 0;
+ 4dc:	fe 01       	movw	r30, r28
+ 4de:	e3 5f       	subi	r30, 0xF3	; 243
+ 4e0:	f7 4f       	sbci	r31, 0xF7	; 247
+ 4e2:	10 82       	st	Z, r1
 	rec_time[rec_index] = TIME_read();
+<<<<<<< HEAD
  630:	fc 01       	movw	r30, r24
  632:	ee 0f       	add	r30, r30
  634:	ff 1f       	adc	r31, r31
@@ -1072,12 +1388,34 @@ uint16_t TIME_read(void)
  642:	08 95       	ret
 
 00000644 <REC_add>:
+=======
+ 4e4:	66 df       	rcall	.-308    	; 0x3b2 <TIME_read>
+ 4e6:	cc 0f       	add	r28, r28
+ 4e8:	dd 1f       	adc	r29, r29
+ 4ea:	cc 0f       	add	r28, r28
+ 4ec:	dd 1f       	adc	r29, r29
+ 4ee:	c3 5f       	subi	r28, 0xF3	; 243
+ 4f0:	db 4f       	sbci	r29, 0xFB	; 251
+ 4f2:	68 83       	st	Y, r22
+ 4f4:	79 83       	std	Y+1, r23	; 0x01
+ 4f6:	8a 83       	std	Y+2, r24	; 0x02
+ 4f8:	9b 83       	std	Y+3, r25	; 0x03
+	REC = 0;
+ 4fa:	10 92 08 02 	sts	0x0208, r1
+}
+ 4fe:	df 91       	pop	r29
+ 500:	cf 91       	pop	r28
+ 502:	08 95       	ret
+
+00000504 <REC_add>:
+>>>>>>> origin/master
 	}
 	
 	// There will be no new interrupt if PLAY == 0
 }
 
 void REC_add(uint8_t command, uint8_t tone){
+<<<<<<< HEAD
  644:	cf 93       	push	r28
  646:	df 93       	push	r29
  648:	d8 2f       	mov	r29, r24
@@ -1129,11 +1467,70 @@ void REC_add(uint8_t command, uint8_t tone){
  690:	11 82       	std	Z+1, r1	; 0x01
  692:	10 82       	st	Z, r1
 	software_comp = time;
+=======
+ 504:	0f 93       	push	r16
+ 506:	1f 93       	push	r17
+ 508:	cf 93       	push	r28
+ 50a:	df 93       	push	r29
+ 50c:	08 2f       	mov	r16, r24
+ 50e:	16 2f       	mov	r17, r22
+	
+	// Stop recording if overflows = reset and starts from clean
+	if(rec_index == 254){
+ 510:	90 91 09 02 	lds	r25, 0x0209
+ 514:	9e 3f       	cpi	r25, 0xFE	; 254
+ 516:	09 f4       	brne	.+2      	; 0x51a <REC_add+0x16>
+		REC_stop();
+ 518:	bf df       	rcall	.-130    	; 0x498 <REC_stop>
+	}
+	
+	if(REC){ // Recording 
+ 51a:	90 91 08 02 	lds	r25, 0x0208
+ 51e:	99 23       	and	r25, r25
+ 520:	99 f1       	breq	.+102    	; 0x588 <REC_add+0x84>
+		com[rec_index]  = command;
+ 522:	90 91 09 02 	lds	r25, 0x0209
+ 526:	c9 2f       	mov	r28, r25
+ 528:	d0 e0       	ldi	r29, 0x00	; 0
+ 52a:	fe 01       	movw	r30, r28
+ 52c:	e3 5f       	subi	r30, 0xF3	; 243
+ 52e:	fd 4f       	sbci	r31, 0xFD	; 253
+ 530:	00 83       	st	Z, r16
+		tones[rec_index] = tone;
+ 532:	fe 01       	movw	r30, r28
+ 534:	e3 5f       	subi	r30, 0xF3	; 243
+ 536:	fc 4f       	sbci	r31, 0xFC	; 252
+ 538:	10 83       	st	Z, r17
+		vol[rec_index] = volume;
+ 53a:	80 91 04 02 	lds	r24, 0x0204
+ 53e:	fe 01       	movw	r30, r28
+ 540:	e3 5f       	subi	r30, 0xF3	; 243
+ 542:	f7 4f       	sbci	r31, 0xF7	; 247
+ 544:	80 83       	st	Z, r24
+		
+		// Recording starts on first tone, so set time = 0 and reset timer
+		if(rec_index == 0){
+ 546:	91 11       	cpse	r25, r1
+ 548:	0f c0       	rjmp	.+30     	; 0x568 <REC_add+0x64>
+			rec_time[rec_index] = 0;
+ 54a:	cc 0f       	add	r28, r28
+ 54c:	dd 1f       	adc	r29, r29
+ 54e:	cc 0f       	add	r28, r28
+ 550:	dd 1f       	adc	r29, r29
+ 552:	c3 5f       	subi	r28, 0xF3	; 243
+ 554:	db 4f       	sbci	r29, 0xFB	; 251
+ 556:	18 82       	st	Y, r1
+ 558:	19 82       	std	Y+1, r1	; 0x01
+ 55a:	1a 82       	std	Y+2, r1	; 0x02
+ 55c:	1b 82       	std	Y+3, r1	; 0x03
+	OCR1A = time;
+>>>>>>> origin/master
 }
 
 void TIME_reset(void)
 {
 	software_time = 0;
+<<<<<<< HEAD
  694:	10 92 0b 02 	sts	0x020B, r1
  698:	10 92 0a 02 	sts	0x020A, r1
  69c:	0b c0       	rjmp	.+22     	; 0x6b4 <REC_add+0x70>
@@ -1144,12 +1541,18 @@ uint16_t TIME_read(void)
 	return software_time;
  69e:	80 91 0a 02 	lds	r24, 0x020A
  6a2:	90 91 0b 02 	lds	r25, 0x020B
+=======
+ 55e:	10 92 0c 02 	sts	0x020C, r1
+ 562:	10 92 0b 02 	sts	0x020B, r1
+ 566:	0b c0       	rjmp	.+22     	; 0x57e <REC_add+0x7a>
+>>>>>>> origin/master
 			
 			
 			
 		}
 		
 		else { rec_time[rec_index] = TIME_read();}
+<<<<<<< HEAD
  6a6:	f9 01       	movw	r30, r18
  6a8:	ee 0f       	add	r30, r30
  6aa:	ff 1f       	adc	r31, r31
@@ -1169,12 +1572,40 @@ uint16_t TIME_read(void)
  6c2:	08 95       	ret
 
 000006c4 <REC_state>:
+=======
+ 568:	24 df       	rcall	.-440    	; 0x3b2 <TIME_read>
+ 56a:	cc 0f       	add	r28, r28
+ 56c:	dd 1f       	adc	r29, r29
+ 56e:	cc 0f       	add	r28, r28
+ 570:	dd 1f       	adc	r29, r29
+ 572:	c3 5f       	subi	r28, 0xF3	; 243
+ 574:	db 4f       	sbci	r29, 0xFB	; 251
+ 576:	68 83       	st	Y, r22
+ 578:	79 83       	std	Y+1, r23	; 0x01
+ 57a:	8a 83       	std	Y+2, r24	; 0x02
+ 57c:	9b 83       	std	Y+3, r25	; 0x03
+			
+		rec_index++;
+ 57e:	80 91 09 02 	lds	r24, 0x0209
+ 582:	8f 5f       	subi	r24, 0xFF	; 255
+ 584:	80 93 09 02 	sts	0x0209, r24
+	}
+}
+ 588:	df 91       	pop	r29
+ 58a:	cf 91       	pop	r28
+ 58c:	1f 91       	pop	r17
+ 58e:	0f 91       	pop	r16
+ 590:	08 95       	ret
+
+00000592 <REC_state>:
+>>>>>>> origin/master
 	REC = 0;
 }
 
 void REC_state(uint8_t switches)
 // For starting the play. Always from the start
 {
+<<<<<<< HEAD
  6c4:	cf 93       	push	r28
  6c6:	c8 2f       	mov	r28, r24
 	if(switches & 0x40){
@@ -1187,30 +1618,60 @@ void REC_state(uint8_t switches)
 			PLAY = 1;
  6d4:	81 e0       	ldi	r24, 0x01	; 1
  6d6:	80 93 07 02 	sts	0x0207, r24
+=======
+ 592:	cf 93       	push	r28
+ 594:	c8 2f       	mov	r28, r24
+	if(switches & 0x40){
+ 596:	86 ff       	sbrs	r24, 6
+ 598:	11 c0       	rjmp	.+34     	; 0x5bc <REC_state+0x2a>
+		if(!PLAY){  // If play channel one is on
+ 59a:	80 91 07 02 	lds	r24, 0x0207
+ 59e:	81 11       	cpse	r24, r1
+ 5a0:	1a c0       	rjmp	.+52     	; 0x5d6 <REC_state+0x44>
+			PLAY = 1;
+ 5a2:	81 e0       	ldi	r24, 0x01	; 1
+ 5a4:	80 93 07 02 	sts	0x0207, r24
+>>>>>>> origin/master
 			
 			// First note is on time = 0 which doesn't exist in our approach,
 			// Therefor call the ICR for the first tone and then reset timer.
 			rec_index = 0;
+<<<<<<< HEAD
  6da:	10 92 09 02 	sts	0x0209, r1
 			REC_ISR(0);
  6de:	80 e0       	ldi	r24, 0x00	; 0
  6e0:	90 e0       	ldi	r25, 0x00	; 0
  6e2:	ef de       	rcall	.-546    	; 0x4c2 <REC_ISR>
 	software_comp = time;
+=======
+ 5a8:	10 92 09 02 	sts	0x0209, r1
+			REC_ISR(0);
+ 5ac:	80 e0       	ldi	r24, 0x00	; 0
+ 5ae:	90 e0       	ldi	r25, 0x00	; 0
+ 5b0:	1c df       	rcall	.-456    	; 0x3ea <REC_ISR>
+	OCR1A = time;
+>>>>>>> origin/master
 }
 
 void TIME_reset(void)
 {
 	software_time = 0;
+<<<<<<< HEAD
  6e4:	10 92 0b 02 	sts	0x020B, r1
  6e8:	10 92 0a 02 	sts	0x020A, r1
  6ec:	0d c0       	rjmp	.+26     	; 0x708 <REC_state+0x44>
+=======
+ 5b2:	10 92 0c 02 	sts	0x020C, r1
+ 5b6:	10 92 0b 02 	sts	0x020B, r1
+ 5ba:	0d c0       	rjmp	.+26     	; 0x5d6 <REC_state+0x44>
+>>>>>>> origin/master
 			REC_ISR(0);
 			TIME_reset();
 		}
 	}
 	else{ // If should be off
 		if(PLAY){ // Turn off if on
+<<<<<<< HEAD
  6ee:	80 91 07 02 	lds	r24, 0x0207
  6f2:	88 23       	and	r24, r24
  6f4:	49 f0       	breq	.+18     	; 0x708 <REC_state+0x44>
@@ -1226,11 +1687,29 @@ void TIME_reset(void)
  702:	80 e0       	ldi	r24, 0x00	; 0
  704:	90 e0       	ldi	r25, 0x00	; 0
  706:	dd de       	rcall	.-582    	; 0x4c2 <REC_ISR>
+=======
+ 5bc:	80 91 07 02 	lds	r24, 0x0207
+ 5c0:	88 23       	and	r24, r24
+ 5c2:	49 f0       	breq	.+18     	; 0x5d6 <REC_state+0x44>
+			PLAY = 0;
+ 5c4:	10 92 07 02 	sts	0x0207, r1
+			
+			// Make sure to end the last tone!
+			if(rec_index & 0x01){
+ 5c8:	80 91 09 02 	lds	r24, 0x0209
+ 5cc:	80 ff       	sbrs	r24, 0
+ 5ce:	03 c0       	rjmp	.+6      	; 0x5d6 <REC_state+0x44>
+				REC_ISR(0);
+ 5d0:	80 e0       	ldi	r24, 0x00	; 0
+ 5d2:	90 e0       	ldi	r25, 0x00	; 0
+ 5d4:	0a df       	rcall	.-492    	; 0x3ea <REC_ISR>
+>>>>>>> origin/master
 			}
 		}
 	}
 	
 	if(switches & 0x80){ // Recording?
+<<<<<<< HEAD
  708:	cc 23       	and	r28, r28
  70a:	34 f4       	brge	.+12     	; 0x718 <REC_state+0x54>
 		if(REC == 0){	 // Change from before?
@@ -1240,10 +1719,22 @@ void TIME_reset(void)
 			REC_start();
  714:	5b df       	rcall	.-330    	; 0x5cc <REC_start>
  716:	05 c0       	rjmp	.+10     	; 0x722 <REC_state+0x5e>
+=======
+ 5d6:	cc 23       	and	r28, r28
+ 5d8:	34 f4       	brge	.+12     	; 0x5e6 <REC_state+0x54>
+		if(REC == 0){	 // Change from before?
+ 5da:	80 91 08 02 	lds	r24, 0x0208
+ 5de:	81 11       	cpse	r24, r1
+ 5e0:	07 c0       	rjmp	.+14     	; 0x5f0 <REC_state+0x5e>
+			REC_start();
+ 5e2:	50 df       	rcall	.-352    	; 0x484 <REC_start>
+ 5e4:	05 c0       	rjmp	.+10     	; 0x5f0 <REC_state+0x5e>
+>>>>>>> origin/master
 		}
 	}
 	else{
 		if(REC == 1){ // If rec on, but swithces not in that position, stop
+<<<<<<< HEAD
  718:	80 91 08 02 	lds	r24, 0x0208
  71c:	81 30       	cpi	r24, 0x01	; 1
  71e:	09 f4       	brne	.+2      	; 0x722 <REC_state+0x5e>
@@ -1255,12 +1746,26 @@ void TIME_reset(void)
  724:	08 95       	ret
 
 00000726 <main>:
+=======
+ 5e6:	80 91 08 02 	lds	r24, 0x0208
+ 5ea:	81 30       	cpi	r24, 0x01	; 1
+ 5ec:	09 f4       	brne	.+2      	; 0x5f0 <REC_state+0x5e>
+			REC_stop();
+ 5ee:	54 df       	rcall	.-344    	; 0x498 <REC_stop>
+		}
+	}
+ 5f0:	cf 91       	pop	r28
+ 5f2:	08 95       	ret
+
+000005f4 <main>:
+>>>>>>> origin/master
 
 #include "main.h"
 
 int main(void)
 {
 	Init_ports();
+<<<<<<< HEAD
  726:	fe dc       	rcall	.-1540   	; 0x124 <Init_ports>
 	Init_UART0(9600);
  728:	80 e8       	ldi	r24, 0x80	; 128
@@ -1280,18 +1785,43 @@ int main(void)
  736:	00 e0       	ldi	r16, 0x00	; 0
  738:	10 e0       	ldi	r17, 0x00	; 0
  73a:	01 c0       	rjmp	.+2      	; 0x73e <main+0x18>
+=======
+ 5f4:	97 dd       	rcall	.-1234   	; 0x124 <Init_ports>
+	Init_UART0(9600);
+ 5f6:	80 e8       	ldi	r24, 0x80	; 128
+ 5f8:	95 e2       	ldi	r25, 0x25	; 37
+ 5fa:	9c dd       	rcall	.-1224   	; 0x134 <Init_UART0>
+	init_Timer1();
+ 5fc:	79 de       	rcall	.-782    	; 0x2f0 <init_Timer1>
+	init_Timer0();
+ 5fe:	55 de       	rcall	.-854    	; 0x2aa <init_Timer0>
+	init_adc();
+ 600:	24 de       	rcall	.-952    	; 0x24a <init_adc>
+	sei();
+ 602:	78 94       	sei
+	
+	// Pressed buttons
+	uint8_t previus = 0x00;
+ 604:	d0 e0       	ldi	r29, 0x00	; 0
+ 606:	01 c0       	rjmp	.+2      	; 0x60a <main+0x16>
+>>>>>>> origin/master
 */
 
 #include "main.h"
 
 int main(void)
 {
+<<<<<<< HEAD
  73c:	8e 01       	movw	r16, r28
+=======
+ 608:	dc 2f       	mov	r29, r28
+>>>>>>> origin/master
 	
 	while
 	(1)
 	{
 		
+<<<<<<< HEAD
 		current = (~PIND) | (~PINA << 8);
  73e:	c9 b1       	in	r28, 0x09	; 9
  740:	80 b1       	in	r24, 0x00	; 0
@@ -1347,12 +1877,61 @@ int main(void)
  790:	81 2f       	mov	r24, r17
  792:	fb dc       	rcall	.-1546   	; 0x18a <MIDI_send>
  794:	d3 cf       	rjmp	.-90     	; 0x73c <main+0x16>
+=======
+		current = ~PIND;
+ 60a:	c9 b1       	in	r28, 0x09	; 9
+ 60c:	c0 95       	com	r28
+		switches = ~PINC; // Update switches
+ 60e:	86 b1       	in	r24, 0x06	; 6
+ 610:	80 95       	com	r24
+ 612:	80 93 06 02 	sts	0x0206, r24
+		REC_state(switches);
+ 616:	80 91 06 02 	lds	r24, 0x0206
+ 61a:	bb df       	rcall	.-138    	; 0x592 <REC_state>
+		REC_ISR(0);
+ 61c:	80 e0       	ldi	r24, 0x00	; 0
+ 61e:	90 e0       	ldi	r25, 0x00	; 0
+ 620:	e4 de       	rcall	.-568    	; 0x3ea <REC_ISR>
+		//PORTB = ~switches; // rx_ch;
+		
+		change = current^previus;
+ 622:	9d 2f       	mov	r25, r29
+ 624:	9c 27       	eor	r25, r28
+		
+		if(current & change) // Note on
+ 626:	89 2f       	mov	r24, r25
+ 628:	8c 23       	and	r24, r28
+ 62a:	89 f0       	breq	.+34     	; 0x64e <main+0x5a>
+		{
+			command = 0b10010000 | (switches & 0x0C) >> 2;
+ 62c:	d0 91 06 02 	lds	r29, 0x0206
+ 630:	dc 70       	andi	r29, 0x0C	; 12
+ 632:	d6 95       	lsr	r29
+ 634:	d6 95       	lsr	r29
+ 636:	d0 69       	ori	r29, 0x90	; 144
+			tone = MIDI_Conversion(current & change);
+ 638:	b5 dd       	rcall	.-1174   	; 0x1a4 <MIDI_Conversion>
+ 63a:	18 2f       	mov	r17, r24
+			
+			REC_add(command, tone);
+ 63c:	68 2f       	mov	r22, r24
+ 63e:	8d 2f       	mov	r24, r29
+ 640:	61 df       	rcall	.-318    	; 0x504 <REC_add>
+			
+			MIDI_send(command, tone, volume);
+ 642:	40 91 04 02 	lds	r20, 0x0204
+ 646:	61 2f       	mov	r22, r17
+ 648:	8d 2f       	mov	r24, r29
+ 64a:	9f dd       	rcall	.-1218   	; 0x18a <MIDI_send>
+ 64c:	dd cf       	rjmp	.-70     	; 0x608 <main+0x14>
+>>>>>>> origin/master
 			
 			//UART_out(0b10010001); // Command
 			//UART_out(MIDI_Conversion(current & change)); // Note 7bit
 			//UART_out(80 ); //volume(switches & 0x03)); // Velocity 7 bit
 		}
 		else if(previus & change) // Note off
+<<<<<<< HEAD
  796:	c9 01       	movw	r24, r18
  798:	80 23       	and	r24, r16
  79a:	91 23       	and	r25, r17
@@ -1388,3 +1967,37 @@ int main(void)
 
 000007c6 <__stop_program>:
  7c6:	ff cf       	rjmp	.-2      	; 0x7c6 <__stop_program>
+=======
+ 64e:	89 2f       	mov	r24, r25
+ 650:	8d 23       	and	r24, r29
+ 652:	d1 f2       	breq	.-76     	; 0x608 <main+0x14>
+		{
+
+			command = 0b10000000 | ((switches & 0x0C) >> 2);
+ 654:	10 91 06 02 	lds	r17, 0x0206
+ 658:	1c 70       	andi	r17, 0x0C	; 12
+ 65a:	16 95       	lsr	r17
+ 65c:	16 95       	lsr	r17
+ 65e:	10 68       	ori	r17, 0x80	; 128
+			
+			tone = MIDI_Conversion(previus & change);
+ 660:	a1 dd       	rcall	.-1214   	; 0x1a4 <MIDI_Conversion>
+ 662:	d8 2f       	mov	r29, r24
+						
+			REC_add(command, tone);
+ 664:	68 2f       	mov	r22, r24
+ 666:	81 2f       	mov	r24, r17
+ 668:	4d df       	rcall	.-358    	; 0x504 <REC_add>
+			MIDI_send(command, tone, volume);
+ 66a:	40 91 04 02 	lds	r20, 0x0204
+ 66e:	6d 2f       	mov	r22, r29
+ 670:	81 2f       	mov	r24, r17
+ 672:	8b dd       	rcall	.-1258   	; 0x18a <MIDI_send>
+ 674:	c9 cf       	rjmp	.-110    	; 0x608 <main+0x14>
+
+00000676 <_exit>:
+ 676:	f8 94       	cli
+
+00000678 <__stop_program>:
+ 678:	ff cf       	rjmp	.-2      	; 0x678 <__stop_program>
+>>>>>>> origin/master
