@@ -3,31 +3,31 @@ Midiproject.elf:     file format elf32-avr
 
 Sections:
 Idx Name          Size      VMA       LMA       File off  Algn
-  0 .data         00000506  00800200  000005c0  00000654  2**0
+  0 .data         00000006  00800200  000005a4  00000638  2**0
                   CONTENTS, ALLOC, LOAD, DATA
-  1 .text         000005c0  00000000  00000000  00000094  2**1
+  1 .text         000005a4  00000000  00000000  00000094  2**1
                   CONTENTS, ALLOC, LOAD, READONLY, CODE
-  2 .bss          00000006  00800706  00800706  00000b5a  2**0
+  2 .bss          00000506  00800206  00800206  0000063e  2**0
                   ALLOC
-  3 .comment      00000030  00000000  00000000  00000b5a  2**0
+  3 .comment      00000030  00000000  00000000  0000063e  2**0
                   CONTENTS, READONLY
-  4 .debug_aranges 000000f0  00000000  00000000  00000b8a  2**0
+  4 .debug_aranges 000000f0  00000000  00000000  0000066e  2**0
                   CONTENTS, READONLY, DEBUGGING
-  5 .debug_info   00000852  00000000  00000000  00000c7a  2**0
+  5 .debug_info   00000852  00000000  00000000  0000075e  2**0
                   CONTENTS, READONLY, DEBUGGING
-  6 .debug_abbrev 00000438  00000000  00000000  000014cc  2**0
+  6 .debug_abbrev 00000438  00000000  00000000  00000fb0  2**0
                   CONTENTS, READONLY, DEBUGGING
-  7 .debug_line   00000c9d  00000000  00000000  00001904  2**0
+  7 .debug_line   00000c9d  00000000  00000000  000013e8  2**0
                   CONTENTS, READONLY, DEBUGGING
-  8 .debug_frame  00000234  00000000  00000000  000025a4  2**2
+  8 .debug_frame  00000234  00000000  00000000  00002088  2**2
                   CONTENTS, READONLY, DEBUGGING
-  9 .debug_str    00008b7c  00000000  00000000  000027d8  2**0
+  9 .debug_str    00008b7c  00000000  00000000  000022bc  2**0
                   CONTENTS, READONLY, DEBUGGING
- 10 .debug_loc    0000061e  00000000  00000000  0000b354  2**0
+ 10 .debug_loc    0000061e  00000000  00000000  0000ae38  2**0
                   CONTENTS, READONLY, DEBUGGING
- 11 .debug_ranges 000000c0  00000000  00000000  0000b972  2**0
+ 11 .debug_ranges 000000c0  00000000  00000000  0000b456  2**0
                   CONTENTS, READONLY, DEBUGGING
- 12 .debug_macro  00003870  00000000  00000000  0000ba32  2**0
+ 12 .debug_macro  00003870  00000000  00000000  0000b516  2**0
                   CONTENTS, READONLY, DEBUGGING
 
 Disassembly of section .text:
@@ -79,7 +79,7 @@ Disassembly of section .text:
   56:	00 00       	nop
   58:	64 c0       	rjmp	.+200    	; 0x122 <__bad_interrupt>
   5a:	00 00       	nop
-  5c:	a4 c2       	rjmp	.+1352   	; 0x5a6 <__vector_23>
+  5c:	96 c2       	rjmp	.+1324   	; 0x58a <__vector_23>
   5e:	00 00       	nop
   60:	60 c0       	rjmp	.+192    	; 0x122 <__bad_interrupt>
   62:	00 00       	nop
@@ -91,7 +91,7 @@ Disassembly of section .text:
   6e:	00 00       	nop
   70:	58 c0       	rjmp	.+176    	; 0x122 <__bad_interrupt>
   72:	00 00       	nop
-  74:	73 c2       	rjmp	.+1254   	; 0x55c <__vector_29>
+  74:	65 c2       	rjmp	.+1226   	; 0x540 <__vector_29>
   76:	00 00       	nop
   78:	54 c0       	rjmp	.+168    	; 0x122 <__bad_interrupt>
   7a:	00 00       	nop
@@ -159,10 +159,10 @@ Disassembly of section .text:
   f2:	0c bf       	out	0x3c, r16	; 60
 
 000000f4 <__do_copy_data>:
-  f4:	17 e0       	ldi	r17, 0x07	; 7
+  f4:	12 e0       	ldi	r17, 0x02	; 2
   f6:	a0 e0       	ldi	r26, 0x00	; 0
   f8:	b2 e0       	ldi	r27, 0x02	; 2
-  fa:	e0 ec       	ldi	r30, 0xC0	; 192
+  fa:	e4 ea       	ldi	r30, 0xA4	; 164
   fc:	f5 e0       	ldi	r31, 0x05	; 5
   fe:	00 e0       	ldi	r16, 0x00	; 0
  100:	0b bf       	out	0x3b, r16	; 59
@@ -176,7 +176,7 @@ Disassembly of section .text:
 0000010e <__do_clear_bss>:
  10e:	27 e0       	ldi	r18, 0x07	; 7
  110:	a6 e0       	ldi	r26, 0x06	; 6
- 112:	b7 e0       	ldi	r27, 0x07	; 7
+ 112:	b2 e0       	ldi	r27, 0x02	; 2
  114:	01 c0       	rjmp	.+2      	; 0x118 <.do_clear_bss_start>
 
 00000116 <.do_clear_bss_loop>:
@@ -186,8 +186,8 @@ Disassembly of section .text:
  118:	ac 30       	cpi	r26, 0x0C	; 12
  11a:	b2 07       	cpc	r27, r18
  11c:	e1 f7       	brne	.-8      	; 0x116 <.do_clear_bss_loop>
- 11e:	e2 d1       	rcall	.+964    	; 0x4e4 <main>
- 120:	4d c2       	rjmp	.+1178   	; 0x5bc <_exit>
+ 11e:	d4 d1       	rcall	.+936    	; 0x4c8 <main>
+ 120:	3f c2       	rjmp	.+1150   	; 0x5a0 <_exit>
 
 00000122 <__bad_interrupt>:
  122:	6e cf       	rjmp	.-292    	; 0x0 <__vectors>
@@ -314,7 +314,7 @@ uint8_t MIDI_Conversion(uint8_t pressed)
 	uint8_t converted = 0;
 	uint8_t offset = 48;
 	uint8_t pitch = switches & 0x03;		// mask with two far right switches
- 1a4:	90 91 06 07 	lds	r25, 0x0706
+ 1a4:	90 91 06 02 	lds	r25, 0x0206
  1a8:	93 70       	andi	r25, 0x03	; 3
 		 			// B4 = 59 or B5 = 71 or B6 = 83
 	if( pressed &  0x80) converted = offset + 12 + 12 * pitch;
@@ -465,21 +465,21 @@ void REC_ISR(uint16_t time){
  270:	cf 93       	push	r28
  272:	df 93       	push	r29
 	if(PLAY){
- 274:	80 91 07 07 	lds	r24, 0x0707
+ 274:	80 91 07 02 	lds	r24, 0x0207
  278:	88 23       	and	r24, r24
  27a:	c1 f1       	breq	.+112    	; 0x2ec <REC_ISR+0x7c>
 		MIDI_send(com[rec_index], tones[rec_index], vol[rec_index]);
- 27c:	80 91 09 07 	lds	r24, 0x0709
+ 27c:	80 91 09 02 	lds	r24, 0x0209
  280:	90 e0       	ldi	r25, 0x00	; 0
  282:	dc 01       	movw	r26, r24
- 284:	ae 5f       	subi	r26, 0xFE	; 254
- 286:	bb 4f       	sbci	r27, 0xFB	; 251
+ 284:	a4 5f       	subi	r26, 0xF4	; 244
+ 286:	b9 4f       	sbci	r27, 0xF9	; 249
  288:	fc 01       	movw	r30, r24
- 28a:	ee 5f       	subi	r30, 0xFE	; 254
- 28c:	fa 4f       	sbci	r31, 0xFA	; 250
+ 28a:	e4 5f       	subi	r30, 0xF4	; 244
+ 28c:	fc 4f       	sbci	r31, 0xFC	; 252
  28e:	ec 01       	movw	r28, r24
- 290:	ce 5f       	subi	r28, 0xFE	; 254
- 292:	d9 4f       	sbci	r29, 0xF9	; 249
+ 290:	c4 5f       	subi	r28, 0xF4	; 244
+ 292:	dd 4f       	sbci	r29, 0xFD	; 253
  294:	4c 91       	ld	r20, X
  296:	60 81       	ld	r22, Z
  298:	88 81       	ld	r24, Y
@@ -489,31 +489,31 @@ void REC_ISR(uint16_t time){
 		// Last record will be of time zero
 		// Restart the playback in that case
 		if(com[rec_index] == 0){
- 29c:	80 91 09 07 	lds	r24, 0x0709
+ 29c:	80 91 09 02 	lds	r24, 0x0209
  2a0:	e8 2f       	mov	r30, r24
  2a2:	f0 e0       	ldi	r31, 0x00	; 0
- 2a4:	ee 5f       	subi	r30, 0xFE	; 254
- 2a6:	f9 4f       	sbci	r31, 0xF9	; 249
+ 2a4:	e4 5f       	subi	r30, 0xF4	; 244
+ 2a6:	fd 4f       	sbci	r31, 0xFD	; 253
  2a8:	90 81       	ld	r25, Z
  2aa:	91 11       	cpse	r25, r1
  2ac:	0f c0       	rjmp	.+30     	; 0x2cc <REC_ISR+0x5c>
 			MIDI_send(com[0], tones[0], vol[0]);
- 2ae:	40 91 02 04 	lds	r20, 0x0402
- 2b2:	60 91 02 05 	lds	r22, 0x0502
- 2b6:	80 91 02 06 	lds	r24, 0x0602
+ 2ae:	40 91 0c 06 	lds	r20, 0x060C
+ 2b2:	60 91 0c 03 	lds	r22, 0x030C
+ 2b6:	80 91 0c 02 	lds	r24, 0x020C
  2ba:	67 df       	rcall	.-306    	; 0x18a <MIDI_send>
 			
 			rec_index = 1;
  2bc:	81 e0       	ldi	r24, 0x01	; 1
- 2be:	80 93 09 07 	sts	0x0709, r24
+ 2be:	80 93 09 02 	sts	0x0209, r24
 	software_comp = time;
 }
 
 void TIME_reset(void)
 {
 	software_time = 0;
- 2c2:	10 92 0b 07 	sts	0x070B, r1
- 2c6:	10 92 0a 07 	sts	0x070A, r1
+ 2c2:	10 92 0b 02 	sts	0x020B, r1
+ 2c6:	10 92 0a 02 	sts	0x020A, r1
  2ca:	03 c0       	rjmp	.+6      	; 0x2d2 <REC_ISR+0x62>
 			rec_index = 1;
 			TIME_reset();
@@ -522,16 +522,16 @@ void TIME_reset(void)
 		else{
 			rec_index++;
  2cc:	8f 5f       	subi	r24, 0xFF	; 255
- 2ce:	80 93 09 07 	sts	0x0709, r24
+ 2ce:	80 93 09 02 	sts	0x0209, r24
 		}
 		
 		TIME_Set_ISR(rec_time[rec_index]);	
- 2d2:	e0 91 09 07 	lds	r30, 0x0709
+ 2d2:	e0 91 09 02 	lds	r30, 0x0209
  2d6:	f0 e0       	ldi	r31, 0x00	; 0
  2d8:	ee 0f       	add	r30, r30
  2da:	ff 1f       	adc	r31, r31
- 2dc:	ee 5f       	subi	r30, 0xFE	; 254
- 2de:	fd 4f       	sbci	r31, 0xFD	; 253
+ 2dc:	e4 5f       	subi	r30, 0xF4	; 244
+ 2de:	fb 4f       	sbci	r31, 0xFB	; 251
  2e0:	80 81       	ld	r24, Z
  2e2:	91 81       	ldd	r25, Z+1	; 0x01
 	}
@@ -540,8 +540,8 @@ void TIME_reset(void)
 void TIME_Set_ISR(uint16_t time)
 {
 	software_comp = time;
- 2e4:	90 93 03 07 	sts	0x0703, r25
- 2e8:	80 93 02 07 	sts	0x0702, r24
+ 2e4:	90 93 03 02 	sts	0x0203, r25
+ 2e8:	80 93 02 02 	sts	0x0202, r24
 		TIME_Set_ISR(rec_time[rec_index]);	
 	
 	}
@@ -579,438 +579,426 @@ ISR(TIMER1_COMPA_vect)
  314:	ef 93       	push	r30
  316:	ff 93       	push	r31
 	software_time++;
- 318:	80 91 0a 07 	lds	r24, 0x070A
- 31c:	90 91 0b 07 	lds	r25, 0x070B
+ 318:	80 91 0a 02 	lds	r24, 0x020A
+ 31c:	90 91 0b 02 	lds	r25, 0x020B
  320:	01 96       	adiw	r24, 0x01	; 1
- 322:	90 93 0b 07 	sts	0x070B, r25
- 326:	80 93 0a 07 	sts	0x070A, r24
-	PORTB = ~((PLAY<<6) | (REC<<7) | rec_index);
- 32a:	20 91 07 07 	lds	r18, 0x0707
- 32e:	40 e4       	ldi	r20, 0x40	; 64
- 330:	24 9f       	mul	r18, r20
- 332:	90 01       	movw	r18, r0
- 334:	11 24       	eor	r1, r1
- 336:	80 91 08 07 	lds	r24, 0x0708
- 33a:	40 e8       	ldi	r20, 0x80	; 128
- 33c:	84 9f       	mul	r24, r20
- 33e:	c0 01       	movw	r24, r0
- 340:	11 24       	eor	r1, r1
- 342:	82 2b       	or	r24, r18
- 344:	90 91 09 07 	lds	r25, 0x0709
- 348:	89 2b       	or	r24, r25
- 34a:	80 95       	com	r24
- 34c:	85 b9       	out	0x05, r24	; 5
+ 322:	90 93 0b 02 	sts	0x020B, r25
+ 326:	80 93 0a 02 	sts	0x020A, r24
+	PORTB = ~rec_index; //((PLAY<<6) | (REC<<7) | rec_index);
+ 32a:	80 91 09 02 	lds	r24, 0x0209
+ 32e:	80 95       	com	r24
+ 330:	85 b9       	out	0x05, r24	; 5
 	if(software_time == software_comp)
- 34e:	20 91 0a 07 	lds	r18, 0x070A
- 352:	30 91 0b 07 	lds	r19, 0x070B
- 356:	80 91 02 07 	lds	r24, 0x0702
- 35a:	90 91 03 07 	lds	r25, 0x0703
- 35e:	28 17       	cp	r18, r24
- 360:	39 07       	cpc	r19, r25
- 362:	29 f4       	brne	.+10     	; 0x36e <__vector_17+0x7c>
+ 332:	20 91 0a 02 	lds	r18, 0x020A
+ 336:	30 91 0b 02 	lds	r19, 0x020B
+ 33a:	80 91 02 02 	lds	r24, 0x0202
+ 33e:	90 91 03 02 	lds	r25, 0x0203
+ 342:	28 17       	cp	r18, r24
+ 344:	39 07       	cpc	r19, r25
+ 346:	29 f4       	brne	.+10     	; 0x352 <__vector_17+0x60>
 	{
 		REC_ISR(software_time);
- 364:	80 91 0a 07 	lds	r24, 0x070A
- 368:	90 91 0b 07 	lds	r25, 0x070B
- 36c:	81 df       	rcall	.-254    	; 0x270 <REC_ISR>
+ 348:	80 91 0a 02 	lds	r24, 0x020A
+ 34c:	90 91 0b 02 	lds	r25, 0x020B
+ 350:	8f df       	rcall	.-226    	; 0x270 <REC_ISR>
 	}
 }
- 36e:	ff 91       	pop	r31
- 370:	ef 91       	pop	r30
- 372:	bf 91       	pop	r27
- 374:	af 91       	pop	r26
- 376:	9f 91       	pop	r25
- 378:	8f 91       	pop	r24
- 37a:	7f 91       	pop	r23
- 37c:	6f 91       	pop	r22
- 37e:	5f 91       	pop	r21
- 380:	4f 91       	pop	r20
- 382:	3f 91       	pop	r19
- 384:	2f 91       	pop	r18
- 386:	0f 90       	pop	r0
- 388:	0b be       	out	0x3b, r0	; 59
- 38a:	0f 90       	pop	r0
- 38c:	0f be       	out	0x3f, r0	; 63
- 38e:	0f 90       	pop	r0
- 390:	1f 90       	pop	r1
- 392:	18 95       	reti
+ 352:	ff 91       	pop	r31
+ 354:	ef 91       	pop	r30
+ 356:	bf 91       	pop	r27
+ 358:	af 91       	pop	r26
+ 35a:	9f 91       	pop	r25
+ 35c:	8f 91       	pop	r24
+ 35e:	7f 91       	pop	r23
+ 360:	6f 91       	pop	r22
+ 362:	5f 91       	pop	r21
+ 364:	4f 91       	pop	r20
+ 366:	3f 91       	pop	r19
+ 368:	2f 91       	pop	r18
+ 36a:	0f 90       	pop	r0
+ 36c:	0b be       	out	0x3b, r0	; 59
+ 36e:	0f 90       	pop	r0
+ 370:	0f be       	out	0x3f, r0	; 63
+ 372:	0f 90       	pop	r0
+ 374:	1f 90       	pop	r1
+ 376:	18 95       	reti
 
-00000394 <REC_add>:
+00000378 <REC_add>:
 	// There will be no new interrupt if PLAY == 0
 }
 
 void REC_add(uint8_t command, uint8_t tone){
 	
 	if(REC){ // Recording 
- 394:	90 91 08 07 	lds	r25, 0x0708
- 398:	99 23       	and	r25, r25
- 39a:	81 f1       	breq	.+96     	; 0x3fc <REC_add+0x68>
+ 378:	90 91 08 02 	lds	r25, 0x0208
+ 37c:	99 23       	and	r25, r25
+ 37e:	81 f1       	breq	.+96     	; 0x3e0 <REC_add+0x68>
 		com[rec_index]  = command;
- 39c:	90 91 09 07 	lds	r25, 0x0709
- 3a0:	29 2f       	mov	r18, r25
- 3a2:	30 e0       	ldi	r19, 0x00	; 0
- 3a4:	f9 01       	movw	r30, r18
- 3a6:	ee 5f       	subi	r30, 0xFE	; 254
- 3a8:	f9 4f       	sbci	r31, 0xF9	; 249
- 3aa:	80 83       	st	Z, r24
+ 380:	90 91 09 02 	lds	r25, 0x0209
+ 384:	29 2f       	mov	r18, r25
+ 386:	30 e0       	ldi	r19, 0x00	; 0
+ 388:	f9 01       	movw	r30, r18
+ 38a:	e4 5f       	subi	r30, 0xF4	; 244
+ 38c:	fd 4f       	sbci	r31, 0xFD	; 253
+ 38e:	80 83       	st	Z, r24
 		tones[rec_index] = tone;
- 3ac:	f9 01       	movw	r30, r18
- 3ae:	ee 5f       	subi	r30, 0xFE	; 254
- 3b0:	fa 4f       	sbci	r31, 0xFA	; 250
- 3b2:	60 83       	st	Z, r22
+ 390:	f9 01       	movw	r30, r18
+ 392:	e4 5f       	subi	r30, 0xF4	; 244
+ 394:	fc 4f       	sbci	r31, 0xFC	; 252
+ 396:	60 83       	st	Z, r22
 		vol[rec_index] = volume;
- 3b4:	80 91 04 07 	lds	r24, 0x0704
- 3b8:	f9 01       	movw	r30, r18
- 3ba:	ee 5f       	subi	r30, 0xFE	; 254
- 3bc:	fb 4f       	sbci	r31, 0xFB	; 251
- 3be:	80 83       	st	Z, r24
+ 398:	80 91 04 02 	lds	r24, 0x0204
+ 39c:	f9 01       	movw	r30, r18
+ 39e:	e4 5f       	subi	r30, 0xF4	; 244
+ 3a0:	f9 4f       	sbci	r31, 0xF9	; 249
+ 3a2:	80 83       	st	Z, r24
 		
 		// Recording starts on first tone, so set time = 0 and reset timer
 		if(rec_index == 0){
- 3c0:	91 11       	cpse	r25, r1
- 3c2:	0c c0       	rjmp	.+24     	; 0x3dc <REC_add+0x48>
+ 3a4:	91 11       	cpse	r25, r1
+ 3a6:	0c c0       	rjmp	.+24     	; 0x3c0 <REC_add+0x48>
 			rec_time[rec_index] = 0;
- 3c4:	f9 01       	movw	r30, r18
- 3c6:	ee 0f       	add	r30, r30
- 3c8:	ff 1f       	adc	r31, r31
- 3ca:	ee 5f       	subi	r30, 0xFE	; 254
- 3cc:	fd 4f       	sbci	r31, 0xFD	; 253
- 3ce:	11 82       	std	Z+1, r1	; 0x01
- 3d0:	10 82       	st	Z, r1
+ 3a8:	f9 01       	movw	r30, r18
+ 3aa:	ee 0f       	add	r30, r30
+ 3ac:	ff 1f       	adc	r31, r31
+ 3ae:	e4 5f       	subi	r30, 0xF4	; 244
+ 3b0:	fb 4f       	sbci	r31, 0xFB	; 251
+ 3b2:	11 82       	std	Z+1, r1	; 0x01
+ 3b4:	10 82       	st	Z, r1
 	software_comp = time;
 }
 
 void TIME_reset(void)
 {
 	software_time = 0;
- 3d2:	10 92 0b 07 	sts	0x070B, r1
- 3d6:	10 92 0a 07 	sts	0x070A, r1
- 3da:	0b c0       	rjmp	.+22     	; 0x3f2 <REC_add+0x5e>
+ 3b6:	10 92 0b 02 	sts	0x020B, r1
+ 3ba:	10 92 0a 02 	sts	0x020A, r1
+ 3be:	0b c0       	rjmp	.+22     	; 0x3d6 <REC_add+0x5e>
 }
 
 uint16_t TIME_read(void)
 {
 	return software_time;
- 3dc:	80 91 0a 07 	lds	r24, 0x070A
- 3e0:	90 91 0b 07 	lds	r25, 0x070B
+ 3c0:	80 91 0a 02 	lds	r24, 0x020A
+ 3c4:	90 91 0b 02 	lds	r25, 0x020B
 			
 			
 			
 		}
 		
 		else { rec_time[rec_index] = TIME_read();}
- 3e4:	f9 01       	movw	r30, r18
- 3e6:	ee 0f       	add	r30, r30
- 3e8:	ff 1f       	adc	r31, r31
- 3ea:	ee 5f       	subi	r30, 0xFE	; 254
- 3ec:	fd 4f       	sbci	r31, 0xFD	; 253
- 3ee:	91 83       	std	Z+1, r25	; 0x01
- 3f0:	80 83       	st	Z, r24
+ 3c8:	f9 01       	movw	r30, r18
+ 3ca:	ee 0f       	add	r30, r30
+ 3cc:	ff 1f       	adc	r31, r31
+ 3ce:	e4 5f       	subi	r30, 0xF4	; 244
+ 3d0:	fb 4f       	sbci	r31, 0xFB	; 251
+ 3d2:	91 83       	std	Z+1, r25	; 0x01
+ 3d4:	80 83       	st	Z, r24
 			
 		rec_index++;
- 3f2:	80 91 09 07 	lds	r24, 0x0709
- 3f6:	8f 5f       	subi	r24, 0xFF	; 255
- 3f8:	80 93 09 07 	sts	0x0709, r24
- 3fc:	08 95       	ret
+ 3d6:	80 91 09 02 	lds	r24, 0x0209
+ 3da:	8f 5f       	subi	r24, 0xFF	; 255
+ 3dc:	80 93 09 02 	sts	0x0209, r24
+ 3e0:	08 95       	ret
 
-000003fe <REC_start>:
+000003e2 <REC_start>:
 	}
 }
 
 void REC_start(void){
 	REC = 1;
- 3fe:	81 e0       	ldi	r24, 0x01	; 1
- 400:	80 93 08 07 	sts	0x0708, r24
+ 3e2:	81 e0       	ldi	r24, 0x01	; 1
+ 3e4:	80 93 08 02 	sts	0x0208, r24
 	rec_index = 0;
- 404:	10 92 09 07 	sts	0x0709, r1
+ 3e8:	10 92 09 02 	sts	0x0209, r1
 	software_comp = time;
 }
 
 void TIME_reset(void)
 {
 	software_time = 0;
- 408:	10 92 0b 07 	sts	0x070B, r1
- 40c:	10 92 0a 07 	sts	0x070A, r1
- 410:	08 95       	ret
+ 3ec:	10 92 0b 02 	sts	0x020B, r1
+ 3f0:	10 92 0a 02 	sts	0x020A, r1
+ 3f4:	08 95       	ret
 
-00000412 <REC_stop>:
+000003f6 <REC_stop>:
 	TIME_reset();
 }
 
 void REC_stop(void){
 	// always record both on AND off commands = even number
 	if(rec_index & 0x01){ // if not even
- 412:	40 91 09 07 	lds	r20, 0x0709
- 416:	40 ff       	sbrs	r20, 0
- 418:	1f c0       	rjmp	.+62     	; 0x458 <REC_stop+0x46>
+ 3f6:	40 91 09 02 	lds	r20, 0x0209
+ 3fa:	40 ff       	sbrs	r20, 0
+ 3fc:	1f c0       	rjmp	.+62     	; 0x43c <REC_stop+0x46>
 		com[rec_index]  = (com[rec_index-1] & 0b11101111); 
- 41a:	84 2f       	mov	r24, r20
- 41c:	90 e0       	ldi	r25, 0x00	; 0
- 41e:	9c 01       	movw	r18, r24
- 420:	21 50       	subi	r18, 0x01	; 1
- 422:	31 09       	sbc	r19, r1
- 424:	fc 01       	movw	r30, r24
- 426:	ee 5f       	subi	r30, 0xFE	; 254
- 428:	f9 4f       	sbci	r31, 0xF9	; 249
- 42a:	d9 01       	movw	r26, r18
- 42c:	ae 5f       	subi	r26, 0xFE	; 254
- 42e:	b9 4f       	sbci	r27, 0xF9	; 249
- 430:	5c 91       	ld	r21, X
- 432:	5f 7e       	andi	r21, 0xEF	; 239
- 434:	50 83       	st	Z, r21
+ 3fe:	84 2f       	mov	r24, r20
+ 400:	90 e0       	ldi	r25, 0x00	; 0
+ 402:	9c 01       	movw	r18, r24
+ 404:	21 50       	subi	r18, 0x01	; 1
+ 406:	31 09       	sbc	r19, r1
+ 408:	fc 01       	movw	r30, r24
+ 40a:	e4 5f       	subi	r30, 0xF4	; 244
+ 40c:	fd 4f       	sbci	r31, 0xFD	; 253
+ 40e:	d9 01       	movw	r26, r18
+ 410:	a4 5f       	subi	r26, 0xF4	; 244
+ 412:	bd 4f       	sbci	r27, 0xFD	; 253
+ 414:	5c 91       	ld	r21, X
+ 416:	5f 7e       	andi	r21, 0xEF	; 239
+ 418:	50 83       	st	Z, r21
 		tones[rec_index] = tones[rec_index-1];
- 436:	f9 01       	movw	r30, r18
- 438:	ee 5f       	subi	r30, 0xFE	; 254
- 43a:	fa 4f       	sbci	r31, 0xFA	; 250
- 43c:	20 81       	ld	r18, Z
- 43e:	fc 01       	movw	r30, r24
- 440:	ee 5f       	subi	r30, 0xFE	; 254
- 442:	fa 4f       	sbci	r31, 0xFA	; 250
- 444:	20 83       	st	Z, r18
+ 41a:	f9 01       	movw	r30, r18
+ 41c:	e4 5f       	subi	r30, 0xF4	; 244
+ 41e:	fc 4f       	sbci	r31, 0xFC	; 252
+ 420:	20 81       	ld	r18, Z
+ 422:	fc 01       	movw	r30, r24
+ 424:	e4 5f       	subi	r30, 0xF4	; 244
+ 426:	fc 4f       	sbci	r31, 0xFC	; 252
+ 428:	20 83       	st	Z, r18
 		vol[rec_index] = volume;
- 446:	20 91 04 07 	lds	r18, 0x0704
- 44a:	fc 01       	movw	r30, r24
- 44c:	ee 5f       	subi	r30, 0xFE	; 254
- 44e:	fb 4f       	sbci	r31, 0xFB	; 251
- 450:	20 83       	st	Z, r18
+ 42a:	20 91 04 02 	lds	r18, 0x0204
+ 42e:	fc 01       	movw	r30, r24
+ 430:	e4 5f       	subi	r30, 0xF4	; 244
+ 432:	f9 4f       	sbci	r31, 0xF9	; 249
+ 434:	20 83       	st	Z, r18
 		rec_index++;
- 452:	4f 5f       	subi	r20, 0xFF	; 255
- 454:	40 93 09 07 	sts	0x0709, r20
+ 436:	4f 5f       	subi	r20, 0xFF	; 255
+ 438:	40 93 09 02 	sts	0x0209, r20
 	}
 	
 	com[rec_index]  = 0;
- 458:	80 91 09 07 	lds	r24, 0x0709
- 45c:	90 e0       	ldi	r25, 0x00	; 0
- 45e:	fc 01       	movw	r30, r24
- 460:	ee 5f       	subi	r30, 0xFE	; 254
- 462:	f9 4f       	sbci	r31, 0xF9	; 249
- 464:	10 82       	st	Z, r1
+ 43c:	80 91 09 02 	lds	r24, 0x0209
+ 440:	90 e0       	ldi	r25, 0x00	; 0
+ 442:	fc 01       	movw	r30, r24
+ 444:	e4 5f       	subi	r30, 0xF4	; 244
+ 446:	fd 4f       	sbci	r31, 0xFD	; 253
+ 448:	10 82       	st	Z, r1
 	tones[rec_index] = 0;
- 466:	fc 01       	movw	r30, r24
- 468:	ee 5f       	subi	r30, 0xFE	; 254
- 46a:	fa 4f       	sbci	r31, 0xFA	; 250
- 46c:	10 82       	st	Z, r1
+ 44a:	fc 01       	movw	r30, r24
+ 44c:	e4 5f       	subi	r30, 0xF4	; 244
+ 44e:	fc 4f       	sbci	r31, 0xFC	; 252
+ 450:	10 82       	st	Z, r1
 	vol[rec_index] = 0;
- 46e:	fc 01       	movw	r30, r24
- 470:	ee 5f       	subi	r30, 0xFE	; 254
- 472:	fb 4f       	sbci	r31, 0xFB	; 251
- 474:	10 82       	st	Z, r1
+ 452:	fc 01       	movw	r30, r24
+ 454:	e4 5f       	subi	r30, 0xF4	; 244
+ 456:	f9 4f       	sbci	r31, 0xF9	; 249
+ 458:	10 82       	st	Z, r1
 	software_time = 0;
 }
 
 uint16_t TIME_read(void)
 {
 	return software_time;
- 476:	20 91 0a 07 	lds	r18, 0x070A
- 47a:	30 91 0b 07 	lds	r19, 0x070B
+ 45a:	20 91 0a 02 	lds	r18, 0x020A
+ 45e:	30 91 0b 02 	lds	r19, 0x020B
 	}
 	
 	com[rec_index]  = 0;
 	tones[rec_index] = 0;
 	vol[rec_index] = 0;
 	rec_time[rec_index] = TIME_read();
- 47e:	fc 01       	movw	r30, r24
- 480:	ee 0f       	add	r30, r30
- 482:	ff 1f       	adc	r31, r31
- 484:	ee 5f       	subi	r30, 0xFE	; 254
- 486:	fd 4f       	sbci	r31, 0xFD	; 253
- 488:	31 83       	std	Z+1, r19	; 0x01
- 48a:	20 83       	st	Z, r18
+ 462:	fc 01       	movw	r30, r24
+ 464:	ee 0f       	add	r30, r30
+ 466:	ff 1f       	adc	r31, r31
+ 468:	e4 5f       	subi	r30, 0xF4	; 244
+ 46a:	fb 4f       	sbci	r31, 0xFB	; 251
+ 46c:	31 83       	std	Z+1, r19	; 0x01
+ 46e:	20 83       	st	Z, r18
 	REC = 0;
- 48c:	10 92 08 07 	sts	0x0708, r1
- 490:	08 95       	ret
+ 470:	10 92 08 02 	sts	0x0208, r1
+ 474:	08 95       	ret
 
-00000492 <REC_state>:
+00000476 <REC_state>:
 }
 
 void REC_state(uint8_t switches)
 // For starting the play. Always from the start
 {
- 492:	cf 93       	push	r28
- 494:	c8 2f       	mov	r28, r24
+ 476:	cf 93       	push	r28
+ 478:	c8 2f       	mov	r28, r24
 	if(switches & 0x40){
- 496:	86 ff       	sbrs	r24, 6
- 498:	11 c0       	rjmp	.+34     	; 0x4bc <REC_state+0x2a>
+ 47a:	86 ff       	sbrs	r24, 6
+ 47c:	11 c0       	rjmp	.+34     	; 0x4a0 <REC_state+0x2a>
 		if(!PLAY){  // If play channel one is on
- 49a:	80 91 07 07 	lds	r24, 0x0707
- 49e:	81 11       	cpse	r24, r1
- 4a0:	12 c0       	rjmp	.+36     	; 0x4c6 <REC_state+0x34>
+ 47e:	80 91 07 02 	lds	r24, 0x0207
+ 482:	81 11       	cpse	r24, r1
+ 484:	12 c0       	rjmp	.+36     	; 0x4aa <REC_state+0x34>
 			PLAY = 1;
- 4a2:	81 e0       	ldi	r24, 0x01	; 1
- 4a4:	80 93 07 07 	sts	0x0707, r24
+ 486:	81 e0       	ldi	r24, 0x01	; 1
+ 488:	80 93 07 02 	sts	0x0207, r24
 			
 			// First note is on time = 0 which doesn't exist in our approach,
 			// Therefor call the ICR for the first tone and then reset timer.
 			rec_index = 0;
- 4a8:	10 92 09 07 	sts	0x0709, r1
+ 48c:	10 92 09 02 	sts	0x0209, r1
 			REC_ISR(0);
- 4ac:	80 e0       	ldi	r24, 0x00	; 0
- 4ae:	90 e0       	ldi	r25, 0x00	; 0
- 4b0:	df de       	rcall	.-578    	; 0x270 <REC_ISR>
+ 490:	80 e0       	ldi	r24, 0x00	; 0
+ 492:	90 e0       	ldi	r25, 0x00	; 0
+ 494:	ed de       	rcall	.-550    	; 0x270 <REC_ISR>
 	software_comp = time;
 }
 
 void TIME_reset(void)
 {
 	software_time = 0;
- 4b2:	10 92 0b 07 	sts	0x070B, r1
- 4b6:	10 92 0a 07 	sts	0x070A, r1
- 4ba:	05 c0       	rjmp	.+10     	; 0x4c6 <REC_state+0x34>
+ 496:	10 92 0b 02 	sts	0x020B, r1
+ 49a:	10 92 0a 02 	sts	0x020A, r1
+ 49e:	05 c0       	rjmp	.+10     	; 0x4aa <REC_state+0x34>
 			REC_ISR(0);
 			TIME_reset();
 		}
 	}
 	else{ // If should be off
 		if(PLAY){ // Turn off if on
- 4bc:	80 91 07 07 	lds	r24, 0x0707
- 4c0:	81 11       	cpse	r24, r1
+ 4a0:	80 91 07 02 	lds	r24, 0x0207
+ 4a4:	81 11       	cpse	r24, r1
 			PLAY = 0;
- 4c2:	10 92 07 07 	sts	0x0707, r1
+ 4a6:	10 92 07 02 	sts	0x0207, r1
 		}
 	}
 	
 	if(switches & 0x80){ // Recording?
- 4c6:	cc 23       	and	r28, r28
- 4c8:	34 f4       	brge	.+12     	; 0x4d6 <REC_state+0x44>
+ 4aa:	cc 23       	and	r28, r28
+ 4ac:	34 f4       	brge	.+12     	; 0x4ba <REC_state+0x44>
 		if(REC == 0){	 // Change from before?
- 4ca:	80 91 08 07 	lds	r24, 0x0708
- 4ce:	81 11       	cpse	r24, r1
- 4d0:	07 c0       	rjmp	.+14     	; 0x4e0 <REC_state+0x4e>
+ 4ae:	80 91 08 02 	lds	r24, 0x0208
+ 4b2:	81 11       	cpse	r24, r1
+ 4b4:	07 c0       	rjmp	.+14     	; 0x4c4 <REC_state+0x4e>
 			REC_start();
- 4d2:	95 df       	rcall	.-214    	; 0x3fe <REC_start>
- 4d4:	05 c0       	rjmp	.+10     	; 0x4e0 <REC_state+0x4e>
+ 4b6:	95 df       	rcall	.-214    	; 0x3e2 <REC_start>
+ 4b8:	05 c0       	rjmp	.+10     	; 0x4c4 <REC_state+0x4e>
 		}
 	}
 	else{
 		if(REC == 1){ // If rec on, but swithces not in that position, stop
- 4d6:	80 91 08 07 	lds	r24, 0x0708
- 4da:	81 30       	cpi	r24, 0x01	; 1
- 4dc:	09 f4       	brne	.+2      	; 0x4e0 <REC_state+0x4e>
+ 4ba:	80 91 08 02 	lds	r24, 0x0208
+ 4be:	81 30       	cpi	r24, 0x01	; 1
+ 4c0:	09 f4       	brne	.+2      	; 0x4c4 <REC_state+0x4e>
 			REC_stop();
- 4de:	99 df       	rcall	.-206    	; 0x412 <REC_stop>
+ 4c2:	99 df       	rcall	.-206    	; 0x3f6 <REC_stop>
 		}
 	}
- 4e0:	cf 91       	pop	r28
- 4e2:	08 95       	ret
+ 4c4:	cf 91       	pop	r28
+ 4c6:	08 95       	ret
 
-000004e4 <main>:
+000004c8 <main>:
 void init_Timer0(void)
 {
 	TCCR0A = 0b00000000;			// normal mode
 	TCCR0B = 0b00000101;			// prescaler 1024
 	TCNT0 = 0;						// overflow, 255*1024/(8*10^6) = 32.6ms delay at max
 	TIMSK0 |= (1 << TOIE0);			// enable overflow interrupt enable 
- 4e4:	1f de       	rcall	.-962    	; 0x124 <Init_ports>
- 4e6:	80 e8       	ldi	r24, 0x80	; 128
- 4e8:	95 e2       	ldi	r25, 0x25	; 37
- 4ea:	24 de       	rcall	.-952    	; 0x134 <Init_UART0>
- 4ec:	ae de       	rcall	.-676    	; 0x24a <init_Timer1>
- 4ee:	78 94       	sei
- 4f0:	d0 e0       	ldi	r29, 0x00	; 0
- 4f2:	01 c0       	rjmp	.+2      	; 0x4f6 <main+0x12>
- 4f4:	dc 2f       	mov	r29, r28
- 4f6:	c9 b1       	in	r28, 0x09	; 9
- 4f8:	c0 95       	com	r28
- 4fa:	86 b1       	in	r24, 0x06	; 6
- 4fc:	80 95       	com	r24
- 4fe:	80 93 06 07 	sts	0x0706, r24
- 502:	80 91 06 07 	lds	r24, 0x0706
- 506:	c5 df       	rcall	.-118    	; 0x492 <REC_state>
- 508:	9d 2f       	mov	r25, r29
- 50a:	9c 27       	eor	r25, r28
- 50c:	89 2f       	mov	r24, r25
- 50e:	8c 23       	and	r24, r28
- 510:	89 f0       	breq	.+34     	; 0x534 <main+0x50>
- 512:	d0 91 06 07 	lds	r29, 0x0706
- 516:	dc 70       	andi	r29, 0x0C	; 12
- 518:	d6 95       	lsr	r29
- 51a:	d6 95       	lsr	r29
- 51c:	d0 69       	ori	r29, 0x90	; 144
- 51e:	42 de       	rcall	.-892    	; 0x1a4 <MIDI_Conversion>
- 520:	18 2f       	mov	r17, r24
- 522:	68 2f       	mov	r22, r24
- 524:	8d 2f       	mov	r24, r29
- 526:	36 df       	rcall	.-404    	; 0x394 <REC_add>
- 528:	40 91 04 07 	lds	r20, 0x0704
- 52c:	61 2f       	mov	r22, r17
- 52e:	8d 2f       	mov	r24, r29
- 530:	2c de       	rcall	.-936    	; 0x18a <MIDI_send>
- 532:	e0 cf       	rjmp	.-64     	; 0x4f4 <main+0x10>
- 534:	89 2f       	mov	r24, r25
- 536:	8d 23       	and	r24, r29
- 538:	e9 f2       	breq	.-70     	; 0x4f4 <main+0x10>
- 53a:	10 91 06 07 	lds	r17, 0x0706
- 53e:	1c 70       	andi	r17, 0x0C	; 12
- 540:	16 95       	lsr	r17
- 542:	16 95       	lsr	r17
- 544:	10 68       	ori	r17, 0x80	; 128
- 546:	2e de       	rcall	.-932    	; 0x1a4 <MIDI_Conversion>
- 548:	d8 2f       	mov	r29, r24
- 54a:	68 2f       	mov	r22, r24
- 54c:	81 2f       	mov	r24, r17
- 54e:	22 df       	rcall	.-444    	; 0x394 <REC_add>
- 550:	40 91 04 07 	lds	r20, 0x0704
- 554:	6d 2f       	mov	r22, r29
- 556:	81 2f       	mov	r24, r17
- 558:	18 de       	rcall	.-976    	; 0x18a <MIDI_send>
- 55a:	cc cf       	rjmp	.-104    	; 0x4f4 <main+0x10>
+ 4c8:	2d de       	rcall	.-934    	; 0x124 <Init_ports>
+ 4ca:	80 e8       	ldi	r24, 0x80	; 128
+ 4cc:	95 e2       	ldi	r25, 0x25	; 37
+ 4ce:	32 de       	rcall	.-924    	; 0x134 <Init_UART0>
+ 4d0:	bc de       	rcall	.-648    	; 0x24a <init_Timer1>
+ 4d2:	78 94       	sei
+ 4d4:	d0 e0       	ldi	r29, 0x00	; 0
+ 4d6:	01 c0       	rjmp	.+2      	; 0x4da <main+0x12>
+ 4d8:	dc 2f       	mov	r29, r28
+ 4da:	c9 b1       	in	r28, 0x09	; 9
+ 4dc:	c0 95       	com	r28
+ 4de:	86 b1       	in	r24, 0x06	; 6
+ 4e0:	80 95       	com	r24
+ 4e2:	80 93 06 02 	sts	0x0206, r24
+ 4e6:	80 91 06 02 	lds	r24, 0x0206
+ 4ea:	c5 df       	rcall	.-118    	; 0x476 <REC_state>
+ 4ec:	9d 2f       	mov	r25, r29
+ 4ee:	9c 27       	eor	r25, r28
+ 4f0:	89 2f       	mov	r24, r25
+ 4f2:	8c 23       	and	r24, r28
+ 4f4:	89 f0       	breq	.+34     	; 0x518 <main+0x50>
+ 4f6:	d0 91 06 02 	lds	r29, 0x0206
+ 4fa:	dc 70       	andi	r29, 0x0C	; 12
+ 4fc:	d6 95       	lsr	r29
+ 4fe:	d6 95       	lsr	r29
+ 500:	d0 69       	ori	r29, 0x90	; 144
+ 502:	50 de       	rcall	.-864    	; 0x1a4 <MIDI_Conversion>
+ 504:	18 2f       	mov	r17, r24
+ 506:	68 2f       	mov	r22, r24
+ 508:	8d 2f       	mov	r24, r29
+ 50a:	36 df       	rcall	.-404    	; 0x378 <REC_add>
+ 50c:	40 91 04 02 	lds	r20, 0x0204
+ 510:	61 2f       	mov	r22, r17
+ 512:	8d 2f       	mov	r24, r29
+ 514:	3a de       	rcall	.-908    	; 0x18a <MIDI_send>
+ 516:	e0 cf       	rjmp	.-64     	; 0x4d8 <main+0x10>
+ 518:	89 2f       	mov	r24, r25
+ 51a:	8d 23       	and	r24, r29
+ 51c:	e9 f2       	breq	.-70     	; 0x4d8 <main+0x10>
+ 51e:	10 91 06 02 	lds	r17, 0x0206
+ 522:	1c 70       	andi	r17, 0x0C	; 12
+ 524:	16 95       	lsr	r17
+ 526:	16 95       	lsr	r17
+ 528:	10 68       	ori	r17, 0x80	; 128
+ 52a:	3c de       	rcall	.-904    	; 0x1a4 <MIDI_Conversion>
+ 52c:	d8 2f       	mov	r29, r24
+ 52e:	68 2f       	mov	r22, r24
+ 530:	81 2f       	mov	r24, r17
+ 532:	22 df       	rcall	.-444    	; 0x378 <REC_add>
+ 534:	40 91 04 02 	lds	r20, 0x0204
+ 538:	6d 2f       	mov	r22, r29
+ 53a:	81 2f       	mov	r24, r17
+ 53c:	26 de       	rcall	.-948    	; 0x18a <MIDI_send>
+ 53e:	cc cf       	rjmp	.-104    	; 0x4d8 <main+0x10>
 
-0000055c <__vector_29>:
- 55c:	1f 92       	push	r1
- 55e:	0f 92       	push	r0
- 560:	0f b6       	in	r0, 0x3f	; 63
- 562:	0f 92       	push	r0
- 564:	11 24       	eor	r1, r1
- 566:	0b b6       	in	r0, 0x3b	; 59
- 568:	0f 92       	push	r0
- 56a:	8f 93       	push	r24
- 56c:	9f 93       	push	r25
- 56e:	ef 93       	push	r30
- 570:	ff 93       	push	r31
- 572:	80 91 79 00 	lds	r24, 0x0079
- 576:	80 93 04 07 	sts	0x0704, r24
- 57a:	ec e7       	ldi	r30, 0x7C	; 124
- 57c:	f0 e0       	ldi	r31, 0x00	; 0
- 57e:	90 81       	ld	r25, Z
- 580:	80 91 06 07 	lds	r24, 0x0706
- 584:	8c 70       	andi	r24, 0x0C	; 12
- 586:	86 95       	lsr	r24
- 588:	86 95       	lsr	r24
- 58a:	90 7e       	andi	r25, 0xE0	; 224
- 58c:	89 2b       	or	r24, r25
- 58e:	80 83       	st	Z, r24
- 590:	ff 91       	pop	r31
- 592:	ef 91       	pop	r30
- 594:	9f 91       	pop	r25
- 596:	8f 91       	pop	r24
- 598:	0f 90       	pop	r0
- 59a:	0b be       	out	0x3b, r0	; 59
- 59c:	0f 90       	pop	r0
- 59e:	0f be       	out	0x3f, r0	; 63
- 5a0:	0f 90       	pop	r0
- 5a2:	1f 90       	pop	r1
- 5a4:	18 95       	reti
+00000540 <__vector_29>:
+ 540:	1f 92       	push	r1
+ 542:	0f 92       	push	r0
+ 544:	0f b6       	in	r0, 0x3f	; 63
+ 546:	0f 92       	push	r0
+ 548:	11 24       	eor	r1, r1
+ 54a:	0b b6       	in	r0, 0x3b	; 59
+ 54c:	0f 92       	push	r0
+ 54e:	8f 93       	push	r24
+ 550:	9f 93       	push	r25
+ 552:	ef 93       	push	r30
+ 554:	ff 93       	push	r31
+ 556:	80 91 79 00 	lds	r24, 0x0079
+ 55a:	80 93 04 02 	sts	0x0204, r24
+ 55e:	ec e7       	ldi	r30, 0x7C	; 124
+ 560:	f0 e0       	ldi	r31, 0x00	; 0
+ 562:	90 81       	ld	r25, Z
+ 564:	80 91 06 02 	lds	r24, 0x0206
+ 568:	8c 70       	andi	r24, 0x0C	; 12
+ 56a:	86 95       	lsr	r24
+ 56c:	86 95       	lsr	r24
+ 56e:	90 7e       	andi	r25, 0xE0	; 224
+ 570:	89 2b       	or	r24, r25
+ 572:	80 83       	st	Z, r24
+ 574:	ff 91       	pop	r31
+ 576:	ef 91       	pop	r30
+ 578:	9f 91       	pop	r25
+ 57a:	8f 91       	pop	r24
+ 57c:	0f 90       	pop	r0
+ 57e:	0b be       	out	0x3b, r0	; 59
+ 580:	0f 90       	pop	r0
+ 582:	0f be       	out	0x3f, r0	; 63
+ 584:	0f 90       	pop	r0
+ 586:	1f 90       	pop	r1
+ 588:	18 95       	reti
 
-000005a6 <__vector_23>:
+0000058a <__vector_23>:
 }
 
 ISR(TIMER0_OVF_vect)
 {
- 5a6:	1f 92       	push	r1
- 5a8:	0f 92       	push	r0
- 5aa:	0f b6       	in	r0, 0x3f	; 63
- 5ac:	0f 92       	push	r0
- 5ae:	11 24       	eor	r1, r1
+ 58a:	1f 92       	push	r1
+ 58c:	0f 92       	push	r0
+ 58e:	0f b6       	in	r0, 0x3f	; 63
+ 590:	0f 92       	push	r0
+ 592:	11 24       	eor	r1, r1
 	TCNT0 = 0;						// reset the count TCNT0
- 5b0:	16 bc       	out	0x26, r1	; 38
- 5b2:	0f 90       	pop	r0
- 5b4:	0f be       	out	0x3f, r0	; 63
- 5b6:	0f 90       	pop	r0
- 5b8:	1f 90       	pop	r1
- 5ba:	18 95       	reti
+ 594:	16 bc       	out	0x26, r1	; 38
+ 596:	0f 90       	pop	r0
+ 598:	0f be       	out	0x3f, r0	; 63
+ 59a:	0f 90       	pop	r0
+ 59c:	1f 90       	pop	r1
+ 59e:	18 95       	reti
 
-000005bc <_exit>:
- 5bc:	f8 94       	cli
+000005a0 <_exit>:
+ 5a0:	f8 94       	cli
 
-000005be <__stop_program>:
- 5be:	ff cf       	rjmp	.-2      	; 0x5be <__stop_program>
+000005a2 <__stop_program>:
+ 5a2:	ff cf       	rjmp	.-2      	; 0x5a2 <__stop_program>

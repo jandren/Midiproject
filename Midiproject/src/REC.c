@@ -15,10 +15,10 @@ volatile uint16_t software_time = 0;
 volatile uint16_t software_comp = 100;
 
 
-uint8_t com[256] = {0b10010000, 0b10010000, 0b10010000, 0b10010000, 0b10010000};
-uint8_t tones[256] = {70, 71, 72, 73, 75};
-uint8_t vol[256] = {100, 100, 100, 100, 100};
-uint16_t rec_time[256] = {100, 200, 300, 400, 500};
+uint8_t com[256];
+uint8_t tones[256];
+uint8_t vol[256];
+uint16_t rec_time[256];
 uint8_t rec_index = 0;
 uint8_t REC = 0;
 uint8_t PLAY = 0;
@@ -37,7 +37,7 @@ void init_Timer1(void)				// for recording
 ISR(TIMER1_COMPA_vect)
 {
 	software_time++;
-	PORTB = ~((PLAY<<6) | (REC<<7) | rec_index);
+	PORTB = ~rec_index; //((PLAY<<6) | (REC<<7) | rec_index);
 	if(software_time == software_comp)
 	{
 		REC_ISR(software_time);
