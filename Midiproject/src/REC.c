@@ -115,9 +115,10 @@ void REC_start(void){
 void REC_stop(void){
 	// always record both on AND off commands = even number
 	if(rec_index & 0x01){ // if not even
-		com[rec_index]  = (com[rec_index-1] & 0b11101111); 
-		tones[rec_index] = tones[rec_index-1];
-		vol[rec_index] = volume;
+		REC_add((com[rec_index-1] & 0b11101111), tones[rec_index-1]);
+		//com[rec_index]  = (com[rec_index-1] & 0b11101111); 
+		//tones[rec_index] = tones[rec_index-1];
+		//vol[rec_index] = volume;
 		rec_index++;
 	}
 	
@@ -145,6 +146,11 @@ void REC_state(uint8_t switches)
 	else{ // If should be off
 		if(PLAY){ // Turn off if on
 			PLAY = 0;
+			
+			// Make sure to end the last tone!
+			if(rec_index & 0x01){
+				REC_ISR(0);
+			}
 		}
 	}
 	
