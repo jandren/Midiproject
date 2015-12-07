@@ -48,7 +48,7 @@ ISR(TIMER1_COMPA_vect)
 
 ISR(TIMER1_OVF_vect){
 	software_time++;
-	PORTB = ~(rec_index >> 1); //((PLAY<<6) | (REC<<7) | rec_index);
+	//PORTB = ~(rec_index >> 1); //((PLAY<<6) | (REC<<7) | rec_index);
 }
 
 void TIME_Set_ISR(uint32_t time)
@@ -67,7 +67,9 @@ uint32_t TIME_read(void)
 	return ((uint32_t)software_time << 16) | TCNT1;
 }
 
-void REC_ISR(uint16_t time){
+void REC_POLL(uint16_t time){
+	PORTB = ~rec_index;
+	
 	if(PLAY && REC_que){
 		MIDI_send(com[rec_index], tones[rec_index], vol[rec_index]);
 		//PORTB = ~rec_index;
@@ -153,7 +155,7 @@ void REC_state(uint8_t switches)
 			// First note is on time = 0 which doesn't exist in our approach,
 			// Therefor call the ICR for the first tone and then reset timer.
 			rec_index = 0;
-			REC_ISR(0);
+			REC_POLL(0);
 			TIME_reset();
 		}
 	}
@@ -163,7 +165,7 @@ void REC_state(uint8_t switches)
 			
 			// Make sure to end the last tone!
 			if(rec_index & 0x01){
-				REC_ISR(0);
+				REC_POLL(0);
 			}
 		}
 	}

@@ -27,7 +27,7 @@ void TIME_Set_ISR(uint32_t time);
 void TIME_reset(void);
 uint32_t TIME_read(void);
 
-void REC_ISR(uint16_t time);
+void REC_POLL(uint16_t time);
 void REC_add(uint8_t command, uint8_t tone);
 
 void REC_start(void);

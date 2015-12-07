@@ -75,86 +75,120 @@ uint8_t MIDI_Conversion(uint16_t pressed)
 	uint16_t converted = 0;
 	uint8_t offset = 48;
 	uint8_t pitch = switches & 0x03;		// mask with two far right switches
-
-/*
-	if( pressed &  0x01){
-		 converted = offset + 0 + 12 * pitch;
-		 			// C4 = 48 or C5 = 60 or C6 = 72
-		 // sendMIDI
-	}
-	if( pressed &  0x02){
-		 converted = offset + 2 + 12 * pitch;
-		 			// D4 = 50 or D5 = 62 or D6 = 74
-	}
-	if( pressed &  0x04) converted = offset + 4 + 12 * pitch;
-		 			// E4 = 52 or E5 = 64 or E6 = 76
-	if( pressed &  0x08) converted = offset + 5 + 12 * pitch;
-		 			// F4 = 53 or F5 = 65 or F6 = 77
-	if( pressed &  0x10) converted = offset + 7 + 12 * pitch;
-		 			// G4 = 55 or G5 = 67 or G6 = 79
-	if( pressed &  0x20) converted = offset + 9 + 12 * pitch;
-		 			// A4 = 57 or A5 = 69 or A6 = 81
-	if( pressed &  0x40) converted = offset + 11 + 12 * pitch;
-		 			// B4 = 59 or B5 = 71 or B6 = 83
-	if( pressed &  0x80) converted = offset + 12 + 12 * pitch;
-		 			// C5 = 60 or C6 = 72 or C7 = 84
-*/
-
-	switch(pressed)
-	{
-		case 0x0001:
-		converted = 48 + 12 * pitch;
-		break;				// C4 = 48 or C5 = 60 or C6 = 72
-		case 0x0002:
-		converted = 50 + 12 * pitch;
-		break;				// D4 = 50 or D5 = 62 or D6 = 74
-		case 0x0004:
-		converted = 52 + 12 * pitch;
-		break;				// E4 = 52 or E5 = 64 or E6 = 76
-		case 0x0008:
-		converted = 53 + 12 * pitch;
-		break;				// F4 = 53 or F5 = 65 or F6 = 77
-		case 0x0010:
-		converted = 55 + 12 * pitch;
-		break;				// G4 = 55 or G5 = 67 or G6 = 79
-		case 0x0020:
-		converted = 57 + 12 * pitch;
-		break;				// A4 = 57 or A5 = 69 or A6 = 81
-		case 0x0040:
-		converted = 59 + 12 * pitch;
-		break;				// B4 = 59 or B5 = 71 or B6 = 83
-		case 0x0080:
-		converted = 60 + 12 * pitch;
-		break;				// C5 = 60 or C6 = 72 or C7 = 84
-		case 0x0100:
-		converted = 62 + 12 * pitch;
-		break;				// C4 = 48 or C5 = 60 or C6 = 72
-		case 0x0200:
-		converted = 64 + 12 * pitch;
-		break;				// D4 = 50 or D5 = 62 or D6 = 74
-		case 0x0400:
-		converted = 65 + 12 * pitch;
-		break;				// E4 = 52 or E5 = 64 or E6 = 76
-		case 0x0800:
-		converted = 67 + 12 * pitch;
-		break;				// F4 = 53 or F5 = 65 or F6 = 77
-		case 0x1000:
-		converted = 69 + 12 * pitch;
-		break;				// G4 = 55 or G5 = 67 or G6 = 79
-		case 0x2000:
-		converted = 71 + 12 * pitch;
-		break;				// A4 = 57 or A5 = 69 or A6 = 81
-		case 0x4000:
-		converted = 72 + 12 * pitch;
-		break;				// B4 = 59 or B5 = 71 or B6 = 83
-		case 0x8000:
-		converted = 74 + 12 * pitch;
-		break;				// C5 = 60 or C6 = 72 or C7 = 84
-		default:
-		break;
-	}
 	
+	if(switches & 0b00010000){  // Only flats
+	
+		switch(pressed)
+		{
+			case 0x0001:
+			converted = 48 + 12 * pitch;
+			break;				// C4 = 48 or C5 = 60 or C6 = 72
+			case 0x0002:
+			converted = 50 + 12 * pitch;
+			break;				// D4 = 50 or D5 = 62 or D6 = 74
+			case 0x0004:
+			converted = 52 + 12 * pitch;
+			break;				// E4 = 52 or E5 = 64 or E6 = 76
+			case 0x0008:
+			converted = 53 + 12 * pitch;
+			break;				// F4 = 53 or F5 = 65 or F6 = 77
+			case 0x0010:
+			converted = 55 + 12 * pitch;
+			break;				// G4 = 55 or G5 = 67 or G6 = 79
+			case 0x0020:
+			converted = 57 + 12 * pitch;
+			break;				// A4 = 57 or A5 = 69 or A6 = 81
+			case 0x0040:
+			converted = 59 + 12 * pitch;
+			break;				// B4 = 59 or B5 = 71 or B6 = 83
+			case 0x0080:
+			converted = 60 + 12 * pitch;
+			break;				// C5 = 60 or C6 = 72 or C7 = 84
+			case 0x0100:
+			converted = 62 + 12 * pitch;
+			break;				// C4 = 48 or C5 = 60 or C6 = 72
+			case 0x0200:
+			converted = 64 + 12 * pitch;
+			break;				// D4 = 50 or D5 = 62 or D6 = 74
+			case 0x0400:
+			converted = 65 + 12 * pitch;
+			break;				// E4 = 52 or E5 = 64 or E6 = 76
+			case 0x0800:
+			converted = 67 + 12 * pitch;
+			break;				// F4 = 53 or F5 = 65 or F6 = 77
+			case 0x1000:
+			converted = 69 + 12 * pitch;
+			break;				// G4 = 55 or G5 = 67 or G6 = 79
+			case 0x2000:
+			converted = 71 + 12 * pitch;
+			break;				// A4 = 57 or A5 = 69 or A6 = 81
+			case 0x4000:
+			converted = 72 + 12 * pitch;
+			break;				// B4 = 59 or B5 = 71 or B6 = 83
+			case 0x8000:
+			converted = 74 + 12 * pitch;
+			break;				// C5 = 60 or C6 = 72 or C7 = 84
+			default:
+			break;
+		}
+	}
+	else{  // All keys
+		switch(pressed)
+		{
+			case 0x0001:
+			converted = offset + 0 + 12 * pitch;
+			break;				// C4 = 48 or C5 = 60 or C6 = 72
+			case 0x0002:
+			converted = offset + 1 + 12 * pitch;
+			break;				// D4 = 50 or D5 = 62 or D6 = 74
+			case 0x0004:
+			converted = offset + 2 + 12 * pitch;
+			break;				// E4 = 52 or E5 = 64 or E6 = 76
+			case 0x0008:
+			converted = offset + 3 + 12 * pitch;
+			break;				// F4 = 53 or F5 = 65 or F6 = 77
+			case 0x0010:
+			converted = offset + 4 + 12 * pitch;
+			break;				// G4 = 55 or G5 = 67 or G6 = 79
+			case 0x0020:
+			converted = offset + 5 + 12 * pitch;
+			break;				// A4 = 57 or A5 = 69 or A6 = 81
+			case 0x0040:
+			converted = offset + 6 + 12 * pitch;
+			break;				// B4 = 59 or B5 = 71 or B6 = 83
+			case 0x0080:
+			converted = offset + 7 + 12 * pitch;
+			break;				// C5 = 60 or C6 = 72 or C7 = 84
+			case 0x0100:
+			converted = offset + 8 + 12 * pitch;
+			break;				// C4 = 48 or C5 = 60 or C6 = 72
+			case 0x0200:
+			converted = offset + 9 + 12 * pitch;
+			break;				// D4 = 50 or D5 = 62 or D6 = 74
+			case 0x0400:
+			converted = offset + 10 + 12 * pitch;
+			break;				// E4 = 52 or E5 = 64 or E6 = 76
+			case 0x0800:
+			converted = offset + 11 + 12 * pitch;
+			break;				// F4 = 53 or F5 = 65 or F6 = 77
+			case 0x1000:
+			converted = offset + 12 + 12 * pitch;
+			break;				// G4 = 55 or G5 = 67 or G6 = 79
+			case 0x2000:
+			converted = offset + 13 + 12 * pitch;
+			break;				// A4 = 57 or A5 = 69 or A6 = 81
+			case 0x4000:
+			converted = offset + 14 + 12 * pitch;
+			break;				// B4 = 59 or B5 = 71 or B6 = 83
+			case 0x8000:
+			converted = offset + 15 + 12 * pitch;
+			break;				// C5 = 60 or C6 = 72 or C7 = 84
+			default:
+			break;
+			}
+	}
 	return converted;
+	
 }
 
 void init_adc(void)					// function for initializing ADC

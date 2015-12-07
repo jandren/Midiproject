@@ -25,9 +25,9 @@ int main(void)
 	sei();
 	
 	// Pressed buttons
-	uint16_t previus = 0x00;
-	uint16_t current = 0x00;
-	uint16_t change  = 0x00;
+	uint16_t previus = 0x0000;
+	uint16_t current = 0x0000;
+	uint16_t change  = 0x0000;
 	
 	// MIDI related variables
 	uint8_t command = 0;
@@ -37,11 +37,11 @@ int main(void)
 	(1)
 	{
 		
-		current = (~PIND) | (~PINA << 8);
-		switches = ~PINC; // Update switches
+		current = (PINA) | (PIND << 8);
+		switches = PINC; // Update switches
 		REC_state(switches);
-		REC_ISR(0);
-		//PORTB = ~switches; // rx_ch;
+		REC_POLL(0);
+		//PORTB = current; // rx_ch;
 		
 		change = current^previus;
 		
@@ -55,10 +55,6 @@ int main(void)
 			MIDI_send(command, tone, volume);
 			
 			
-			
-			//UART_out(0b10010001); // Command
-			//UART_out(MIDI_Conversion(current & change)); // Note 7bit
-			//UART_out(80 ); //volume(switches & 0x03)); // Velocity 7 bit
 		}
 		else if(previus & change) // Note off
 		{
@@ -70,13 +66,6 @@ int main(void)
 			REC_add(command, tone);
 			MIDI_send(command, tone, volume);
 			
-			
-			
-			//UART_out(0b10000001); // Command
-			//UART_out(MIDI_Conversion(previus & change)); // Note 7bit
-			//UART_out(0b01001000); // Velocity 7 bit
-
-
 		}
 		previus = current;
 		//_delay_ms(300);
