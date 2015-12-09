@@ -3,7 +3,7 @@
  *
  * Saves data in arrays and its time, every note will consist of two commands, press and release. 
  * 
- *
+ * 
  * Created: 2015-11-23 14:57:16
  * Author: Jakob Andren & SJ
  */ 
@@ -37,39 +37,47 @@ void init_Timer1(void)
 	TCCR1B	= (1<<CS11); // Start, pre scaler 1, its 32 bit so long enough and 
 }
 
+// Lower 16 bit compare interrupt for the timer
 ISR(TIMER1_COMPA_vect)
-{
+{	// Checks the upper 16-bit (software_time) for a compare
 	if(software_time == software_comp)
 	{
-		REC_que++;
+		REC_que++; // Tells that a compare has been detected
 	}
-	
 }
 
+// Increments software_time every overflow
 ISR(TIMER1_OVF_vect){
 	software_time++;
 	//PORTB = ~(rec_index >> 1); //((PLAY<<6) | (REC<<7) | rec_index);
 }
 
+// The following three functions are for working with time as a 32-bit uint instead of two 16-bit
+// Function for setting 
 void TIME_Set_ISR(uint32_t time)
 {
 	software_comp = (time >> 16);
 	OCR1A = time;
 }
 
+// Reset time
 void TIME_reset(void)
 {
 	software_time = 0;
+	TCNT1 =  0;
 }
 
+// Read time
 uint32_t TIME_read(void)
 {
 	return ((uint32_t)software_time << 16) | TCNT1;
 }
 
+// Called from main while(1)
 void REC_POLL(uint16_t time){
 	PORTB = ~rec_index;
-	
+
+	// If PLAY state == true and if the timer interrupt has been triggered
 	if(PLAY && REC_que){
 		MIDI_send(com[rec_index], tones[rec_index], vol[rec_index]);
 		//PORTB = ~rec_index;
@@ -111,9 +119,6 @@ void REC_add(uint8_t command, uint8_t tone){
 		if(rec_index == 0){
 			rec_time[rec_index] = 0;
 			TIME_reset();
-			
-			
-			
 		}
 		
 		else { rec_time[rec_index] = TIME_read();}
@@ -122,12 +127,14 @@ void REC_add(uint8_t command, uint8_t tone){
 	}
 }
 
+// Setup and declare that recording is ON
 void REC_start(void){
 	REC = 1;
 	rec_index = 0;
 	TIME_reset();
 }
 
+// Ends last note if necessary, then stop.
 void REC_stop(void){
 	// always record both on AND off commands = even number
 	if(rec_index & 0x01){ // if not even
