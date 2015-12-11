@@ -146,52 +146,52 @@ uint8_t MIDI_Conversion(uint16_t pressed)
 		{
 			case 0x0001:
 			converted = offset + 0 + 12 * pitch;
-			break;				// C4 = 48 or E5 = 64 or G6# = 80
+			break;				// C4 = 48 or C5 = 60 or C6 = 72
 			case 0x0002:
 			converted = offset + 1 + 12 * pitch;
-			break;				// C4# = 49 or F5 = 65 or A6 = 81
+			break;				// C4# = 49 or C5# = 61 or C6# = 73
 			case 0x0004:
 			converted = offset + 2 + 12 * pitch;
-			break;				// D4 = 50 or F5# = 66 or A6# = 82
+			break;				// D4 = 50 or D5 = 62 or D6 = 74
 			case 0x0008:
 			converted = offset + 3 + 12 * pitch;
-			break;				// D4# = 51 or G5 = 67 or B6 = 83
+			break;				// D4# = 51 or D5# = 63 or D6# = 75
 			case 0x0010:
 			converted = offset + 4 + 12 * pitch;
-			break;				// E4 = 52 or G5# = 68 or C7 = 84
+			break;				// E4 = 52 or E5 = 64 or E6 = 76
 			case 0x0020:
 			converted = offset + 5 + 12 * pitch;
-			break;				// F4 = 53 or A5 = 69 or C7# = 85
+			break;				// F4 = 53 or F5 = 65 or F6 = 77
 			case 0x0040:
 			converted = offset + 6 + 12 * pitch;
-			break;				// F4# = 54 or A5# = 70 or D7 = 86
+			break;				// F4# = 54 or F5# = 66 or F6# = 78
 			case 0x0080:
 			converted = offset + 7 + 12 * pitch;
-			break;				// G4 = 55 or B5 = 71 or D7# = 87
+			break;				// G4 = 55 or G5 = 67 or G6 = 79
 			case 0x0100:
 			converted = offset + 8 + 12 * pitch;
-			break;				// G4# = 56 or C6 = 72 or E7 = 88
+			break;				// G4# = 56 or G5# = 68 or G6# = 80
 			case 0x0200:
 			converted = offset + 9 + 12 * pitch;
-			break;				// A4 = 57 or C6# = 73 or F7 = 89
+			break;				// A4 = 57 or A5 = 69 or A6 = 81
 			case 0x0400:
 			converted = offset + 10 + 12 * pitch;
-			break;				// A4# = 58 or D6 = 74 or F7# = 90
+			break;				// A4# = 58 or A5# = 70 or A6# = 82
 			case 0x0800:
 			converted = offset + 11 + 12 * pitch;
-			break;				// B4 = 59 or D6# = 75 or G7 = 91
+			break;				// B4 = 59 or B5 = 71 or B6 = 83
 			case 0x1000:
 			converted = offset + 12 + 12 * pitch;
-			break;				// C5 = 60 or E6 = 76 or G7# = 92
+			break;				// C5 = 60 or C6 = 72 or C7 = 84
 			case 0x2000:
 			converted = offset + 13 + 12 * pitch;
-			break;				// C5# = 61 or F6 = 77 or A7 = 93
+			break;				// C5# = 61 or C6# = 73 or C7# = 85
 			case 0x4000:
 			converted = offset + 14 + 12 * pitch;
-			break;				// D5 = 62 or F6# = 78 or A7# = 94
+			break;				// D5 = 62 or D6 = 74 or D7 = 86
 			case 0x8000:
 			converted = offset + 15 + 12 * pitch;
-			break;				// D5# = 63 or G6 = 79 or B7 = 95
+			break;				// D5# = 63 or D6# = 75 or D7# = 87
 			default:
 			break;
 			}
