@@ -1,12 +1,23 @@
 /*
-* serialMidi.c
+* main.c
 * Description:
-* Pressing button SW0-2 lights up the corresponding LEDS for 0.5s
-* Repeat
+* Midi keyboard, control any MIDI compatible synthesizer.
+* Sends MIDI commands over serial following the MIDI standard.
 
 * Hardware:
-* Outputs: PORTB 0~7 connected to STK600 LEDs 0~7 (active low)
-* Inputs: PORTD 0~7 connected to STK600 pushbuttons 0~7 (active low)
+*INPUTS:
+* Push Buttons: L&S board 1 for upper 8 notes PORTA.0 ~ PORTA.7
+* Push Buttons: L&S board 2 for lower 8 notes PORTD.0 ~ PORTD.7
+* Switches: L&S board 1 for changing pitches PORTC.0 ~ PORTC.1
+* Switches: L&S board 1 for changing instruments PORTC.2 ~ PORTC.3
+* Switches: L&S board 1 for flat/full keyboard PORTC.4
+* Switches: L&S board 1 for playing back records PORTC.6
+* Switches: L&S board 1 for recording the music PORTC.7
+* Sliders from Potentiometer board PORTF.0 ~ PORTF.3
+*
+*OUTPUTS
+* Serial to USB interface PORTE.0, PORTE.1
+* LEDs: STK600 board PORTB.0 ~ PORTB.7
 *
 * Created: 9/13/2015
 * Author: Jakob Andren & SJ
